@@ -221,3 +221,13 @@ remains the primary candidate.
   claim of 5.14 is not backed by a printed or saved OOF result in the inspected
   source, so it is not eligible for submission unless the completed artifacts
   provide independently verifiable evidence.
+- Both frontier code submissions reached a terminal Kaggle status without a
+  score. Submission `54992035` (A28/Q0522 pair) and submission `54992736`
+  (A28-only) each report that the hidden submission notebook exceeded the
+  allowed runtime. Their ordinary visible-data runs were valid, but the hidden
+  scale invalidates the current packaging. Both are runtime **NO-GO** results;
+  neither is retried, and the 6.477 exact full stack remains the primary
+  candidate.
+- The public Dip-aware HMM + GBM run ended with
+  `CANCEL_ACKNOWLEDGED` and exposes no output files. Its markdown-only 5.14
+  claim remains unverifiable and supplies no submission candidate.
