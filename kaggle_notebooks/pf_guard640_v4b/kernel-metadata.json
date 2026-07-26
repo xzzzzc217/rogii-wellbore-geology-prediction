@@ -1,0 +1,24 @@
+{
+  "id": "heralces/rogii-guard640-v4b",
+  "title": "ROGII Guard640 v4b",
+  "code_file": "rogii-guard640-v4b.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "geology"
+  ],
+  "dataset_sources": [
+    "phongnguyn23021656/koolbox-offline",
+    "fleongg/rogii-claude-models-pub",
+    "ravaghi/wellbore-geology-prediction-artifacts",
+    "pilkwang/rogii-model-package"
+  ],
+  "competition_sources": [
+    "rogii-wellbore-geology-prediction"
+  ],
+  "model_sources": []
+}

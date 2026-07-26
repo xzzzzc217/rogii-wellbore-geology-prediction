@@ -1,0 +1,24 @@
+{
+  "id": "heralces/rogii-pf-safe-v3",
+  "title": "ROGII PF Safe v3",
+  "code_file": "rogii-pf-safe-v3.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "geology"
+  ],
+  "dataset_sources": [
+    "phongnguyn23021656/koolbox-offline",
+    "fleongg/rogii-claude-models-pub",
+    "ravaghi/wellbore-geology-prediction-artifacts",
+    "pilkwang/rogii-model-package"
+  ],
+  "competition_sources": [
+    "rogii-wellbore-geology-prediction"
+  ],
+  "model_sources": []
+}

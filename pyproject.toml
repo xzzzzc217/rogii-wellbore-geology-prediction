@@ -1,0 +1,33 @@
+[project]
+name = "kaggle-rogii-wellbore-geology-2026"
+version = "0.1.0"
+description = "Reproducible medal attempt for ROGII Wellbore Geology Prediction"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "catboost>=1.2,<2",
+  "kaggle>=1.7,<2",
+  "lightgbm>=4.6,<5",
+  "numpy>=2,<3",
+  "pandas>=2.2,<3",
+  "pyarrow>=18,<23",
+  "scikit-learn>=1.6,<2",
+  "scipy>=1.14,<2",
+  "xgboost>=3,<4",
+]
+
+[dependency-groups]
+dev = [
+  "jupyterlab>=4,<5",
+  "pytest>=8,<10",
+  "ruff>=0.12,<1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+catboost_info/
+.coverage
+htmlcov/
+*.py[cod]
+
+# Competition data and generated artifacts
+data/
+artifacts/
+models/
+outputs/
+submissions/
+leaderboards/
+
+# Credentials and local configuration
+.env
+.kaggle/
+kaggle.json
+access_token
+
+# Notebook state
+.ipynb_checkpoints/
