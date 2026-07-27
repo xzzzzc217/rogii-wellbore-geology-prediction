@@ -270,3 +270,12 @@ remains the primary candidate.
   version 2 explicitly requests `NvidiaTeslaT4` and is the sole retry. Kaggle
   normalized the active private Notebook ID to
   `heralces/rogii-sequence-tcn-pilot-v2`; its initial status is `RUNNING`.
+- TCN v2 completed successfully on a Tesla T4 in 81.33 seconds. On 899,519
+  rows from 170 held-out spatial-fold wells, the frozen 0.20 overlay improved
+  pooled RMSE from 9.639581 to 9.584363 (delta -0.055218). Well-level p95 and
+  worst-well RMSE also improved by 0.075164 and 1.150265, respectively.
+  However, only 44.71% of validation wells did not worsen, below the
+  preregistered 50% minimum. The report therefore returns `FAIL`,
+  `full_multifold_authorized: false`, and
+  `kaggle_submission_authorized: false`. No more folds or submission package
+  are created from this version.

@@ -109,3 +109,30 @@ The production Notebook writes only:
 - `sequence_tcn_pilot.pt`.
 
 It contains no code path that creates `submission.csv`.
+
+## Result
+
+Private Notebook v2 completed on a Tesla T4 with CUDA in 81.33 seconds:
+
+| Item | Result |
+|---|---:|
+| Training wells / steps | 603 / 4,000 |
+| Validation wells / rows | 170 / 899,519 |
+| Competitive base RMSE | 9.639581 |
+| Primary 0.20 overlay RMSE | 9.584363 |
+| Pooled delta | -0.055218 |
+| Well-level p95 delta | -0.075164 |
+| Worst-well delta | -1.150265 |
+| Validation wells not worsened | 44.71% |
+
+The pooled, p95, and worst-well checks passed. The preregistered requirement
+that at least half of validation wells not worsen failed: 44.71% versus 50%.
+The official decision is therefore **FAIL / NO-GO**. Full multi-fold training
+and competition packaging are not authorized.
+
+All three diagnostic scales improved pooled RMSE, but their well-win fractions
+were only 45.29%, 44.71%, and 44.12% for scales 0.10, 0.20, and 0.30. Changing
+the scale after reading this fold would not repair the failed coverage gate and
+would violate the v1/v2 selection contract. The most plausible interpretation
+is that the TCN benefits a smaller set of high-row-count wells while mildly
+worsening a majority of wells.
