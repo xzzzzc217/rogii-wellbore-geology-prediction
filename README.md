@@ -25,6 +25,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | Frontier II DYNQ0196 | **7.507**，较最佳差 1.030，NO-GO |
 | GPU TCN 残差小试 | pooled 改善但逐井覆盖不足，门槛 FAIL |
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
+| MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
 
 当前 6.477 比公开榜前 10% 边界差约 0.010。公开榜只覆盖约 26% 测试数据，最终排名
 由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了
@@ -257,6 +258,23 @@ Ridge。作者的按井随机五折报告为 flat 15.589、固定核心 9.048、
 提交。完整方法和限制见
 [Harshini 空间核心审计](docs/harshini_spatial_core_audit.md)。
 
+### 5.10 MHA180 target-free midpoint 审计
+
+公开 Notebook `youill0317/rogii-mha180sep3-public-repro` 同时包含运行时 PF 双峰 midpoint
+修正、由排行榜 canary 解码的全局 -0.40 偏置以及开关控制的 probe。私有构建
+`heralces/rogii-mha180-target-free-v1` 只保留目标无关的运行时 midpoint 分支：
+`alpha=1.8`、minor mass 至少 0.22、双峰间距 3--40 ft、单井修正上限 4 ft；删除
+canary 偏置、probe 和后续排行榜诊断。最终报告验证了 14,151 行、ID 同序且唯一、
+预测全为有限值，并用 SHA-256 绑定报告与 `submission.csv`。
+
+普通 GPU 运行约 889 秒。运行时只发现 3 口具有 PF 统计的井，但它们都已由更早的
+train/test overlap 保护事务处理，midpoint 分支按设计全部跳过：命中井数为 0，
+移动行数为 0。最终文件 SHA-256 为
+`fdf4a8175b6ec6a70c9b78fd6916ac3c317e43f7e9c08bbca87cd02314801ca9`，与此前
+“去掉 +2 ft hedge”的提交逐字节相同；该文件已有 Public RMSE **6.604**，比当前
+6.477 差 0.127。因此不为相同文件创建新的 Code Submission，也不围绕公开榜来源的
+`alpha` 继续调参。该路线判定为 **NO-GO**。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -288,6 +306,7 @@ Ridge。作者的按井随机五折报告为 flat 15.589、固定核心 9.048、
 | Frontier II DYNQ0196 | 7.507 | 较 6.477 差 1.030，作者 6.39 未验证，NO-GO |
 | Sequence TCN v1/v2 | 不提交 | pooled -0.0552，但仅 44.71% 井改善，NO-GO |
 | Harshini 空间曲面 + PF | 不提交 | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
+| MHA180 target-free midpoint | 不重复提交 | 0 口井命中；文件等同已得 6.604 的 no-hedge |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。
@@ -401,5 +420,6 @@ Notebook 运行生成 `submission.csv`，再提交对应 Notebook 版本。
 4. Frontier II 已以 7.507 判定 NO-GO；不根据作者自报的 6.39 重复调参；
 5. TCN v2 已按预注册门槛停止；后续序列路线必须先解决逐井覆盖不足，不直接调 scale；
 6. Harshini 曲面路线已按严格空间门槛停止；不运行 3.46 小时 boosted 多折或隐藏提交；
-7. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
-8. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。
+7. MHA180 target-free midpoint 已证明退化为 6.604 no-hedge；不重复提交或继续公开榜调参；
+8. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
+9. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。

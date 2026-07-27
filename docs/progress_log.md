@@ -305,3 +305,22 @@ remains the primary candidate.
   The public notebook also required about 12,464 seconds on visible data.
   Harshini is therefore a spatial and runtime **NO-GO**; no boosted multi-fold
   rerun or Kaggle submission was authorized.
+- Audited public Notebook `youill0317/rogii-mha180sep3-public-repro`. Its
+  published transaction combines a run-local PF-bimodal midpoint adjustment
+  with a global -0.40 correction decoded from a leaderboard canary and
+  flag-gated probe cells. The canary correction, probes, and later leaderboard
+  diagnostics were excluded from the private target-free build.
+- Built and ran private GPU Notebook
+  `heralces/rogii-mha180-target-free-v1` version 1. The retained midpoint rule
+  uses alpha 1.8, minor mass 0.22, separation 3--40 ft, and a 4-ft cap. The
+  run completed in approximately 889 seconds. Its final contract verified
+  14,151 rows, exact sample ID order, unique IDs, finite predictions, and a
+  report-bound submission SHA-256. It records no leaderboard canary or
+  derived-bias use and no retained probe cells.
+- All three wells with runtime PF statistics were already covered by the
+  guarded overlap transaction, so the midpoint rule qualified **zero wells**
+  and moved **zero rows**. The resulting submission SHA-256 is
+  `fdf4a8175b6ec6a70c9b78fd6916ac3c317e43f7e9c08bbca87cd02314801ca9`,
+  byte-identical to the existing no-hedge ablation that scored **6.604**.
+  A duplicate Code Submission was therefore not created. MHA180 target-free
+  is a **NO-GO**, and the 6.477 exact full stack remains the primary candidate.
