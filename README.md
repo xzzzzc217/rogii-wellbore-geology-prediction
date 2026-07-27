@@ -9,23 +9,25 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 
 ## 1. 当前状态
 
-截至 2026-07-26：
+截至 2026-07-27：
 
 | 项目 | 状态 |
 |---|---:|
 | 已加入竞赛并接受规则 | 完成 |
 | 训练井 / 可见测试井 | 773 / 3 |
 | 当前最佳 Public RMSE | **6.477** |
-| 当前公开榜排名 | **557 / 5,716，前 9.75%** |
-| 公开榜前 10% 边界 | 6.478 |
-| 公开榜前 5% 边界 | 6.443 |
-| 当前奖牌判断 | 暂处公开榜铜牌区，最终奖牌未确定 |
+| 当前公开榜排名 | **653 / 5,766，前 11.33%** |
+| 公开榜前 10% 边界 | 6.469 |
+| 公开榜前 5% 边界 | 6.436 |
+| 当前奖牌判断 | 暂处公开榜铜牌区外，最终奖牌未确定 |
 | A28 PF-1.3 w0.62 | 隐藏重跑超时，无分数 |
 | A28/Q0522 50/50 融合 | 隐藏重跑超时，无分数 |
+| Frontier II DYNQ0196 | 已提交，等待隐藏评分 |
+| GPU TCN 残差小试 | v1 遇 P100/PyTorch 架构错误；T4 v2 运行中 |
 
-当前 6.477 只领先公开榜前 10% 边界约 0.001。公开榜只覆盖约 26% 测试数据，最终
-排名由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会
-为了小幅 Public 提升牺牲跨井稳定性。
+当前 6.477 比公开榜前 10% 边界差约 0.008。公开榜只覆盖约 26% 测试数据，最终排名
+由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了
+小幅 Public 提升牺牲跨井稳定性。
 
 详细时间线见 [进展日志](docs/progress_log.md)，最终选择依据见
 [候选选择记录](docs/selection.md)。
@@ -189,6 +191,37 @@ Q0522 根据运行时 PF 分支报告确定方向，再把分支延伸 0.522 ft�
 通过预注册门槛：类型井协议只改善约 0.0115，七空间簇反而变差约 0.0464。因此该路线
 是 **NO-GO**，没有消耗提交次数。
 
+### 5.7 GPU TCN 序列残差小试
+
+树模型残差在简单基线上有效、但在强 Ridge/PF OOF 上没有稳定增益，因此下一条路线
+不是替换主轨迹，而是学习与强基线误差低相关的局部序列修正。当前私有 TCN 小试使用：
+
+- 378.4 万个训练后缀行和 773 口训练井；
+- 51 个不含绝对 X/Y/Z、井 ID 和标签信息的目标无关特征；
+- 水平井相对几何、沿井进度、GR 局部统计、Typewell GR 匹配和边界斜率；
+- 六层膨胀 1D 卷积，dilation 为 `1,2,4,8,16,32`；
+- `tanh` 限幅到 ±30 ft，主候选固定只叠加 0.20 倍预测残差；
+- 七空间簇中的完整 fold 0 作为验证集，并从训练中排除所有相同 Typewell 指纹。
+
+这一步是成本受控的资格赛：主 scale 必须相对竞争性 OOF 至少改善 0.02 RMSE，同时
+well-level p95 不恶化超过 0.10、最坏井不恶化超过 0.50，且至少一半验证井不变差。
+未通过则停止；通过也只授权继续多 fold 验证，**不会直接授权 Kaggle 提交**。特征缓存
+只上传到账号自己的私有 Kaggle Dataset，Git 仓库只保留构建和训练代码。
+
+### 5.8 Frontier II 运行时快速探针
+
+Frontier II 的 48 个评分代码单元中，44 个与现有精确全栈逐字一致。它关闭了两个在
+公开运行中不改变最终字节、但会增加隐藏重跑时间的校准层，并根据运行时 PF 分支报告
+追加有符号的 0.196 ft 修正。审计确认：
+
+- 修正前文件 SHA-256 与 6.477 主候选完全一致；
+- 评分事务不写死公开测试井 ID、行数或输出哈希；
+- 公开运行约 643 秒；
+- 作者在可视化清单中自报的 6.39 不作为真实成绩证据。
+
+该版本已作为一次受控 Code Submission 提交，当前等待隐藏评分。无论作者标题或清单
+如何描述，只有 Kaggle 提交列表返回的 `publicScore` 才会进入候选比较。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -217,6 +250,8 @@ Q0522 根据运行时 PF 分支报告确定方向，再把分支延伸 0.522 ft�
 | Residual GBDT v3 overlay | 未提交 | 竞争性 OOF 未通过 |
 | A28 PF-1.3 w0.62 | 无分数 | 隐藏重跑超时，运行时 NO-GO |
 | A28/Q0522 50/50 | 无分数 | 隐藏重跑超时，运行时 NO-GO |
+| Frontier II DYNQ0196 | 评分中 | 无固定公开井/行数的一次受控探针 |
+| Sequence TCN v1/v2 | 不提交 | v1 基础设施失败；固定 T4 后 v2 运行中 |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。
@@ -230,6 +265,7 @@ Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节�
 - [空间不变残差 OOF](docs/residual_gbdt_invariant_oof.md)
 - [Shrink 残差 OOF](docs/residual_gbdt_shrink_oof.md)
 - [目标无关 selector CV](docs/targetfree_selector_cv.md)
+- [GPU TCN 小试设计](docs/sequence_tcn_pilot.md)
 
 ## 8. 仓库结构
 
@@ -288,6 +324,18 @@ uv run python kaggle_notebooks/pf_exact128_v6d/validate_notebook.py
 uv run python scripts/build_frontier_a28_v1.py
 ```
 
+生成 TCN 私有训练缓存并构建 GPU Notebook：
+
+```powershell
+uv run python scripts/build_sequence_pilot_cache.py
+uv run python scripts/build_sequence_tcn_pilot_notebook.py
+```
+
+缓存约 397 MB，写入 `artifacts/sequence_pilot_cache_v1/`，受 `.gitignore` 保护。GPU
+Notebook 的源码保存在 `kaggle_notebooks/sequence_tcn_pilot_v1/`；Kaggle 运行 ID 为
+`heralces/rogii-sequence-tcn-pilot-v2`，它只写 OOF 报告和 checkpoint，不写
+`submission.csv`。
+
 由于竞赛已采用 Code Submission，不能直接上传本地 CSV；最终候选必须先由 Kaggle
 Notebook 运行生成 `submission.csv`，再提交对应 Notebook 版本。
 
@@ -305,6 +353,7 @@ Notebook 运行生成 `submission.csv`，再提交对应 Notebook 版本。
 1. 保留 6.477 为当前主候选，不重复提交已超时的 A28/Pair 版本；
 2. 只有在完成隐藏规模预算分析和明确的运行时缩减后，才考虑重建 A28；
 3. Dip-aware HMM + GBM 已取消且无产物，不根据未经验证的 5.14 声称提交；
-4. 使用可用 GPU 配额探索与 PF/Ridge 误差低相关、空间 OOF 稳定的序列模型；
-5. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
-6. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。
+4. 等待 Frontier II 隐藏评分；不根据作者自报的 6.39 重复调参；
+5. 等待 GPU TCN 单-fold 门槛，只有 PASS 才运行多 fold，不直接生成竞赛提交；
+6. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
+7. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。

@@ -1,0 +1,18 @@
+{
+  "code_file": "rogii-sequence-tcn-pilot-v1.ipynb",
+  "competition_sources": [],
+  "dataset_sources": [
+    "heralces/rogii-private-sequence-pilot-cache-v1"
+  ],
+  "enable_gpu": true,
+  "enable_internet": false,
+  "enable_tpu": false,
+  "id": "heralces/rogii-sequence-tcn-pilot-v2",
+  "is_private": true,
+  "kernel_sources": [],
+  "kernel_type": "notebook",
+  "language": "python",
+  "machine_shape": "NvidiaTeslaT4",
+  "model_sources": [],
+  "title": "ROGII Sequence TCN Pilot v2"
+}

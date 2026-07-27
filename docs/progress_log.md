@@ -231,3 +231,42 @@ remains the primary candidate.
 - The public Dip-aware HMM + GBM run ended with
   `CANCEL_ACKNOWLEDGED` and exposes no output files. Its markdown-only 5.14
   claim remains unverifiable and supplies no submission candidate.
+
+## 2026-07-27
+
+- Downloaded a fresh 5,766-team public leaderboard snapshot. The 6.477 exact
+  full-stack candidate is rank **653 / 5,766** (top 11.33%). The top-10%
+  boundary is now 6.469 at rank 576 and the top-5% boundary is 6.436 at rank
+  288, so the current candidate is outside the provisional public bronze zone.
+- Audited public Notebook `prvsiyan/rogii-public-score-frontier-ii-visuals`.
+  Of its 48 scoring code cells, 44 are byte-identical to the existing exact
+  full stack. Its substantive changes disable two public-byte-inert runtime
+  layers and add a signed 0.196-ft correction selected from the run-local PF
+  branch report. The scoring transaction contains no fixed visible well ID or
+  row count. Its pre-correction submission SHA-256 is exactly the current
+  6.477 artifact; the ordinary public run completed in approximately 643
+  seconds. The manifest's self-reported 6.39 is treated as unverified.
+- Submitted Frontier II version 3 exactly once as a Code Submission with
+  description `Frontier II runtime-fast DYNQ0196 controlled verification`.
+  It entered `PENDING`; a four-hour monitor will not duplicate the submission.
+- Built a private sequence-pilot cache from 3,783,989 official training suffix
+  rows across all 773 wells. The cache has 51 spatial-invariant, target-free
+  features, the competitive Ridge/PF OOF trajectory, truth labels, well
+  boundaries, and frozen fold metadata. Absolute position and well ID are not
+  model features. Float16 conversion recorded zero clipped values.
+- Created private Kaggle Dataset
+  `heralces/rogii-private-sequence-pilot-cache-v1`; downloaded metadata confirms
+  `isPrivate: true` and status `ready`.
+- Pushed private GPU Notebook `heralces/rogii-sequence-tcn-pilot-v1` version 1.
+  It trains a six-block dilated TCN on spatial-fold training wells and evaluates
+  the fixed 0.20 residual overlay on held-out spatial fold 0 after excluding
+  matching Typewell fingerprints. The preregistered gate requires pooled delta
+  at most -0.020 plus p95, worst-well, and well-win-rate safeguards. It writes
+  only an OOF report and checkpoint and cannot create a competition submission.
+  Version 1 was assigned a Tesla P100 (compute capability 6.0), but the current
+  PyTorch 2.10 image supports only capability 7.0 and newer. It failed at the
+  first Conv1D after approximately 25 seconds with `no kernel image`, before
+  producing any training metric. The model and gate were left unchanged;
+  version 2 explicitly requests `NvidiaTeslaT4` and is the sole retry. Kaggle
+  normalized the active private Notebook ID to
+  `heralces/rogii-sequence-tcn-pilot-v2`; its initial status is `RUNNING`.
