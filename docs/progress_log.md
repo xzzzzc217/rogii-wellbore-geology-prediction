@@ -279,3 +279,9 @@ remains the primary candidate.
   `full_multifold_authorized: false`, and
   `kaggle_submission_authorized: false`. No more folds or submission package
   are created from this version.
+- Frontier II completed with public RMSE **7.507**. It is 1.030 worse than the
+  6.477 exact full-stack best, 1.038 worse than the 6.469 public top-10%
+  boundary, and only 0.007 better than Safe PF v2's 7.514. The public
+  Notebook manifest's self-reported 6.39 is therefore not validated by the
+  competition result. DYNQ0196 is a **NO-GO** and will not be retuned or
+  allowed to replace the current best.
