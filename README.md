@@ -16,16 +16,17 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | 已加入竞赛并接受规则 | 完成 |
 | 训练井 / 可见测试井 | 773 / 3 |
 | 当前最佳 Public RMSE | **6.477** |
-| 当前公开榜排名 | **653 / 5,766，前 11.33%** |
-| 公开榜前 10% 边界 | 6.469 |
-| 公开榜前 5% 边界 | 6.436 |
+| 当前公开榜排名 | **701 / 5,785，前 12.12%** |
+| 公开榜前 10% 边界 | 6.467 |
+| 公开榜前 5% 边界 | 6.432 |
 | 当前奖牌判断 | 暂处公开榜铜牌区外，最终奖牌未确定 |
 | A28 PF-1.3 w0.62 | 隐藏重跑超时，无分数 |
 | A28/Q0522 50/50 融合 | 隐藏重跑超时，无分数 |
 | Frontier II DYNQ0196 | **7.507**，较最佳差 1.030，NO-GO |
 | GPU TCN 残差小试 | pooled 改善但逐井覆盖不足，门槛 FAIL |
+| Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 
-当前 6.477 比公开榜前 10% 边界差约 0.008。公开榜只覆盖约 26% 测试数据，最终排名
+当前 6.477 比公开榜前 10% 边界差约 0.010。公开榜只覆盖约 26% 测试数据，最终排名
 由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了
 小幅 Public 提升牺牲跨井稳定性。
 
@@ -230,6 +231,32 @@ Frontier II 的 48 个评分代码单元中，44 个与现有精确全栈逐字�
 6.39 因而没有被 Kaggle 成绩验证。Frontier II 是明确的 **NO-GO**，不会替换主候选，
 也不会围绕 DYNQ0196 继续调参。
 
+### 5.9 Harshini 空间曲面 + PF 审计
+
+公开 Notebook `luffyh04/harshini-submission-f` 是本轮公开扫描中唯一具有新结构的候选：
+它从 765 口可用训练井重建六个地层曲面，融合多尺度 PF、LightGBM、CatBoost 和非负
+Ridge。作者的按井随机五折报告为 flat 15.589、固定核心 9.048、最终 Ridge 8.741。
+代码审计确认 `EXACT datum` 只用于上限诊断，没有进入最终 `P/PR` 特征；单井 LOO
+也确实排除了目标井。
+
+问题在于随机按井五折仍允许同一验证区域内的其他井向目标井提供带真值的地层曲面。
+为此新增 `scripts/audit_harshini_spatial_core.py`，使用七空间簇并在每折中从曲面点云
+整体删除验证簇。最大的 fold 0 覆盖 173 口井、910,183 个后缀行，结果为：
+
+| 轨迹 | 严格空间 fold 0 RMSE |
+|---|---:|
+| Flat | 14.969 |
+| PF | 8.598 |
+| 原作者单井 LOO 固定核心 | 8.008 |
+| 删除完整验证区域后的曲面分支 | 30.278 |
+| 删除完整验证区域后的曲面 + PF 核心 | **17.944** |
+
+验证区域删除后，最近训练曲面的平均距离升至 17,389 ft；固定核心相对 flat 变差
+2.975，相对原 LOO 核心变差 9.937。该候选可见运行还用了约 12,464 秒（3.46 小时），
+隐藏规模同时存在九小时超时风险。因此不继续昂贵的 boosted 多折，也不创建 Kaggle
+提交。完整方法和限制见
+[Harshini 空间核心审计](docs/harshini_spatial_core_audit.md)。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -260,6 +287,7 @@ Frontier II 的 48 个评分代码单元中，44 个与现有精确全栈逐字�
 | A28/Q0522 50/50 | 无分数 | 隐藏重跑超时，运行时 NO-GO |
 | Frontier II DYNQ0196 | 7.507 | 较 6.477 差 1.030，作者 6.39 未验证，NO-GO |
 | Sequence TCN v1/v2 | 不提交 | pooled -0.0552，但仅 44.71% 井改善，NO-GO |
+| Harshini 空间曲面 + PF | 不提交 | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。
@@ -274,6 +302,7 @@ Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节�
 - [Shrink 残差 OOF](docs/residual_gbdt_shrink_oof.md)
 - [目标无关 selector CV](docs/targetfree_selector_cv.md)
 - [GPU TCN 小试设计](docs/sequence_tcn_pilot.md)
+- [Harshini 空间核心审计](docs/harshini_spatial_core_audit.md)
 
 ## 8. 仓库结构
 
@@ -339,6 +368,14 @@ uv run python scripts/build_sequence_pilot_cache.py
 uv run python scripts/build_sequence_tcn_pilot_notebook.py
 ```
 
+复现 Harshini 固定核心的严格空间 fold 0 审计：
+
+```powershell
+uv run python scripts/audit_harshini_spatial_core.py `
+  --fold 0 `
+  --output artifacts/harshini_spatial_core_fold0.json
+```
+
 缓存约 397 MB，写入 `artifacts/sequence_pilot_cache_v1/`，受 `.gitignore` 保护。GPU
 Notebook 的源码保存在 `kaggle_notebooks/sequence_tcn_pilot_v1/`；Kaggle 运行 ID 为
 `heralces/rogii-sequence-tcn-pilot-v2`，它只写 OOF 报告和 checkpoint，不写
@@ -363,5 +400,6 @@ Notebook 运行生成 `submission.csv`，再提交对应 Notebook 版本。
 3. Dip-aware HMM + GBM 已取消且无产物，不根据未经验证的 5.14 声称提交；
 4. Frontier II 已以 7.507 判定 NO-GO；不根据作者自报的 6.39 重复调参；
 5. TCN v2 已按预注册门槛停止；后续序列路线必须先解决逐井覆盖不足，不直接调 scale；
-6. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
-7. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。
+6. Harshini 曲面路线已按严格空间门槛停止；不运行 3.46 小时 boosted 多折或隐藏提交；
+7. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
+8. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。

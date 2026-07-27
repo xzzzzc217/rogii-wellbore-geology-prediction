@@ -285,3 +285,23 @@ remains the primary candidate.
   Notebook manifest's self-reported 6.39 is therefore not validated by the
   competition result. DYNQ0196 is a **NO-GO** and will not be retuned or
   allowed to replace the current best.
+- Downloaded a later 5,785-team leaderboard snapshot. The 6.477 exact
+  full-stack candidate is rank **701 / 5,785** (top 12.12%). The top-10%
+  boundary is 6.467 at rank 579 and the top-5% boundary is 6.432 at rank 290.
+- Scanned the latest-run public notebooks. The all-valid GBDT gate is another
+  copy of the already rejected full-stack frontier, while two other candidates
+  have OOF or visible-test errors far outside the competitive range. The only
+  structurally new candidate was `luffyh04/harshini-submission-f`.
+- Audited Harshini's 496.7 MB surface cache and 60.1 MB PF cache before
+  restricted loading. The only pickle globals are NumPy array reconstruction
+  primitives. The final model does not consume the notebook's oracle
+  `EXACT datum`; its production surfaces do exclude the target well under
+  ordinary LOO.
+- Added a strict spatial-core audit that removes the full validation cluster
+  from the formation point cloud. On fold 0, 173 wells and 910,183 suffix rows,
+  flat scored 14.969, PF 8.598, the original single-well LOO core 8.008, the
+  strict-spatial surface branch 30.278, and the strict surface/PF core 17.944.
+  The new core is 2.975 worse than flat and 9.937 worse than its LOO estimate.
+  The public notebook also required about 12,464 seconds on visible data.
+  Harshini is therefore a spatial and runtime **NO-GO**; no boosted multi-fold
+  rerun or Kaggle submission was authorized.
