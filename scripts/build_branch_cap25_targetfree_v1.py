@@ -328,7 +328,7 @@ def main() -> None:
 
     metadata = {
         "id": "heralces/rogii-pf-branch-cap25-targetfree-v1",
-        "title": "ROGII PF Branch Cap25 Target-Free v1",
+        "title": "ROGII PF Branch Cap25 Targetfree v1",
         "code_file": OUTPUT.name,
         "language": "python",
         "kernel_type": "notebook",
