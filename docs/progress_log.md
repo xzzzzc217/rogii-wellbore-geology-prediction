@@ -348,6 +348,15 @@ remains the primary candidate.
   tests and Ruff pass.
 - Pushed private GPU Notebook
   `heralces/rogii-pf-branch-cap25-targetfree-v1` version 1. It is running as
-  an ordinary Kaggle job. No competition submission exists yet; a 30-minute
-  monitor will validate the dynamic report and may create at most one
-  controlled Code Submission.
+  an ordinary Kaggle job. It completed in 779.6 seconds. The dynamic contract
+  passed: one run-local PF branch qualified, 4,301 rows moved by +2.5 ft, and
+  the final SHA-256 exactly matched the independently downloaded public A23
+  artifact. No fixed well, expected visible hash, leaderboard bias, or probe
+  flag was present in the scoring code.
+- Submitted Notebook v1 exactly once with description
+  `Target-free PF seed-branch cap2.5 controlled verification`. It completed
+  with Public RMSE **6.654**, which is 0.177 worse than the 6.477 primary
+  candidate, 0.193 worse than the 6.461 public top-10% boundary, and 0.050
+  worse than the 6.604 no-hedge ablation. The author's 6.407 score is not
+  reproduced by this isolated target-free change. Cap 2.5 is a **NO-GO**;
+  the branch cap will not be tuned further against the public leaderboard.

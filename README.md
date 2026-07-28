@@ -26,7 +26,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | GPU TCN 残差小试 | pooled 改善但逐井覆盖不足，门槛 FAIL |
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
-| PF branch cap 2.5 target-free | 私有 GPU v1 运行中，尚未创建竞赛提交 |
+| PF branch cap 2.5 target-free | **6.654**，较最佳差 0.177，NO-GO |
 
 当前 6.477 比公开榜前 10% 边界差约 0.016。公开榜只覆盖约 26% 测试数据，最终排名
 由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了
@@ -296,8 +296,11 @@ $$
 minor-mass 门槛 0.25 和双峰间距 4--40 ft 不变。私有构建删除固定测试井、固定行数、
 固定哈希、排行榜分数假设及 A23 后处理，并关闭无关 dry-run probe；最终报告将逐项
 绑定动态样本、分支报告、移动行数和输出 SHA。普通 GPU v1
-`heralces/rogii-pf-branch-cap25-targetfree-v1` 正在运行。只有其产物严格复现通用
-cap 2.5 行为后，才允许创建一次受控 Code Submission。
+`heralces/rogii-pf-branch-cap25-targetfree-v1` 在 779.6 秒内完成：通用选择器命中
+1 口井，4,301 行统一移动 +2.5 ft，输出与公开 A23 文件逐字节一致。唯一一次受控
+Code Submission 得到 Public RMSE **6.654**，比 6.477 主候选差 0.177，也比移除
+分支 hedge 的 6.604 差 0.050。公开作者的 6.407 因而不能归因于这个可复现改动；
+该候选判定为 **NO-GO**，不替换最佳，也不围绕 cap 继续公开榜调参。
 
 ## 6. 防泄漏验证
 
@@ -331,7 +334,7 @@ cap 2.5 行为后，才允许创建一次受控 Code Submission。
 | Sequence TCN v1/v2 | 不提交 | pooled -0.0552，但仅 44.71% 井改善，NO-GO |
 | Harshini 空间曲面 + PF | 不提交 | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 不重复提交 | 0 口井命中；文件等同已得 6.604 的 no-hedge |
-| PF branch cap 2.5 target-free | 验证中 | 仅改通用 cap；固定井 A23 事务已删除 |
+| PF branch cap 2.5 target-free | 6.654 | 较 6.477 差 0.177，NO-GO |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。
@@ -446,6 +449,6 @@ Notebook 运行生成 `submission.csv`，再提交对应 Notebook 版本。
 5. TCN v2 已按预注册门槛停止；后续序列路线必须先解决逐井覆盖不足，不直接调 scale；
 6. Harshini 曲面路线已按严格空间门槛停止；不运行 3.46 小时 boosted 多折或隐藏提交；
 7. MHA180 target-free midpoint 已证明退化为 6.604 no-hedge；不重复提交或继续公开榜调参；
-8. 低频等待 PF branch cap 2.5 私有 v1；产物不完全符合动态契约则停止且不提交；
+8. PF branch cap 2.5 已以 6.654 判定 NO-GO；不围绕公开作者的 6.407 继续调 cap；
 9. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
 10. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。
