@@ -324,3 +324,30 @@ remains the primary candidate.
   byte-identical to the existing no-hedge ablation that scored **6.604**.
   A duplicate Code Submission was therefore not created. MHA180 target-free
   is a **NO-GO**, and the 6.477 exact full stack remains the primary candidate.
+
+## 2026-07-28
+
+- Downloaded a 5,804-team public leaderboard snapshot. The 6.477 exact
+  full-stack candidate is now rank **757 / 5,804** (top 13.04%). The public
+  top-10% boundary is 6.461 at rank 580 and the top-5% boundary is 6.425 at
+  rank 290.
+- Merged the latest-run public Notebook list with leaderboard authors. Most
+  new entries were attached to scores far behind 6.477. The strongest new
+  lead was `mtoshidesu/rogii-test-another-approch-2nd`; its author currently
+  has a 6.407 public score.
+- The public A23 scoring tail was rejected because it hard-codes one visible
+  test well, 4,301 rows, a historical output hash, and a reported public
+  score. The upstream generic PF seed-branch selector is structurally usable:
+  it selects branches only from run-local bimodal centers and masses. A clean
+  derivative changes only its symmetric shift cap from 2.0 ft to 2.5 ft while
+  preserving strength 0.60, minimum minor mass 0.25, and separation 4--40 ft.
+- Added a provenance-locked builder and contract test. The generated scoring
+  notebook contains no fixed target well, visible row count, expected output
+  hash, or leaderboard score. It also replaces the fixed visualization demo
+  well and disables the unrelated overlap dry-run probe. All 68 repository
+  tests and Ruff pass.
+- Pushed private GPU Notebook
+  `heralces/rogii-pf-branch-cap25-targetfree-v1` version 1. It is running as
+  an ordinary Kaggle job. No competition submission exists yet; a 30-minute
+  monitor will validate the dynamic report and may create at most one
+  controlled Code Submission.
