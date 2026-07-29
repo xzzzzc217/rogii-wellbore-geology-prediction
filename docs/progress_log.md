@@ -360,3 +360,50 @@ remains the primary candidate.
   worse than the 6.604 no-hedge ablation. The author's 6.407 score is not
   reproduced by this isolated target-free change. Cap 2.5 is a **NO-GO**;
   the branch cap will not be tuned further against the public leaderboard.
+
+## 2026-07-29
+
+- Downloaded a 5,878-team public leaderboard snapshot. The 6.477 exact
+  full-stack candidate is rank **855 / 5,878** (top 14.55%). The public
+  top-10% boundary is 6.452 at rank 587 and the top-5% boundary is 6.414 at
+  rank 293. The primary candidate is 0.025 outside the current public
+  top-10% line.
+- Merged the latest 200 public Notebook runs with leaderboard authors and
+  audited the strongest apparent leads. Outputs from `mitomeat823`,
+  `odyssey189`, and `hityth` were byte-identical to the existing 6.477
+  artifact. Several other high-ranked notebooks ended in the known Q0522
+  fixed-visible-well family. GeoAnchor used a public-score quadratic inversion,
+  a fixed visible well, and a fixed 4,301-row shift. None supplied a new,
+  hidden-safe candidate.
+- Added a frozen target-free well gate for the completed TCN fold-0 checkpoint.
+  Its 110 well-level inputs summarize only the 51 target-free sequence
+  features, the competitive base prediction, and the frozen TCN output.
+  Absolute coordinates define five outer spatial subclusters but are not
+  model features; duplicate Typewell fingerprints stay in the same fold.
+  Every gate probability is out-of-spatial-fold.
+- The gate selected 82 / 170 wells (48.24%), but selected-well win rate was
+  only 51.22%, gated pooled delta was only **-0.006155**, and just two of five
+  spatial folds improved. It failed the frozen -0.020 pooled, 55% selected-win,
+  and four-of-five-fold gates. No multi-fold TCN training or submission was
+  authorized.
+- Audited the hidden runtime failure of the earlier A28 build. It used
+  `1,000 particles x 256 seeds` instead of the hidden-proven exact core's
+  `500 x 128`, then executed visible-prefix, model-package, and branch-hedge
+  stages whose output A28 later overwrote. Built private Notebook
+  `heralces/rogii-a28-runtime-fast-v1` by retaining the successful exact core
+  only through SP45 and learned-trajectory generation, applying the frozen
+  0.62 / 0.38 blend, and pruning those redundant post-blend stages.
+- Ordinary A28 runtime-fast v1 completed in **590.3 seconds**. The dynamic
+  contract passed: 14,151 rows, exact sample ID order, unique IDs, finite
+  predictions, and matching hashes across the selection report, generic
+  submission audit, final contract, named output, and `submission.csv`.
+  Runtime scoring used no source score, leaderboard bias, probe, fixed test
+  well, visible row constant, or expected output hash. Final SHA-256 was
+  `9307dc0e30eda8bca81c4d03f5828da340d8d98e5585dda3981f312b12696033`.
+- Submitted Notebook v1 exactly once with description
+  `A28 runtime-fast exact-core PF1.3 w0.62 controlled verification`. It
+  completed with Public RMSE **7.678**, which is 1.201 worse than the 6.477
+  primary candidate, 1.226 worse than the 6.452 top-10% boundary, and 1.264
+  worse than the 6.414 top-5% boundary. The public source's 6.433 was not
+  reproduced. Runtime-fast A28 is a definitive **NO-GO** and cannot replace
+  the current best.
