@@ -42,6 +42,15 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--steps", type=int, default=TRAINING_STEPS)
     parser.add_argument("--batch-size", type=int, default=BATCH_SIZE)
     parser.add_argument("--window-rows", type=int, default=WINDOW_ROWS)
+    parser.add_argument(
+        "--well-sampling",
+        choices=("length", "uniform"),
+        default="length",
+        help=(
+            "Choose training wells proportional to suffix length (original pilot) "
+            "or uniformly by well."
+        ),
+    )
     parser.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto")
     parser.add_argument(
         "--smoke-wells",
@@ -207,10 +216,16 @@ def _window_batch(
     *,
     batch_size: int,
     window_rows: int,
+    well_sampling: str,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     lengths = offsets[wells + 1] - offsets[wells]
-    probability = lengths.astype(np.float64)
-    probability /= probability.sum()
+    if well_sampling == "length":
+        probability = lengths.astype(np.float64)
+        probability /= probability.sum()
+    elif well_sampling == "uniform":
+        probability = None
+    else:
+        raise ValueError(f"unsupported well sampling: {well_sampling}")
     selected = rng.choice(wells, size=batch_size, replace=True, p=probability)
     batch_x = np.zeros((batch_size, len(center), window_rows), dtype=np.float32)
     batch_y = np.zeros((batch_size, window_rows), dtype=np.float32)
@@ -391,6 +406,7 @@ def main() -> int:
             feature_scale,
             batch_size=args.batch_size,
             window_rows=args.window_rows,
+            well_sampling=args.well_sampling,
         )
         values = torch.from_numpy(batch_x).to(device)
         target = torch.from_numpy(batch_y).to(device)
@@ -427,6 +443,7 @@ def main() -> int:
             "validation_typewell_fingerprints_excluded_from_training": True,
             "well_id_encoded_as_feature": False,
             "absolute_position_features_removed": True,
+            "training_well_sampling": args.well_sampling,
             "primary_scale_frozen_before_training": PRIMARY_SCALE,
             "diagnostic_scales": list(DIAGNOSTIC_SCALES),
             "primary_gate": {
@@ -449,6 +466,7 @@ def main() -> int:
             "steps": int(args.steps),
             "batch_size": int(args.batch_size),
             "window_rows": int(args.window_rows),
+            "well_sampling": args.well_sampling,
             "learning_rate": LEARNING_RATE,
             "weight_decay": WEIGHT_DECAY,
             "target_clip": TARGET_CLIP,
