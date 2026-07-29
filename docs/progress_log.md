@@ -407,3 +407,29 @@ remains the primary candidate.
   worse than the 6.414 top-5% boundary. The public source's 6.433 was not
   reproduced. Runtime-fast A28 is a definitive **NO-GO** and cannot replace
   the current best.
+- Rechecked the latest public outputs from `my0705` and `tamerlan`. Both are
+  the same fixed-Q0522 artifact with SHA-256
+  `8328487738fbb7e1e89c733b80367ced2281e6dd19f4746804adfd77a923071d`:
+  the pre-Q0522 b192 input matches the current 6.477 candidate, then fixed
+  visible well `00e12e8b` moves 4,301 of 14,151 rows. Neither output is a new
+  hidden-safe candidate.
+- Tested the low-cost global OOF scalar-bias hypothesis against every strict
+  protocol. It worsened pooled RMSE by +0.013658 on `spatial_cluster`
+  (1/5 folds improved), +0.017874 on `spatial_cluster_6` (2/6),
+  +0.022172 on `spatial_cluster_7` (3/7), and +0.019451 on the
+  Typewell-fingerprint protocol (1/5). The direction is rejected.
+- Ran private Notebook `heralces/rogii-sequence-tcn-well-balanced-v1`
+  version 1 exactly once as a no-submission pilot. Its report and checkpoint
+  exist, no `submission.csv` was written, and the frozen contract passed:
+  uniform well sampling, `spatial_cluster_7_seed_20260727`, fold 0, primary
+  scale 0.20, 4,000 steps, and `writes_submission=false`. Tesla T4 runtime
+  was 83.58 seconds.
+- The uniform-well TCN changed pooled RMSE from 9.639581 to 9.689167,
+  delta **+0.049586**, versus **-0.055218** for the original length-weighted
+  pilot. At scale 0.20 its p95 well delta was +0.104819, worst-well delta
+  was -0.774178, and only 44.71% of wells were non-worse—the same inadequate
+  coverage as the original pilot. The pooled, p95, and at-least-half-wells
+  checks failed; only the worst-well check passed. The report decision is
+  **FAIL**, with `full_multifold_authorized=false` and
+  `kaggle_submission_authorized=false`. No scale/step changes, multi-fold
+  training, or competition submission are authorized.

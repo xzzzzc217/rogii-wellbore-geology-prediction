@@ -25,6 +25,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | A28/Q0522 50/50 融合 | 隐藏重跑超时，无分数 |
 | Frontier II DYNQ0196 | **7.507**，较最佳差 1.030，NO-GO |
 | GPU TCN + target-free well gate | gate 仅改善 0.0062，门槛 FAIL |
+| GPU TCN uniform-well sampling | pooled 恶化 0.0496，门槛 FAIL |
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
 | PF branch cap 2.5 target-free | **6.654**，较最佳差 0.177，NO-GO |
@@ -345,6 +346,41 @@ TCN v2 的 pooled RMSE 有明确改善，但原始 0.20 overlay 只在 44.71% �
 复现公开来源的 6.433。运行时问题已解决，但模型候选本身被明确否定；A28
 runtime-fast 是 **NO-GO**，不替换最佳，也不继续围绕 0.62 权重调参。
 
+### 5.14 公开候选复查、全局偏置与 balanced TCN
+
+7 月 29 日再次下载最新公开产物后，`my0705` 与 `tamerlan` 的强候选都被还原为同一个
+固定 Q0522 文件，SHA-256 为
+`8328487738fbb7e1e89c733b80367ced2281e6dd19f4746804adfd77a923071d`。
+两份 Notebook 都从与当前 6.477 主候选一致的 pre-Q0522 b192 文件出发，再对固定测试井
+`00e12e8b` 的 4,301 / 14,151 行应用可见井修正；因此没有形成新的 hidden-safe 候选。
+
+同时复查了“给全部 OOF 预测加一个全局标量偏置”的低成本方向。它在所有严格协议上都
+恶化 pooled RMSE：
+
+| OOF 协议 | pooled delta | 改善 fold |
+|---|---:|---:|
+| `spatial_cluster` | +0.013658 | 1 / 5 |
+| `spatial_cluster_6` | +0.017874 | 2 / 6 |
+| `spatial_cluster_7` | +0.022172 | 3 / 7 |
+| Typewell fingerprint | +0.019451 | 1 / 5 |
+
+原 TCN 使用按井长度加权的窗口抽样，0.20 overlay 虽把 pooled RMSE 改善
+**-0.055218**，却只有 **44.71%** 的井不变差。为了检验收益是否只是被大井主导，
+额外运行了一次预注册的 uniform-well pilot：每口训练井被等概率抽样，协议仍冻结为
+`spatial_cluster_7_seed_20260727` 的 fold 0，主 scale 0.20、4,000 steps，且不写
+`submission.csv`。Tesla T4 运行 **83.58 秒**后得到：
+
+- base pooled RMSE 9.639581，0.20 overlay 为 9.689167，delta **+0.049586**；
+- well-level p95 delta **+0.104819**，未通过不高于 +0.10 的门槛；
+- worst-well delta **-0.774178**，通过不高于 +0.50 的门槛；
+- 不变差井比例仍为 **44.71%**，未达到 50%；
+- pooled、p95、覆盖率三项失败，只有 worst-well 一项通过。
+
+最终报告为 **FAIL**，`full_multifold_authorized=false` 且
+`kaggle_submission_authorized=false`。均衡抽样没有扩散原 TCN 的逐井收益，反而把
+pooled 改善翻转为恶化；这条路线停止，不调 scale、不增加 steps、不训练多折，也不创建
+竞赛提交。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -377,6 +413,7 @@ runtime-fast 是 **NO-GO**，不替换最佳，也不继续围绕 0.62 权重调
 | Frontier II DYNQ0196 | 7.507 | 较 6.477 差 1.030，作者 6.39 未验证，NO-GO |
 | Sequence TCN v1/v2 | 不提交 | pooled -0.0552，但仅 44.71% 井改善，NO-GO |
 | Sequence TCN target-free well gate | 不提交 | gated pooled -0.0062、选择井胜率 51.2%，NO-GO |
+| Sequence TCN uniform-well pilot | 不提交 | pooled +0.0496、仅 44.71% 井改善，NO-GO |
 | Harshini 空间曲面 + PF | 不提交 | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 不重复提交 | 0 口井命中；文件等同已得 6.604 的 no-hedge |
 | PF branch cap 2.5 target-free | 6.654 | 较 6.477 差 0.177，NO-GO |
@@ -491,7 +528,8 @@ Notebook 运行生成 `submission.csv`，再提交对应 Notebook 版本。
 2. A28 runtime-fast 已解决超时但仅得 7.678；不继续围绕 0.62 权重或粒子数调参；
 3. Dip-aware HMM + GBM 已取消且无产物，不根据未经验证的 5.14 声称提交；
 4. Frontier II 已以 7.507 判定 NO-GO；不根据作者自报的 6.39 重复调参；
-5. TCN v2 与 target-free well gate 均已失败；不继续多折 GPU 或直接调 scale；
+5. TCN v2、target-free well gate 与 uniform-well pilot 均已失败；不继续多折 GPU、
+   调 scale 或增加 steps；
 6. Harshini 曲面路线已按严格空间门槛停止；不运行 3.46 小时 boosted 多折或隐藏提交；
 7. MHA180 target-free midpoint 已证明退化为 6.604 no-hedge；不重复提交或继续公开榜调参；
 8. PF branch cap 2.5 已以 6.654 判定 NO-GO；不围绕公开作者的 6.407 继续调 cap；
