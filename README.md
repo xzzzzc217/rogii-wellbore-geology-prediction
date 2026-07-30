@@ -402,6 +402,33 @@ probe、canary 或公开预测文件。
 显然主要承载地层匹配信号而非可安全删除的采集噪声。该路线为 **NO-GO**：不调 notch
 半径、频点或激活阈值，不启用 GPU，不构建 Notebook，也不提交。
 
+### 5.16 NCC 去重与 family-balanced OOF stack
+
+继续审计公开全栈后，确认多尺度 GR-NCC 并不是独立的新信号：现有 learned/model-package
+分支已经包含 `pred_delta_drift_ncc_*` 的 LightGBM、CatBoost、HGB 与 XGB 轨迹。因此
+没有把直接 NCC 重新包装成候选，也没有消耗一次排行榜提交。
+
+剩余的低成本结构问题是五个公开 grouped-OOF 模型按 `3 × LightGBM + 2 × CatBoost`
+并列进入正约束 Ridge，是否因家族数量不均形成隐性过权。提交
+`1e7e360` 在读取新结果前冻结唯一候选：先分别求三个 LightGBM 和两个 CatBoost 的
+家族均值，再用完全相同的正约束 Ridge、`0.91 / 0.09` Ridge/PF 权重和 `tau=85`
+深度 ramp。五折 meta OOF 仍按整井分组；Typewell 五分区和固定 seed 的七个空间簇只做
+稳健性切片。由于没有在这些切片内嵌套重训五个昂贵基模型，即使 PASS 也只会授权进一步
+集成审计，而不会直接授权提交。
+
+CPU 全量审计在 **51.2 秒**内覆盖 3,783,989 行、773 井：
+
+- 五列基线 pooled RMSE 10.370056，家族平衡后 10.399843，delta **+0.029786**；
+- macro-well delta **+0.001060**，386 井改善、387 井恶化；
+- paired-well bootstrap 95% 区间为 **[-0.007816, +0.067396]**；
+- Typewell 分区只有 2 / 5 不变差，空间分区只有 3 / 7 不变差；
+- 最差分区 delta **+0.103686**，p95-well delta **+0.148644**；
+- worst-well delta +0.433701 是唯一通过的保护项。
+
+其余七项预注册门槛全部失败。原正约束 Ridge 已能把弱冗余列压到零；强行家族内平均反而
+丢失有用差异。这条路线为 **NO-GO**，不调家族权重、Ridge alpha、PF 权重或 ramp，
+不构建 Notebook，也不提交。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -436,6 +463,7 @@ probe、canary 或公开预测文件。
 | Sequence TCN target-free well gate | 不提交 | gated pooled -0.0062、选择井胜率 51.2%，NO-GO |
 | Sequence TCN uniform-well pilot | 不提交 | pooled +0.0496、仅 44.71% 井改善，NO-GO |
 | GR strongest-periodic notch | 不提交 | 773 井 pooled +4.2925，五个空间簇全恶化 |
+| Family-balanced OOF stack | 不提交 | pooled +0.0298，仅 2/5 Typewell、3/7 空间分区不变差 |
 | Harshini 空间曲面 + PF | 不提交 | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 不重复提交 | 0 口井命中；文件等同已得 6.604 的 no-hedge |
 | PF branch cap 2.5 target-free | 6.654 | 较 6.477 差 0.177，NO-GO |
@@ -553,8 +581,9 @@ Notebook 运行生成 `submission.csv`，再提交对应 Notebook 版本。
 5. TCN v2、target-free well gate 与 uniform-well pilot 均已失败；不继续多折 GPU、
    调 scale 或增加 steps；
 6. GR strongest-periodic notch 已在 773 井严重恶化；不调 notch 半径、频点或阈值；
-7. Harshini 曲面路线已按严格空间门槛停止；不运行 3.46 小时 boosted 多折或隐藏提交；
-8. MHA180 target-free midpoint 已证明退化为 6.604 no-hedge；不重复提交或继续公开榜调参；
-9. PF branch cap 2.5 已以 6.654 判定 NO-GO；不围绕公开作者的 6.407 继续调 cap；
-10. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
-11. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。
+7. 直接 NCC 已被 learned 分支吸收，family-balanced stack 也已失败；不重复包装或调家族权重；
+8. Harshini 曲面路线已按严格空间门槛停止；不运行 3.46 小时 boosted 多折或隐藏提交；
+9. MHA180 target-free midpoint 已证明退化为 6.604 no-hedge；不重复提交或继续公开榜调参；
+10. PF branch cap 2.5 已以 6.654 判定 NO-GO；不围绕公开作者的 6.407 继续调 cap；
+11. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
+12. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。

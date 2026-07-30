@@ -62,4 +62,33 @@ uv run python scripts/evaluate_family_balanced_stack.py
 
 ## Frozen result
 
-Pending.
+Decision: **NO-GO**.
+
+- Runtime: 51.2 seconds on CPU.
+- Rows / wells: 3,783,989 / 773.
+- Published five-column Ridge/PF reconstruction: 10.370056 pooled RMSE.
+- Family-balanced two-column Ridge/PF: 10.399843 pooled RMSE.
+- Pooled delta: **+0.029786**.
+- Macro-well delta: **+0.001060**.
+- Per-well outcomes: 386 wins and 387 losses.
+- Paired-well bootstrap 95% interval:
+  `[-0.007816, +0.067396]`.
+- Typewell partitions non-worse: 2 / 5.
+- Spatial partitions non-worse: 3 / 7.
+- Maximum partition delta: **+0.103686**.
+- p95-well delta: **+0.148644**.
+- Worst-well delta: **+0.433701**.
+
+Only the worst-well guard passed. The pooled, macro, bootstrap, typewell,
+spatial, maximum-partition, and p95 checks failed. Equalizing the number of
+inputs per model family discards useful within-family specialization; the
+positive Ridge was already suppressing weak redundant columns when needed.
+
+No family weight, Ridge alpha, PF weight, or ramp will be tuned from this
+result. No Notebook or Kaggle submission is authorized.
+
+Artifact:
+`artifacts/family_balanced_stack_oof.json`
+
+SHA-256:
+`fa0fc662273d2a81fbdd6df79e4bdf11d7204e5d5abe62968adc7fe9aec0311e`

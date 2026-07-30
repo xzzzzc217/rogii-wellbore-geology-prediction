@@ -452,3 +452,24 @@ remains the primary candidate.
   definitive **NO-GO** and does not authorize GPU work, a Notebook, or a
   competition submission. Its frequency, radius, and activation rules will
   not be retuned.
+- Inspected the public model-package outputs before opening another route.
+  Their learned trajectory already includes multiple `pred_delta_drift_ncc_*`
+  tree-model tracks, so direct multi-scale GR-NCC is not an independent
+  candidate. No duplicate NCC evaluation, Notebook, or submission was made.
+- Preregistered one structural audit of the five published grouped-OOF model
+  vectors in commit `1e7e360`. The candidate collapses the three LightGBM
+  columns to one family mean and the two CatBoost columns to another, then
+  keeps the existing positive Ridge, 0.91 / 0.09 Ridge/PF blend, and 85-ft
+  depth ramp unchanged. Typewell and seven-cluster spatial slices are
+  explicitly secondary robustness evidence, not nested base-model refits.
+- The CPU audit covered 3,783,989 rows from all 773 wells in 51.2 seconds.
+  Family balancing changed pooled RMSE from 10.370056 to 10.399843, delta
+  **+0.029786**; macro-well delta was +0.001060. Outcomes were nearly split
+  at 386 winning and 387 losing wells, but the bootstrap 95% interval
+  `[-0.007816, +0.067396]` did not exclude harm.
+- Only 2 / 5 Typewell partitions and 3 / 7 spatial partitions were
+  non-worse. Maximum partition delta was +0.103686 and p95-well delta was
+  +0.148644; only the +0.433701 worst-well guard passed. The other seven
+  frozen checks failed. Family balancing is a definitive **NO-GO**: no
+  weight/alpha/ramp retuning, GPU work, Notebook, or competition submission
+  is authorized. The 6.477 exact full stack remains the primary candidate.
