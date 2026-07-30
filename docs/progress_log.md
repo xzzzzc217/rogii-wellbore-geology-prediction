@@ -433,3 +433,22 @@ remains the primary candidate.
   **FAIL**, with `full_multifold_authorized=false` and
   `kaggle_submission_authorized=false`. No scale/step changes, multi-fold
   training, or competition submission are authorized.
+
+## 2026-07-30
+
+- Isolated the dormant strongest-periodic-component GR notch from the public
+  full-stack source. Before reading any target-scored notch output, froze
+  minimum 64 finite rows, one-bin radius, the unchanged eight-seed target-free
+  predictor, and the existing pooled/macro/bootstrap/five-spatial-cluster
+  deployment gate. Commit `841a7eb` records the implementation and contract
+  before the full result.
+- The six-process run completed all 773 wells with zero failures in 716.7
+  seconds. The notch activated for every well and changed pooled RMSE from
+  12.518489 to 16.811012, delta **+4.292523**. Macro-well RMSE worsened by
+  +4.343344; 225 wells improved and 548 worsened.
+- The paired-well bootstrap 95% interval was entirely adverse at
+  `[+3.069503, +5.542658]`. All five spatial clusters worsened, by +2.9535
+  through +5.3763. Every preregistered gate check failed. The GR notch is a
+  definitive **NO-GO** and does not authorize GPU work, a Notebook, or a
+  competition submission. Its frequency, radius, and activation rules will
+  not be retuned.

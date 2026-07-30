@@ -50,3 +50,30 @@ Reproduction command:
 ```powershell
 uv run python scripts/evaluate_gr_notch.py --jobs 6 --fail-fast
 ```
+
+## Frozen result
+
+Decision: **NO-GO**.
+
+- Runtime: 716.7 seconds with six local worker processes.
+- Successful wells: 773 / 773; failures: 0.
+- The notch activated on all 773 wells.
+- Baseline pooled RMSE: 12.518489.
+- Notch pooled RMSE: 16.811012; delta **+4.292523**.
+- Baseline macro-well RMSE: 9.104812.
+- Notch macro-well RMSE: 13.448156; delta **+4.343344**.
+- Per-well outcomes: 225 wins, 548 losses, 0 ties.
+- Paired-well bootstrap 95% interval: `[+3.069503, +5.542658]`.
+- Every spatial cluster worsened; deltas were `+2.953472`, `+3.324595`,
+  `+4.767833`, `+5.376331`, and `+4.487587`.
+- All five preregistered gate checks failed.
+
+Artifact:
+`artifacts/target_free_eval_773_gr_notch.json`
+
+SHA-256:
+`51bd98350310ef2c79225413f2525acca0af55e71cbf774c12b5d65692628798`
+
+The strongest periodic component is carrying useful stratigraphic signal, not
+a safely removable acquisition artifact.  The route stops without tuning the
+frequency choice, radius, minimum rows, or any downstream blend.

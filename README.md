@@ -26,6 +26,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | Frontier II DYNQ0196 | **7.507**，较最佳差 1.030，NO-GO |
 | GPU TCN + target-free well gate | gate 仅改善 0.0062，门槛 FAIL |
 | GPU TCN uniform-well sampling | pooled 恶化 0.0496，门槛 FAIL |
+| GR strongest-periodic notch | pooled 恶化 4.2925，门槛 FAIL |
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
 | PF branch cap 2.5 target-free | **6.654**，较最佳差 0.177，NO-GO |
@@ -381,6 +382,26 @@ runtime-fast 是 **NO-GO**，不替换最佳，也不继续围绕 0.62 权重调
 pooled 改善翻转为恶化；这条路线停止，不调 scale、不增加 steps、不训练多折，也不创建
 竞赛提交。
 
+### 5.15 GR 最强周期分量 notch
+
+公共全栈源码中长期关闭的 `RUN_GR_FFT_DENOISE` 是少数尚未被隔离验证、且完全目标无关的
+结构增量。实验在查看任何 notch 分数前冻结：至少 64 个有限 GR 样本，线性填补仅用于
+频谱计算，移除最强非直流 `rFFT` 频点及左右各一个频点，再用完全不变的八 seed
+target-free PF/beam 配置评估全部 773 井。它不读取标签、井 ID、formation、排行榜、
+probe、canary 或公开预测文件。
+
+六进程全量运行在 **716.7 秒**内完成，773 / 773 井成功，notch 在全部井上激活：
+
+- pooled RMSE：12.518489 → 16.811012，delta **+4.292523**；
+- macro-well RMSE：9.104812 → 13.448156，delta **+4.343344**；
+- 225 井改善、548 井恶化；
+- paired-well bootstrap 95% 区间为 **[+3.0695, +5.5427]**；
+- 五个空间簇全部恶化，delta 从 +2.9535 到 +5.3763。
+
+预注册的 pooled、macro、bootstrap、4/5 空间簇和最坏空间簇五项门槛全部失败。强周期峰值
+显然主要承载地层匹配信号而非可安全删除的采集噪声。该路线为 **NO-GO**：不调 notch
+半径、频点或激活阈值，不启用 GPU，不构建 Notebook，也不提交。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -414,6 +435,7 @@ pooled 改善翻转为恶化；这条路线停止，不调 scale、不增加 ste
 | Sequence TCN v1/v2 | 不提交 | pooled -0.0552，但仅 44.71% 井改善，NO-GO |
 | Sequence TCN target-free well gate | 不提交 | gated pooled -0.0062、选择井胜率 51.2%，NO-GO |
 | Sequence TCN uniform-well pilot | 不提交 | pooled +0.0496、仅 44.71% 井改善，NO-GO |
+| GR strongest-periodic notch | 不提交 | 773 井 pooled +4.2925，五个空间簇全恶化 |
 | Harshini 空间曲面 + PF | 不提交 | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 不重复提交 | 0 口井命中；文件等同已得 6.604 的 no-hedge |
 | PF branch cap 2.5 target-free | 6.654 | 较 6.477 差 0.177，NO-GO |
@@ -530,8 +552,9 @@ Notebook 运行生成 `submission.csv`，再提交对应 Notebook 版本。
 4. Frontier II 已以 7.507 判定 NO-GO；不根据作者自报的 6.39 重复调参；
 5. TCN v2、target-free well gate 与 uniform-well pilot 均已失败；不继续多折 GPU、
    调 scale 或增加 steps；
-6. Harshini 曲面路线已按严格空间门槛停止；不运行 3.46 小时 boosted 多折或隐藏提交；
-7. MHA180 target-free midpoint 已证明退化为 6.604 no-hedge；不重复提交或继续公开榜调参；
-8. PF branch cap 2.5 已以 6.654 判定 NO-GO；不围绕公开作者的 6.407 继续调 cap；
-9. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
-10. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。
+6. GR strongest-periodic notch 已在 773 井严重恶化；不调 notch 半径、频点或阈值；
+7. Harshini 曲面路线已按严格空间门槛停止；不运行 3.46 小时 boosted 多折或隐藏提交；
+8. MHA180 target-free midpoint 已证明退化为 6.604 no-hedge；不重复提交或继续公开榜调参；
+9. PF branch cap 2.5 已以 6.654 判定 NO-GO；不围绕公开作者的 6.407 继续调 cap；
+10. 8 月 2 日前冻结至少两个可复现且结构不同的最终 Notebook；
+11. 8 月 5 日 20:00 UTC 前完成最终选择，保留四小时故障恢复窗口。
