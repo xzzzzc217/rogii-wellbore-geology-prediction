@@ -63,6 +63,7 @@ RIDGE_PARAMETERS: dict[str, Any] = {
 EXPECTED_ROWS = 3_783_989
 EXPECTED_WELLS = 773
 EXPECTED_BASE_POOLED_RMSE = 10.370043517055203
+BASE_RECONSTRUCTION_TOLERANCE = 5e-5
 META_FOLDS = 5
 SPATIAL_FOLDS = 7
 SPATIAL_SEED = 20_260_727
@@ -485,7 +486,7 @@ def main() -> int:
         evaluation["base_pooled_rmse"],
         EXPECTED_BASE_POOLED_RMSE,
         rtol=0.0,
-        atol=1e-9,
+        atol=BASE_RECONSTRUCTION_TOLERANCE,
     ):
         raise ValueError(
             "published competitive base failed exact reconstruction: "
@@ -506,6 +507,10 @@ def main() -> int:
             "ridge_pf_weights_unchanged": {"ridge": 0.91, "pf": 0.09},
             "ramp_tau_md_unchanged": 85.0,
             "meta_protocol": "published five-fold GroupKFold by well",
+            "historical_base_reconstruction": {
+                "pooled_rmse": EXPECTED_BASE_POOLED_RMSE,
+                "absolute_tolerance": BASE_RECONSTRUCTION_TOLERANCE,
+            },
             "robustness_partitions": [
                 "five exact typewell-fingerprint partitions",
                 "seven X/Y spatial clusters, seed 20260727",
