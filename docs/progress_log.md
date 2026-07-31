@@ -473,3 +473,36 @@ remains the primary candidate.
   frozen checks failed. Family balancing is a definitive **NO-GO**: no
   weight/alpha/ramp retuning, GPU work, Notebook, or competition submission
   is authorized. The 6.477 exact full stack remains the primary candidate.
+
+## 2026-07-31
+
+- Downloaded and audited the latest close public candidate,
+  `farhanabidtech786/rogii-best-score-wellbore-geology-prediction`. Its final
+  `submission.csv` SHA-256 is
+  `b192d3f348ae00680dc4df942b95cef5fd708c636a741f77dfb6b6e89b9ded4a`,
+  byte-identical to the current 6.477 primary in 45 existing artifact copies.
+  Its source is the same public full-stack and final branch hedge, not a new
+  independent algorithm. No mirror Notebook or duplicate submission was made.
+- Refreshed the 5,998-team leaderboard snapshot: 6.477 is rank 1,060
+  (17.67%), while the top-10% and top-5% boundaries are approximately 6.429
+  and 6.386. The Public board remains only the 26% slice, so this is not a
+  claim about the 74% Private result.
+- Used the authenticated Kaggle API/CLI to freeze exact submission identity.
+  The 6.477 primary is ref `54952634`, Notebook
+  `heralces/rogii-pf-public-reproduction` version id `337405234`; the 6.604
+  no-hedge backup is ref `54967104`, Notebook
+  `heralces/rogii-pf-public-no-hedge` version id `337779623`. Both Notebooks
+  and all nine existing competition submissions are terminal/complete, so no
+  new submission or Notebook push is required.
+- Revalidated both outputs against the official sample: 14,151 rows, exact
+  `id,tvt` columns and ID order, unique IDs, and finite predictions. Primary
+  SHA is `b192d3...ded4a`; no-hedge SHA is `fdf4a817...01ca9`. Exactly 4,301
+  rows differ, each by primary-minus-no-hedge = +2.0 ft, for an all-row RMSE
+  distance of 1.102608.
+- The API currently reports **zero selected final submissions**. The frozen
+  recommendation is primary `54952634` plus branch-risk hedge `54967104` if
+  the live UI permits two, or primary `54952634` alone if it permits one.
+  Safe-v2 ref `54927581` (7.514) remains a runnable structural disaster
+  fallback but is not recommended over the closer no-hedge candidate.
+  Selection preflight is due by August 2 and live selection by August 5
+  20:00 UTC, leaving about four hours before the official deadline.
