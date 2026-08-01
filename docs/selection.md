@@ -52,9 +52,11 @@ advantages are:
 
 ## Final-submission freeze audit — 2026-07-31
 
-The authenticated Kaggle API reports **zero currently selected final submissions**. All nine
-competition submissions are in a terminal state, and the three frozen fallback Notebooks are
-`COMPLETE`. No duplicate submission is needed.
+The authenticated Kaggle API reports **zero currently selected final submissions**. On
+2026-08-02, the signed-in Submissions page independently showed **0/2** and stated that up to two
+submissions may be selected. If fewer than two are selected, Kaggle will automatically select
+from the best-scoring submissions. All nine competition submissions are in a terminal state,
+and the three frozen fallback Notebooks are `COMPLETE`. No duplicate submission is needed.
 
 | Priority | Submission ref | Public RMSE | Kaggle Notebook / version id | Output SHA-256 | Decision |
 |---:|---:|---:|---|---|---|
@@ -71,11 +73,11 @@ penalty than safe-v2.
 
 Current recommendation:
 
-1. if the live final-selection UI permits two entries, select `54952634` and `54967104`;
-2. if it permits only one, select `54952634`;
+1. manually select `54952634` and `54967104`, the confirmed two-entry allowance;
+2. do not rely on Kaggle's automatic selection when the intended pair is already frozen;
 3. keep `54927581` runnable as a disaster fallback, but do not displace the second candidate
    without new evidence;
-4. perform a read-only selection preflight by 2026-08-02;
+4. treat the 2026-08-02 read-only selection preflight as complete;
 5. complete the live selection by **2026-08-05 20:00 UTC**, approximately four hours before the
    official 2026-08-05 23:59 UTC deadline.
 

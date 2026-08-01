@@ -506,3 +506,20 @@ remains the primary candidate.
   fallback but is not recommended over the closer no-hedge candidate.
   Selection preflight is due by August 2 and live selection by August 5
   20:00 UTC, leaving about four hours before the official deadline.
+
+## 2026-08-02
+
+- Completed the scheduled read-only final-selection preflight. The
+  authenticated API still reports zero selected submissions, and the signed-in
+  Kaggle Submissions page independently displays **0/2**.
+- The page explicitly states that up to two submissions may count toward the
+  final leaderboard and that Kaggle will automatically choose from the
+  best-scoring submissions if fewer than two are selected. The final allowance
+  is therefore confirmed rather than inferred from other competitions.
+- Reconfirmed the official deadline `2026-08-05 23:59 UTC`, five daily Code
+  Submissions, and `COMPLETE` status for the primary, no-hedge backup, and
+  safe-v2 disaster fallback Notebooks. The repository worktree is clean.
+- The manual selection recommendation is now unconditional: ref `54952634`
+  (6.477 primary) plus ref `54967104` (6.604 branch-risk hedge). No checkbox
+  was changed during this read-only preflight; live selection remains due by
+  August 5 20:00 UTC.
