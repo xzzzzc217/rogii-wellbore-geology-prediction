@@ -583,3 +583,9 @@ remains the primary candidate.
   -0.018631. These were respectively 0.000323 and 0.000136 worse than the
   plain Functional Ridge. Both dominance checks failed, so the low-rank route
   is a definitive NO-GO without PCA-dimension, alpha, scale, or clip tuning.
+- Prepared, but did not push, a conditional cap4 plus Functional Ridge builder.
+  Its frozen authorization requires both individual Kaggle candidates to score
+  strictly below 6.477 and pass their dynamic contracts. The combined runtime
+  records Public-informed candidate selection but reads no score, fixed test
+  well, visible row count, or expected hash. Until both gates resolve true it
+  remains `PREPARED_NOT_AUTHORIZED` and consumes no Kaggle runtime or submission.

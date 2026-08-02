@@ -533,6 +533,13 @@ Ridge 差 0.000323 和 0.000136，双双未达到“至少再改善 0.002”的�
 低秩版本为 NO-GO，不调 PCA 维数、alpha、scale 或 clip，也不构建 Notebook；普通
 Functional Ridge 保持唯一部署候选。
 
+为压缩截止日前的响应时间，仓库还只离线准备了组合构建器
+`build_functional_ridge_cap40_v1.py`。它冻结 cap4 的 strength 0.62 / cap 4.0 和上述
+Functional Ridge 参数，并增加跨报告 SHA 与分支上限审计。该 Notebook 当前明确标记为
+`PREPARED_NOT_AUTHORIZED`：只有 cap4 ref `55177746` 和普通 Functional Ridge 的独立
+Kaggle 分数都严格优于 6.477 时才允许推送；任一单项失败就不运行组合，避免用交互猜测
+浪费提交额度。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：

@@ -1,0 +1,26 @@
+{
+  "candidate": "functional_ridge_cap40_combined_v1",
+  "status": "PREPARED_NOT_AUTHORIZED",
+  "hypothesis": "The runtime-selected PF branch shift and the target-free cross-well Functional Ridge correction address different error modes and may be additive.",
+  "frozen_components": {
+    "parent": "heralces/rogii-pf-public-reproduction",
+    "pf_branch_strength": 0.62,
+    "pf_branch_shift_cap": 4.0,
+    "functional_ridge_alpha": 100.0,
+    "functional_ridge_scale": 0.2,
+    "functional_curve_points": 64,
+    "functional_residual_clip": 20.0
+  },
+  "authorization_gate": {
+    "cap40_submission_ref": 55177746,
+    "cap40_must_have_public_score_strictly_below": 6.477,
+    "functional_ridge_individual_submission_must_exist": true,
+    "functional_ridge_must_have_public_score_strictly_below": 6.477,
+    "both_individual_outputs_must_pass_dynamic_contracts": true
+  },
+  "candidate_selection_public_score_informed": true,
+  "runtime_reads_leaderboard_score": false,
+  "runtime_uses_fixed_test_well": false,
+  "runtime_uses_expected_visible_hash": false,
+  "current_action": "Build and test only. Do not push a Kaggle Notebook or create a competition submission until every authorization gate is true."
+}
