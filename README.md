@@ -32,7 +32,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
 | PF branch cap 2.5 target-free | **6.654**，较最佳差 0.177，NO-GO |
 | PF branch cap 4.0 target-free | ref `55177746`，**PENDING**；可见产物同 SHA，不预设隐藏分数 |
-| Functional Ridge residual curve | v1 契约路径错误、未提交；已修复并准备 v2 |
+| Functional Ridge residual curve | v1 契约路径错误、未提交；修复后 v2 **RUNNING** |
 
 当前 6.477 比公开榜前 10% 边界差约 0.058。公开榜只覆盖约 26% 测试数据，最终排名
 由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了
@@ -528,7 +528,7 @@ full-stack 与用来守门的竞争性 OOF base 相关但不完全同构，所�
 证明字段实际位于 `metadata["contract"]`，而 v1 误读了顶层字段。父级 full-stack、输入
 挂载、源代码 SHA 和 `submission.csv` 均已正常生成；错误发生在新模型拟合前，不产生候选
 分数。修复只更正契约路径，并同时验证 training-only、无 target leakage 和无井号编码，
-不改变任何模型参数或预测逻辑；修复版将作为同一私有 Notebook 的 v2 重新运行。
+不改变任何模型参数或预测逻辑；修复版已作为同一私有 Notebook 的 v2 唯一推送并运行。
 
 等待 Kaggle 运行期间又预注册了一项且仅一项低秩响应消融：每个外折只用训练井把 64 点
 残差曲线压缩成 8 个 PCA 系数，再用相同 Ridge 预测。8 维已解释约 96.9%–97.1% 的训练

@@ -599,4 +599,6 @@ remains the primary candidate.
   checked the top level. The fix reads the nested contract and additionally
   requires `training_rows_only=true`, `target_feature_leakage=false`, and
   `well_id_encoded_as_feature=false`. Parameters, OOF evidence, and prediction
-  logic are unchanged. Tests cover the exact nested lookup before v2 is pushed.
+  logic are unchanged. Tests cover the exact nested lookup. Version 2 was then
+  pushed once to the same private Notebook and is `RUNNING`; no competition
+  submission has been created.
