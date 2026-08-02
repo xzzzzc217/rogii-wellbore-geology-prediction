@@ -861,3 +861,25 @@ remains the primary candidate.
   will not be tuned, gated, blended, packaged, or submitted. This preserves the
   untouched-confirmation contract rather than converting a promising average
   into an unaudited leaderboard risk.
+
+### 2026-08-02 - Rank objective authorized one disclosed HMM public validation
+
+- Re-audited the HMM evidence against the actual competition objective. The
+  official metric is pooled row-level RMSE; the untouched pooled gain was
+  -0.156756, every one of 12 group folds improved, and the final correction is
+  hard-capped at +/-1 ft. Those primary-metric facts are materially stronger
+  than the failed auxiliary 65% well-win and worst-well gates.
+- Recorded an explicit high-risk exception rather than rewriting the earlier
+  confirmation result. The confirmation remains FAIL, the HMM parameters are
+  unchanged, and no post-hoc uncertainty/well gate is introduced. Exactly one
+  private Notebook run and, after hidden artifact audit, one public controlled
+  submission are authorized. Current final selections remain protected.
+- Built `heralces/rogii-dip-rate-hmm-v1` from the exact 6.477 parent. Notebook
+  runtime code is extracted from the confirmed evaluator; only Numba disk
+  caching is disabled because dynamic Notebook cells have no cache locator.
+- The full local three-well deployment dry run passed: dynamic 14,151-row
+  coverage, exact sample ID order, unique IDs, finite values, all rows changed,
+  correction range exactly [-1,+1] ft, report/final SHA agreement, and 41.8 s
+  runtime. The local final SHA is
+  `bc2be8533d138706217d7ef3ba6882ff5a9a085cc5298af094fdbab228a82c80`;
+  it is an offline reproduction check, never a runtime selector.

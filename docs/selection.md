@@ -136,3 +136,22 @@ strictly below 6.477, it should displace the 6.604 no-hedge selection at minimum
 Ridge/PLS both improve, first evaluate the already prepared conditional combination; otherwise
 select the two strongest terminal candidates with the 6.477 primary retained as the robustness
 anchor unless stronger evidence justifies replacing it.
+
+## High-risk dip-rate HMM controlled validation — 2026-08-02
+
+The target-free dip-rate HMM was the first new trajectory-state model to produce a large signal.
+On 741 untouched confirmation wells it improved pooled RMSE by **0.156756**, all 7/7 spatial
+folds, all 5/5 Typewell folds, and the p95-well tail. It nevertheless failed its auxiliary
+confirmation gate: 63.83% of wells improved versus a 65% minimum, and the worst-well aggregate
+tail worsened by 0.68363 versus a 0.25 cap. The confirmation remains recorded as FAIL.
+
+The user's active objective is rank improvement, and the official metric is pooled row-level
+RMSE rather than worst-well RMSE. Because the pooled gain is large, every independent group fold
+improved, movement is hard-capped at +/-1 ft, and two daily submission slots remained, one
+explicitly risk-disclosed controlled public validation is authorized. This is an exception to the
+auxiliary tail stop rule, not a claim that the confirmation passed.
+
+The exact 6.477 parent remains protected. The HMM Notebook may be pushed once and submitted once
+only after its hidden artifact passes dynamic schema, ID, finite-value, movement-cap, report, and
+SHA checks. No final selection changes automatically; only a terminal score strictly below 6.477
+can promote the HMM candidate.

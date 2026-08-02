@@ -1,0 +1,51 @@
+{
+  "candidate": "dip_rate_hmm_public_controlled_v1",
+  "status": "AUTHORIZED_FOR_ONE_PRIVATE_NOTEBOOK_RUN",
+  "decision_type": "explicit rank-seeking exception after transparent confirmation failure",
+  "objective": "Improve Kaggle rank under the competition's pooled row-level RMSE rather than optimize an auxiliary per-well tail objective.",
+  "supporting_evidence": {
+    "untouched_confirmation_wells": 741,
+    "pooled_delta": -0.15675641408341612,
+    "spatial_folds_improved": "7/7",
+    "typewell_folds_improved": "5/5",
+    "p95_well_delta": -0.12914116104679962,
+    "maximum_final_movement_ft": 1.0
+  },
+  "risk_disclosure": {
+    "confirmation_decision": "FAIL",
+    "well_win_fraction": 0.6383265856950068,
+    "required_well_win_fraction": 0.65,
+    "worst_well_delta": 0.6836268403655126,
+    "allowed_worst_well_delta": 0.25,
+    "reason_for_controlled_exception": "The competition metric is pooled row RMSE, the pooled gain is five times the current top-10-percent score gap, all 12 independent group folds improve, two daily submission slots remained, and the existing selected pair remains protected unless the terminal score is strictly better."
+  },
+  "frozen_runtime": {
+    "source": "scripts/evaluate_dip_rate_hmm_discovery.py",
+    "all_prediction_parameters_unchanged": true,
+    "numba_cache_disabled_in_notebook_only": true,
+    "target_free_runtime_inputs_only": true,
+    "same_well_or_contact_override_in_new_layer": false,
+    "meta_learner_in_new_layer": false,
+    "leaderboard_runtime_read": false,
+    "parameter_grid": false
+  },
+  "local_dynamic_audit": {
+    "rows": 14151,
+    "test_wells": 3,
+    "exact_id_coverage": true,
+    "unique_ids": true,
+    "finite_predictions": true,
+    "changed_rows": 14151,
+    "correction_minimum": -1.0,
+    "correction_maximum": 1.0,
+    "runtime_seconds": 41.76254487037659,
+    "final_sha256": "bc2be8533d138706217d7ef3ba6882ff5a9a085cc5298af094fdbab228a82c80"
+  },
+  "authorization": {
+    "private_notebook_pushes": 1,
+    "competition_submissions_after_hidden_artifact_audit": 1,
+    "duplicate_candidate_allowed": false,
+    "automatic_final_selection_change": false,
+    "adoption_rule": "Only a terminal publicScore strictly below 6.477 may replace an existing selected candidate."
+  }
+}
