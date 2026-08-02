@@ -1051,3 +1051,25 @@ remains the primary candidate.
   private Notebook was built, no GPU was used, and no competition submission
   was created. The five existing refs remain pending and today's quota remains
   exhausted.
+
+### 2026-08-02 - Depth-affine HMM scaling collapsed to global scale2.3
+
+- Before scoring, froze one two-parameter HMM extension. The unchanged scale1
+  correction receives a multiplier linearly interpolated from a hidden-suffix
+  start coefficient to an end coefficient. Both coefficients are fit by exact
+  bounded least squares on outer-training rows only and limited to [0, 2.3].
+  No breakpoint, coefficient grid, ridge, intercept, well ID, absolute
+  coordinate, leaderboard value, probe, or visible-test target is used.
+- The 738-well run excluded all 32 HMM discovery wells and the three current
+  visible test wells from both fitting and validation. It completed without
+  failed wells in 1,044.0 seconds.
+- Spatial7 improved fixed scale2 by only **0.007625** (10.215544 to 10.207919),
+  below the frozen 0.010 threshold, and only 5/7 folds improved versus the
+  required 6/7. Typewell5 gained **0.006569**, improved 4/5 folds, and passed
+  its individual gate. Both protocols still improved the competitive base in
+  every fold.
+- The decisive structural result is that the all-training start and end
+  multipliers both hit the 2.3 upper bound. The model therefore learns no
+  depth dependence and collapses to the already preregistered global scale2.3.
+  The overall decision is `FAIL_STOP`; no depth breakpoint, basis, or upper
+  bound will be tuned, and no Notebook or submission is authorized.

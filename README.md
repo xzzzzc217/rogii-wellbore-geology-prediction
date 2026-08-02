@@ -586,6 +586,19 @@ Blacklions 的 two-coefficient well-level GBDT 是本轮唯一结构上新增的
 随机按井 OOF 都失败，不再消耗算力做更严格的空间/Typewell 复验，也不构建 Notebook
 或提交。
 
+### 5.22 HMM 深度仿射倍率复核
+
+等待 Kaggle 评分期间预注册并运行了一次两参数深度仿射校准：固定 HMM scale1 修正乘以
+从隐藏后缀起点倍率到终点倍率的线性插值。两个倍率只在每个外折的训练井上拟合，限制在
+`[0, 2.3]`；排除 32 口 HMM discovery 井和三口当前可见测试井，不使用井号、绝对坐标、
+榜单分数或 probe。
+
+Typewell 5 折相对 scale2 额外改善 **0.006569**、4/5 折改善，单协议通过；空间 7 折
+只额外改善 **0.007625**（低于 0.01 门槛），且仅 5/7 折改善（低于 6/7 门槛），因此
+总体 `FAIL_STOP`。更关键的是全量拟合的起点和终点倍率都等于上限 **2.3**，候选实际
+退化成已经预注册的全局 scale2.3，而没有发现可迁移的深度效应。项目不再调分段点、
+基函数或倍率上限，不构建 Notebook 或提交。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -641,6 +654,7 @@ Blacklions 的 two-coefficient well-level GBDT 是本轮唯一结构上新增的
 | Global Viterbi HMM | 不提交 | pooled 相对 HMM2 改善 0.3578，但 p95 +1.4213、worst +2.7004，尾部 FAIL |
 | Uncertainty-fused Viterbi HMM | 不提交 | 独立 32 井 pooled 反而恶化 0.00340，50% 井改善，NO-GO |
 | Well-level two-coefficient GBDT | 不提交 | 作者随机按井 OOF 恶化 0.0434，P90 恶化 0.3016；回退固定 Q0522 |
+| HMM depth-affine scale | 不提交 | Typewell PASS；空间仅增益 0.00763、5/7 折，且双端点均撞 2.3，退化为全局 scale2.3 |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。

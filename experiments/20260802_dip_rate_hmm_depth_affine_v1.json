@@ -50,5 +50,31 @@
   "writes_submission": false,
   "kaggle_notebook_authorized": false,
   "public_submission_authorized": false,
-  "decision_before_result": "PASS may authorize one later deployment build only after the five pending component scores resolve and a future daily slot is available; FAIL permanently closes depth-affine HMM scaling without tuning."
+  "decision_before_result": "PASS may authorize one later deployment build only after the five pending component scores resolve and a future daily slot is available; FAIL permanently closes depth-affine HMM scaling without tuning.",
+  "result": {
+    "decision": "FAIL_STOP",
+    "evaluation_wells": 738,
+    "wall_runtime_seconds": 1043.980201,
+    "full_training_start_multiplier": 2.3,
+    "full_training_end_multiplier": 2.3,
+    "spatial": {
+      "base_rmse": 10.459581,
+      "scale2_rmse": 10.215544,
+      "candidate_rmse": 10.207919,
+      "additional_gain_over_scale2": 0.007625,
+      "improved_folds": "5/7",
+      "maximum_fold_regression": 0.021847,
+      "gate_passed": false
+    },
+    "typewell": {
+      "base_rmse": 10.459581,
+      "scale2_rmse": 10.215544,
+      "candidate_rmse": 10.208975,
+      "additional_gain_over_scale2": 0.006569,
+      "improved_folds": "4/5",
+      "maximum_fold_regression": 0.017843,
+      "gate_passed": true
+    },
+    "interpretation": "Both full-fit endpoint multipliers hit 2.3, so the candidate collapses to the already preregistered global scale2.3 rather than learning a transferable depth effect. Spatial gain and fold consistency miss their frozen gates. No breakpoint, upper bound, or basis tuning is allowed."
+  }
 }
