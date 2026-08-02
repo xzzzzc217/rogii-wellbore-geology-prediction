@@ -803,3 +803,19 @@ remains the primary candidate.
   The earlier SP45/Fleongg branches are already represented by audited public
   model-package routes. Nothing from this scan is eligible for a private
   Notebook or submission.
+
+### 2026-08-02 - Sequential Ridge residual-PLS did not beat the fixed ensemble
+
+- Preregistered a distinct sequential model before evaluation: plain Ridge
+  predicts the residual curve first, then an eight-component PLS model learns
+  only the remaining outer-training curve residual from the augmented
+  target-free signature. The second-stage weight was fixed at 0.25 with no
+  parameter or weight grid; preregistration was pushed as commit `73a9039`.
+- Spatial 7-fold pooled delta was **-0.029618**, with 5/7 folds improved and
+  favorable p95 tail, but it was 0.005590 worse than the fixed Ridge/PLS
+  ensemble.
+- Typewell 5-fold pooled delta was **-0.019420**, 0.003639 worse than the fixed
+  ensemble, and fold 0 worsened by +0.003062, leaving only 4/5 folds improved.
+- This sequential candidate is a preregistered FAIL. Its stage weight and PLS
+  configuration will not be tuned, and no Notebook, blend, or competition
+  submission is authorized.

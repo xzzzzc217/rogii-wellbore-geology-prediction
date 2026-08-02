@@ -1,6 +1,7 @@
 {
   "candidate": "functional_ridge_residual_pls_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL",
   "hypothesis": "A PLS stage trained only on the curve residual left by stable Functional Ridge can learn supervised directions that a convex average of two complete curve predictions dilutes.",
   "protocols": [
     "spatial_cluster_7_seed_20260727",
@@ -40,5 +41,29 @@
     "typewell_fingerprint": -0.0230585034
   },
   "stop_rule": "If either protocol fails any gate, stop permanently; do not tune the stage weight, Ridge alpha, PLS components, signature, overlay scale, or blend the failed sequential model.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "runtime_seconds": 17.879336833953857,
+    "spatial_cluster_7_seed_20260727": {
+      "pooled_delta": -0.029618258895183658,
+      "delta_vs_ridge_pls": 0.00559038360481634,
+      "improved_folds": 5,
+      "fold_count": 7,
+      "nonpositive_well_fraction": 0.49288486416558863,
+      "p95_well_delta": -0.12012023540141925,
+      "worst_well_delta": 0.16486991637121662,
+      "gate_passed": false
+    },
+    "typewell_fingerprint": {
+      "pooled_delta": -0.019419521276880403,
+      "delta_vs_ridge_pls": 0.003638982123119597,
+      "improved_folds": 4,
+      "fold_count": 5,
+      "nonpositive_well_fraction": 0.48641655886157825,
+      "p95_well_delta": -0.07261086081612689,
+      "worst_well_delta": -0.03395272020136275,
+      "gate_passed": false
+    }
+  },
+  "decision": "FAIL: sequential residual PLS was 0.005590 worse than fixed Ridge/PLS spatially and 0.003639 worse under Typewell, where only four of five folds improved. Stop without tuning, blending, Notebook construction, or submission."
 }
