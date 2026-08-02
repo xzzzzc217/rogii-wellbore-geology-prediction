@@ -1,0 +1,44 @@
+{
+  "candidate": "dip_rate_hmm_discovery_v1",
+  "status_before_evaluation": "PREREGISTERED",
+  "provenance": "Inspired by the joint position/rate HMM concept in tiktoktrendz/rogii-dip-aware-hmm-gbm, but independently reduced to a target-free forward filter. Public same-well/contact overrides, pretrained submission lookup, meta learner, leaderboard claims, and submission code are excluded.",
+  "hypothesis": "A joint TVT-position and local dip-rate state can use trajectory geometry and hidden GR to correct structural branch errors not represented by whole-well residual regressors.",
+  "discovery_contract": {
+    "outer_partition": "spatial_cluster_7_seed_20260727 fold 0",
+    "well_selection": "first 32 well IDs after SHA-256 sort",
+    "selection_count": 32,
+    "confirmation_data_not_inspected_before_gate": true
+  },
+  "frozen_parameters": {
+    "grid_step": 0.5,
+    "rate_states": 21,
+    "rate_span": 0.1,
+    "position_band_ft": 60.0,
+    "position_sigma_ft": 0.25,
+    "rate_stay_probability": 0.96,
+    "overlay_scale": 0.2,
+    "hmm_minus_base_clip_ft": 5.0,
+    "maximum_final_movement_ft": 1.0,
+    "parameter_grid": false
+  },
+  "runtime_contract": {
+    "target_free_inputs_only": true,
+    "uses_visible_prefix_tvt_only_for_initial_state_and_gr_scale": true,
+    "hidden_gr_and_geometry_allowed": true,
+    "training_or_hidden_truth_used_for_prediction": false,
+    "well_id_encoded_as_feature": false,
+    "absolute_coordinates_used": false,
+    "fixed_test_well_used": false,
+    "expected_visible_rows_or_hash_used": false,
+    "leaderboard_score_used_at_runtime": false
+  },
+  "discovery_gate": {
+    "pooled_delta_at_most": -0.015,
+    "well_win_fraction_at_least": 0.55,
+    "p95_well_delta_at_most": 0.0,
+    "worst_well_delta_at_most": 0.25,
+    "mean_runtime_per_well_seconds_at_most": 90.0
+  },
+  "stop_rule": "If discovery fails any gate, stop permanently without changing HMM states, grid, band, transition, overlay, or clip. Only a full discovery PASS authorizes untouched-well confirmation; no discovery result authorizes a submission directly.",
+  "writes_submission": false
+}
