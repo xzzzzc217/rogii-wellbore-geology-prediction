@@ -24,7 +24,6 @@ if str(SCRIPTS) not in sys.path:
 from evaluate_dip_rate_hmm_discovery import (  # noqa: E402
     DISAGREEMENT_CLIP,
     GRID_STEP,
-    OVERLAY_SCALE,
     POSITION_BAND,
     POSITION_SIGMA,
     RATE_SPAN,
@@ -42,6 +41,7 @@ DEFAULT_OUTPUT = ROOT / "artifacts" / "dip_rate_hmm_viterbi_discovery"
 DISCOVERY_WELLS = 24
 SELECTION_SALT = "viterbi_v1:"
 WORKERS = 4
+OVERLAY_SCALE = 0.40
 SMOOTHER_DISCOVERY_WELLS = {
     "91abc4c7",
     "d114d9c2",

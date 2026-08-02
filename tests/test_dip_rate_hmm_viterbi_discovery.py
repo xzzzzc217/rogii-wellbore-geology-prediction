@@ -19,6 +19,7 @@ def _load_module():
 
 def test_viterbi_kernel_returns_finite_global_path() -> None:
     module = _load_module()
+    assert module.OVERLAY_SCALE == 0.40
     steps = 8
     grid = np.arange(-3.0, 3.5, 0.5)
     rates = np.linspace(-0.1, 0.1, module.RATE_STATES)
