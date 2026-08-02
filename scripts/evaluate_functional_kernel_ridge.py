@@ -20,6 +20,7 @@ from typing import Any
 import evaluate_functional_ridge as plain
 import numpy as np
 import pandas as pd
+from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.impute import SimpleImputer
 from sklearn.kernel_ridge import KernelRidge
 from sklearn.metrics import pairwise_distances
@@ -36,7 +37,7 @@ PLAIN_RIDGE_REFERENCE = {
 }
 
 
-class MedianBandwidthKernelRidge:
+class MedianBandwidthKernelRidge(RegressorMixin, BaseEstimator):
     """RBF Kernel Ridge with a training-only median-distance bandwidth."""
 
     def __init__(self, alpha: float = KERNEL_ALPHA) -> None:

@@ -15,6 +15,7 @@ from evaluate_functional_kernel_ridge import (  # noqa: E402
     PLAIN_RIDGE_REFERENCE,
     MedianBandwidthKernelRidge,
     _apply_deployment_gate,
+    _model,
 )
 
 
@@ -26,6 +27,15 @@ def test_median_bandwidth_kernel_model_fits_multioutput_curves() -> None:
     assert prediction.shape == (2, 2)
     assert model.gamma_ is not None
     assert np.isfinite(model.gamma_) and model.gamma_ > 0.0
+    assert np.isfinite(prediction).all()
+
+
+def test_kernel_model_obeys_sklearn_pipeline_fitted_contract() -> None:
+    x = np.asarray([[0.0, 0.0], [1.0, np.nan], [0.0, 2.0], [2.0, 2.0]])
+    y = np.column_stack([np.nan_to_num(x[:, 0]) + np.nan_to_num(x[:, 1])] * 2)
+    pipeline = _model().fit(x, y)
+    prediction = pipeline.predict(x[:2])
+    assert prediction.shape == (2, 2)
     assert np.isfinite(prediction).all()
 
 
