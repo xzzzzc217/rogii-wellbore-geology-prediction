@@ -1,0 +1,84 @@
+{
+  "candidate": "target_free_global_viterbi_dip_rate_hmm_scale2",
+  "status": "PREREGISTERED_NOT_RUN",
+  "hypothesis": "A max-product Viterbi path over the complete hidden suffix can resolve globally consistent GR alignment without the posterior-mean smearing and backward-pass runtime of the failed bidirectional smoother.",
+  "discovery_population": {
+    "source": "Official training wells excluding the original 32 HMM discovery wells, all 24 smoother-discovery wells, and every current test-well ID.",
+    "selection": "First 24 wells after SHA256 sort of the literal prefix viterbi_v1: plus well ID.",
+    "selected_wells": [
+      "c472c0b5",
+      "357c12f9",
+      "71642c7d",
+      "c07fd0cd",
+      "2e29e833",
+      "173ed841",
+      "da2d4d7c",
+      "d9ae59b2",
+      "d1ecf309",
+      "0dd99dc5",
+      "b7974e66",
+      "9af1ffd0",
+      "1a730ac2",
+      "a3518960",
+      "e14d641e",
+      "3a0af893",
+      "9c211c53",
+      "eb934281",
+      "5567d551",
+      "f8f59188",
+      "d0a43760",
+      "35b30c7f",
+      "ef04658e",
+      "e5864244"
+    ]
+  },
+  "frozen_parameters": {
+    "grid_step": 0.5,
+    "rate_states": 21,
+    "rate_span": 0.1,
+    "position_band_ft": 60.0,
+    "position_sigma_ft": 0.25,
+    "rate_stay_probability": 0.96,
+    "overlay_scale": 0.4,
+    "hmm_minus_base_clip_ft": 5.0,
+    "maximum_final_movement_ft": 2.0,
+    "path_objective": "single global max-product state path",
+    "blend_or_parameter_grid": false
+  },
+  "runtime_contract": {
+    "target_free_inputs_only": true,
+    "complete_hidden_suffix_gr_available_at_inference": true,
+    "visible_prefix_tvt_used_only_for_initial_state_and_gr_scale": true,
+    "training_or_hidden_truth_used_for_prediction": false,
+    "well_id_encoded_as_feature": false,
+    "absolute_coordinates_used": false,
+    "fixed_test_well_used": false,
+    "expected_visible_rows_or_hash_used": false,
+    "leaderboard_score_used": false,
+    "probe_or_canary_used": false,
+    "writes_submission": false
+  },
+  "discovery_gate_relative_to_forward_hmm_scale2": {
+    "pooled_rmse_gain_at_least": 0.02,
+    "well_win_fraction_at_least": 0.6,
+    "true_p95_well_delta_at_most": 0.1,
+    "worst_well_delta_at_most": 0.5,
+    "mean_runtime_per_well_seconds_at_most": 45.0
+  },
+  "confirmation_if_discovery_passes": {
+    "population": "All remaining non-test wells excluding all three HMM discovery sets.",
+    "protocols": [
+      "spatial_cluster_7_seed_20260727",
+      "typewell_fingerprint"
+    ],
+    "required_gain_over_forward_hmm_scale2": 0.01,
+    "spatial_folds_improving_at_least": 5,
+    "typewell_folds_improving_required": 5,
+    "true_p95_well_delta_at_most": 0.1,
+    "worst_well_delta_at_most": 0.75,
+    "well_win_fraction_at_least": 0.5
+  },
+  "stop_rule": "If discovery fails any gate, stop permanently without changing the state grid, max-product objective, transitions, overlay scale, clip, discovery wells, or gates. Passing discovery authorizes one unchanged confirmation only; it does not authorize a submission.",
+  "writes_submission": false,
+  "public_submission_authorized": false
+}
