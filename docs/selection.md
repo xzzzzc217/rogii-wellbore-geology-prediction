@@ -180,6 +180,8 @@ Therefore it is a transparent rank-seeking candidate, not a robust default. It m
 independent private Notebook run and at most one controlled submission after artifact validation;
 it cannot replace a final selection unless its terminal Public score is strictly below 6.477.
 
-Private Notebook `heralces/rogii-dip-rate-hmm-scale2-v1` version 1 was pushed exactly once and is
-running. Today has one submission slot remaining, reserved exclusively for this candidate after
-its hidden output passes `scripts/validate_dip_rate_hmm_scale2_output.py`.
+Private Notebook `heralces/rogii-dip-rate-hmm-scale2-v1` version 1 completed in about 766 seconds.
+Its hidden output passed `scripts/validate_dip_rate_hmm_scale2_output.py`: 14,151 dynamic rows,
+exact ID order, unique and finite predictions, all rows changed, 2 ft maximum movement, and
+matching parent/final/report/audit hashes. Its sole controlled submission is ref `55181026` and
+is pending. The daily submission allowance is now exhausted; this candidate must not be repeated.

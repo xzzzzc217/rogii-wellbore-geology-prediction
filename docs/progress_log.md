@@ -919,3 +919,11 @@ remains the primary candidate.
   final daily submission slot is reserved for it only after hidden artifact
   validation passes. Neither HMM candidate changes the manually selected final
   pair automatically.
+- Scale2 completed in about 766 seconds and passed its dedicated hidden-output
+  validator: 14,151 rows, exact official ID order, unique/finite predictions,
+  all rows changed, maximum movement exactly 2 ft, parent SHA
+  `b192d3f348ae00680dc4df942b95cef5fd708c636a741f77dfb6b6e89b9ded4a`,
+  and final/report/audit SHA
+  `4846486289f4a105dde3ba12e662640c6066ba2097aa1cf74475bdebf776bd75`.
+  Created its only Code Submission, ref `55181026`; it is pending. The daily
+  quota is now 0, so no further candidate can be submitted today.
