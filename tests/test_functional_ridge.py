@@ -51,3 +51,9 @@ def test_protocol_gate_requires_stable_outer_fold_improvement() -> None:
     assert all(_protocol_gate(passing).values())
     failing = dict(passing, improved_folds=4)
     assert not all(_protocol_gate(failing).values())
+
+
+def test_signature_width_is_not_assumed_by_the_evaluator_source() -> None:
+    source = (SCRIPTS / "evaluate_functional_ridge.py").read_text(encoding="utf-8")
+    assert "np.stack(signature_rows)" in source
+    assert "features.shape[1] * len(SIGNATURE_QUANTILES)" not in source

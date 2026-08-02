@@ -1,0 +1,44 @@
+{
+  "candidate": "functional_ridge_augmented_v1",
+  "status_before_evaluation": "PREREGISTERED",
+  "hypothesis": "Whole-well target-free mean, dispersion, and relative-position trend statistics add stable global shape information missing from five fixed depth samples while retaining the passing linear residual-curve model.",
+  "protocols": [
+    "spatial_cluster_7_seed_20260727",
+    "typewell_fingerprint"
+  ],
+  "frozen_parameters": {
+    "signature_quantiles": [0.0, 0.25, 0.5, 0.75, 1.0],
+    "summary_statistics_per_feature": [
+      "mean",
+      "standard_deviation",
+      "least_squares_slope_vs_relative_row_position"
+    ],
+    "curve_points": 64,
+    "ridge_alpha": 100.0,
+    "overlay_scale": 0.2,
+    "residual_clip": 20.0
+  },
+  "outer_fold_contract": {
+    "signature_statistics_use_target_free_rows_only": true,
+    "imputer_fit_on_outer_training_wells_only": true,
+    "scaler_fit_on_outer_training_wells_only": true,
+    "ridge_fit_on_outer_training_wells_only": true,
+    "held_out_truth_used_for_training_or_selection": false,
+    "well_id_encoded": false
+  },
+  "plain_ridge_reference": {
+    "spatial_cluster_7_seed_20260727": -0.0276029,
+    "typewell_fingerprint": -0.0187671
+  },
+  "deployment_gate": {
+    "pooled_delta_below_zero": true,
+    "p95_well_delta_at_most_zero": true,
+    "worst_well_delta_at_most": 0.25,
+    "nonpositive_well_fraction_at_least": 0.45,
+    "spatial_improved_folds_at_least": 5,
+    "typewell_improved_folds_required": 5,
+    "pooled_delta_must_beat_plain_ridge_by_at_least": 0.003
+  },
+  "stop_rule": "If either protocol fails any gate, stop permanently; do not tune summary statistics, alpha, scale, or clip.",
+  "writes_submission": false
+}

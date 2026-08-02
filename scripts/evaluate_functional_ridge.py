@@ -211,19 +211,19 @@ def evaluate(cache_dir: Path) -> tuple[dict[str, Any], pd.DataFrame]:
     if int(offsets[-1]) != len(features) or len(base) != len(truth) or len(base) != len(features):
         raise RuntimeError("cache row arrays are inconsistent")
 
-    signatures = np.empty(
-        (well_count, features.shape[1] * len(SIGNATURE_QUANTILES)),
-        dtype=np.float32,
-    )
+    signature_rows: list[np.ndarray] = []
     curves = np.empty((well_count, CURVE_POINTS), dtype=np.float32)
     for well_index in range(well_count):
         start = int(offsets[well_index])
         end = int(offsets[well_index + 1])
-        signatures[well_index] = _signature(np.asarray(features[start:end], dtype=np.float32))
+        signature_rows.append(
+            _signature(np.asarray(features[start:end], dtype=np.float32))
+        )
         curves[well_index] = _curve(
             np.asarray(truth[start:end], dtype=float)
             - np.asarray(base[start:end], dtype=float)
         )
+    signatures = np.stack(signature_rows).astype(np.float32, copy=False)
 
     results: dict[str, Any] = {}
     details: list[dict[str, Any]] = []
