@@ -159,6 +159,11 @@ only after its hidden artifact passes dynamic schema, ID, finite-value, movement
 SHA checks. No final selection changes automatically; only a terminal score strictly below 6.477
 can promote the HMM candidate.
 
+Version 1 completed in about 783 seconds. Its hidden artifact passed the full validator with
+14,151 rows, exact ID order, three unique wells, finite predictions, all 14,151 rows changed,
+maximum movement 1 ft, and matching before/final/report/audit hashes. The unique controlled
+submission is ref `55180816`; it is pending and must not be duplicated.
+
 ## Rank-seeking dip-rate HMM scale2 — 2026-08-02
 
 The fixed HMM correction has an exact quadratic SSE curve as its multiplier changes. After
@@ -174,3 +179,7 @@ larger: true p95 well delta is +1.3359, worst-well delta +1.8142, and only 57.86
 Therefore it is a transparent rank-seeking candidate, not a robust default. It may receive one
 independent private Notebook run and at most one controlled submission after artifact validation;
 it cannot replace a final selection unless its terminal Public score is strictly below 6.477.
+
+Private Notebook `heralces/rogii-dip-rate-hmm-scale2-v1` version 1 was pushed exactly once and is
+running. Today has one submission slot remaining, reserved exclusively for this candidate after
+its hidden output passes `scripts/validate_dip_rate_hmm_scale2_output.py`.

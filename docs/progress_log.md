@@ -910,3 +910,12 @@ remains the primary candidate.
   HMM state path, changes only overlay scale 0.20 -> 0.40 and movement cap
   1 -> 2 ft, contains no fixed visible IDs/row counts, and has a dedicated
   hidden-output validator.
+- The original scale1 Notebook completed in about 783 seconds. Downloaded
+  output passed the strict validator: 14,151 dynamic rows, exact official ID
+  order, unique IDs, finite values, all rows changed, maximum movement 1 ft,
+  and matching before/final/report/audit SHA. Created its sole Code Submission,
+  ref `55180816`, which is pending.
+- Pushed scale2 private Notebook version 1 exactly once. It is running; the
+  final daily submission slot is reserved for it only after hidden artifact
+  validation passes. Neither HMM candidate changes the manually selected final
+  pair automatically.
