@@ -1,6 +1,7 @@
 {
   "candidate": "target_free_gr_typewell_datum_transfer_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL",
   "public_source_influence": "The raw two-mode GR/Typewell datum mechanism was isolated from yaroslavkholmirzayev/rogii-contact-and-u-restore. Its fixed visible well, fixed rows, desired shift, artifact checks, and leaderboard assumptions are excluded.",
   "hypothesis": "A target-free two-mode GR/Typewell alignment midpoint contains a weak per-well datum-bias signal that transfers across wells.",
   "protocols": [
@@ -40,5 +41,28 @@
     "pooled_delta_at_most_for_each_protocol": -0.015
   },
   "stop_rule": "If either protocol fails any gate, stop permanently; do not tune the grid, smoothing, scale guard, correction clip, or add fixed-well calibration.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "raw_signal_success_wells": 773,
+    "raw_signal_success_fraction": 1.0,
+    "spatial_cluster_7_seed_20260727": {
+      "pooled_delta": 0.008489723377051561,
+      "improved_folds": 0,
+      "fold_count": 7,
+      "p95_well_delta": 0.004567439575424714,
+      "worst_well_delta": 0.026009905666107613,
+      "fitted_scale_range": [-0.016184039719900973, 0.03470740351508145],
+      "gate_passed": false
+    },
+    "typewell_fingerprint": {
+      "pooled_delta": 0.03374332873668706,
+      "improved_folds": 0,
+      "fold_count": 5,
+      "p95_well_delta": 0.05872408146115404,
+      "worst_well_delta": 0.3897032443830639,
+      "fitted_scale_range": [-0.05673253776896818, 0.04529092168224453],
+      "gate_passed": false
+    }
+  },
+  "decision": "FAIL: the cross-well scale changes sign across folds and every spatial and Typewell fold worsens; stop without tuning or deployment."
 }

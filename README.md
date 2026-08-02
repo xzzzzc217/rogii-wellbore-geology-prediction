@@ -544,6 +544,23 @@ Functional Ridge 参数，并增加跨报告 SHA 与分支上限审计。该 Not
 Kaggle 分数都严格优于 6.477 时才允许推送；任一单项失败就不运行组合，避免用交互猜测
 浪费提交额度。
 
+### 5.20 增量公开审计与去固定井 GR datum 复核
+
+2026-08-02 第二次低频扫描覆盖 6,056 支队伍和最新 200 个公开 Notebook。Georgy 当前
+团队分数 6.320 的 Notebook 只分析噪声上限，没有生成提交；Evgendvorkin 当前 6.405 的
+最终 `submission.csv` 与我们的 cap4 可见产物 SHA `af43d97a...60a2` 完全相同，仍不是
+新模型。Yaroslav 当前 6.419 的 Notebook 在 cap4 后增加了 GR/Typewell datum transfer，
+但先固定 `00e12e8b`、4,301 行和 1.75 ft 目标位移，再用该可见测试井反推出全体缩放，
+不能直接视为隐藏安全候选。
+
+项目只抽取其 target-free raw datum 机制，并在读取结果前冻结干净的跨井校准：每个外折
+只用训练井真值拟合无截距、按隐藏行数加权的单一 scale，scale 限制 ±0.25，最终逐井
+常数修正限制 ±2.5 ft；不使用固定测试井、行数、哈希或榜单分数。773/773 井都成功生成
+raw signal，但 scale 在不同 folds 间频繁变号。空间 7 折 pooled delta **+0.008490**、
+0/7 folds 改善；Typewell 5 折 **+0.033743**、0/5 folds 改善，p95 delta +0.05872，
+worst-well delta +0.38970。结论是公开交易的效果依赖可见井锚定，不能跨井迁移；该路线
+为 NO-GO，不调 grid、平滑宽度、scale guard 或 correction cap，也不构建 Notebook。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -585,6 +602,7 @@ Kaggle 分数都严格优于 6.477 时才允许推送；任一单项失败就不
 | Functional kNN residual curve | 不提交 | 空间/Typewell pooled 均恶化，NO-GO |
 | Functional Ridge residual curve | Notebook 运行中 | 双协议 OOF 同向通过；等待动态产物审计 |
 | Functional Ridge 8D response-PCA | 不提交 | 双协议略差于普通 Ridge，未过支配门槛 |
+| GR/Typewell datum transfer | 不提交 | 空间与 Typewell 全部 folds 恶化，固定井收益不可迁移 |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。

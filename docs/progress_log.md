@@ -608,3 +608,19 @@ remains the primary candidate.
   all rows changed with finite corrections, RMS was 0.409577 ft, and the range
   was [-1.155607, +0.669601] ft. This removes the known static deployment risk
   while leaving the Kaggle v2 artifact audit as the authoritative next gate.
+- Refreshed the 6,056-team leaderboard and latest 200 public Notebooks. Georgy
+  Mamarin's 6.320-team Notebook is an analysis-only noise-floor study with no
+  submission. Evgendvorkin's 6.405-team output is byte-identical to the cap4
+  visible artifact. Yaroslav's 6.419-team Notebook adds a different final file,
+  but its transaction fixes visible well `00e12e8b`, 4,301 rows, and a desired
+  1.75-ft shift before scaling the other wells.
+- Isolated only Yaroslav's target-free GR/Typewell raw datum mechanism. Before
+  evaluation, froze a no-intercept, hidden-row-weighted scale fitted on outer
+  training wells only, scale guard +/-0.25, and correction cap +/-2.5 ft. No
+  fixed test well, visible row count, expected hash, or score entered runtime.
+- Raw datum construction succeeded for all 773 wells, but learned scales
+  repeatedly changed sign. Spatial 7-fold pooled delta was **+0.008490** with
+  0/7 folds improving. Typewell 5-fold delta was **+0.033743** with 0/5 folds
+  improving, p95 delta +0.058724, and worst-well delta +0.389703. The clean
+  transfer is a definitive NO-GO; no grid, smoothing, scale, or cap tuning and
+  no Notebook/submission are authorized.
