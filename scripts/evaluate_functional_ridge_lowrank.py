@@ -17,7 +17,6 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
-
 from evaluate_functional_ridge import (
     CURVE_POINTS,
     DEFAULT_CACHE,
