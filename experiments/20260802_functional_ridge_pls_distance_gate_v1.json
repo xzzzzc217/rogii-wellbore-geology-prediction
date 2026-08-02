@@ -1,0 +1,42 @@
+{
+  "candidate": "functional_ridge_pls_distance_gate_v1",
+  "status_before_evaluation": "PREREGISTERED",
+  "hypothesis": "A target-free training-support gate can retain more of PLS's pooled gain for in-domain wells while falling back to the stable 25% PLS weight for signatures outside training support.",
+  "protocols": [
+    "spatial_cluster_7_seed_20260727",
+    "typewell_fingerprint"
+  ],
+  "frozen_parameters": {
+    "in_domain_pls_weight": 0.5,
+    "ood_pls_weight": 0.25,
+    "training_leave_one_out_nearest_neighbor_quantile": 0.95,
+    "distance_metric": "euclidean after training-only median imputation and standardization",
+    "weight_or_quantile_grid_searched": false,
+    "overlay_scale": 0.2,
+    "residual_clip": 20.0
+  },
+  "outer_fold_contract": {
+    "distance_imputer_fit_on_outer_training_wells_only": true,
+    "distance_scaler_fit_on_outer_training_wells_only": true,
+    "ood_threshold_fit_on_outer_training_wells_only": true,
+    "component_models_fit_on_outer_training_wells_only": true,
+    "held_out_truth_used_by_gate": false,
+    "target_free_features_only": true,
+    "well_id_encoded": false
+  },
+  "fixed_25_reference": {
+    "spatial_cluster_7_seed_20260727": -0.03520864252152123,
+    "typewell_fingerprint": -0.023058503367586525
+  },
+  "deployment_gate": {
+    "pooled_delta_below_zero": true,
+    "p95_well_delta_at_most_zero": true,
+    "worst_well_delta_at_most": 0.25,
+    "nonpositive_well_fraction_at_least": 0.45,
+    "spatial_improved_folds_at_least": 5,
+    "typewell_improved_folds_required": 5,
+    "pooled_delta_must_beat_fixed_25_by_at_least": 0.003
+  },
+  "stop_rule": "If either protocol fails any gate, stop permanently; do not tune weights, distance metric, quantile, signature, scale, or clip.",
+  "writes_submission": false
+}
