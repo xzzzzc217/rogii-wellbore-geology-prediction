@@ -49,3 +49,43 @@ advantages are:
 3. exploiting permitted public geological data only when provenance is documented;
 4. using public-leaderboard probes sparingly because the public set is only 26%;
 5. maintaining multiple diverse final notebook candidates.
+
+## Final-submission freeze audit — 2026-07-31
+
+On 2026-07-31, the authenticated Kaggle API reported **zero selected final submissions**. On
+2026-08-02, the signed-in Submissions page independently showed **0/2** and stated that up to two
+submissions may be selected. If fewer than two are selected, Kaggle will automatically select
+from the best-scoring submissions. All nine competition submissions were in a terminal state,
+and the three frozen fallback Notebooks were `COMPLETE`. No duplicate submission was needed.
+
+Later on 2026-08-02, after explicit user confirmation, refs `54952634` and `54967104` were selected
+manually. The page displayed **2/2**, both target checkboxes were checked, and an independent API
+read returned exactly those two refs with `COMPLETE` status. No Notebook or competition
+submission was created during selection.
+
+| Priority | Submission ref | Public RMSE | Kaggle Notebook / version id | Output SHA-256 | Decision |
+|---:|---:|---:|---|---|---|
+| 1 | `54952634` | **6.477** | `heralces/rogii-pf-public-reproduction` / `337405234` | `b192d3f348ae00680dc4df942b95cef5fd708c636a741f77dfb6b6e89b9ded4a` | Primary |
+| 2 | `54967104` | **6.604** | `heralces/rogii-pf-public-no-hedge` / `337779623` | `fdf4a8175b6ec6a70c9b78fd6916ac3c317e43f7e9c08bbca87cd02314801ca9` | Branch-risk hedge |
+| 3 | `54927581` | 7.514 | `heralces/rogii-pf-safe-v2` / `337407706` | Revalidate only if promoted | Structurally safer disaster fallback |
+
+The primary and no-hedge CSVs were revalidated against the official sample: 14,151 rows,
+exact `id,tvt` columns, exact ID order, unique IDs, and finite predictions. Their only difference
+is 4,301 rows from one runtime-selected PF branch; every primary-minus-no-hedge delta is exactly
++2.0 ft, giving an all-row RMSE distance of 1.102608. The no-hedge candidate is therefore not an
+independent model, but it covers one concentrated final-branch decision at a much smaller Public
+penalty than safe-v2.
+
+Final state:
+
+1. `54952634` and `54967104` are manually selected under the confirmed two-entry allowance;
+2. Kaggle's automatic selection is not relied upon;
+3. keep `54927581` runnable as a disaster fallback, but do not displace the second candidate
+   without new evidence;
+4. treat the 2026-08-02 read-only selection preflight as complete;
+5. perform only low-frequency read-only checks through the official 2026-08-05 23:59 UTC deadline.
+
+The latest audited public mirror,
+`farhanabidtech786/rogii-best-score-wellbore-geology-prediction`, produced the exact primary SHA
+and reused the same public full-stack branch logic. It is not a new candidate and does not justify
+another Notebook or submission.

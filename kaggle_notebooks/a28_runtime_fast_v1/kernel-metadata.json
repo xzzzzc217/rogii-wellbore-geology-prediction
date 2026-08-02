@@ -1,0 +1,30 @@
+{
+  "id": "heralces/rogii-a28-runtime-fast-v1",
+  "title": "ROGII A28 Runtime Fast v1",
+  "code_file": "rogii-a28-runtime-fast-v1.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "geology",
+    "particle-filter",
+    "ensembling"
+  ],
+  "dataset_sources": [
+    "phongnguyn23021656/koolbox-offline",
+    "nina2025/rogii-03",
+    "pilkwang/rogii-model-package",
+    "thbdh5765/rogii-v10-fresh-artifacts",
+    "fleongg/rogii-claude-models-pub",
+    "needless090/rogii-tabicl-mirror",
+    "ravaghi/wellbore-geology-prediction-artifacts"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [
+    "rogii-wellbore-geology-prediction"
+  ],
+  "model_sources": []
+}
