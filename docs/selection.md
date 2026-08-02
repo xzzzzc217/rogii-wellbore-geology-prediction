@@ -140,10 +140,13 @@ anchor unless stronger evidence justifies replacing it.
 ## High-risk dip-rate HMM controlled validation — 2026-08-02
 
 The target-free dip-rate HMM was the first new trajectory-state model to produce a large signal.
-On 741 untouched confirmation wells it improved pooled RMSE by **0.156756**, all 7/7 spatial
-folds, all 5/5 Typewell folds, and the p95-well tail. It nevertheless failed its auxiliary
-confirmation gate: 63.83% of wells improved versus a 65% minimum, and the worst-well aggregate
-tail worsened by 0.68363 versus a 0.25 cap. The confirmation remains recorded as FAIL.
+On 741 confirmation wells it improved pooled RMSE by **0.156756**, all 7/7 spatial folds, and
+all 5/5 Typewell folds. A later audit found that the reported `p95_well_delta=-0.12914` was the
+5th percentile mislabeled as p95; the true 95th percentile is adverse (about +0.628 after the
+three current test-well IDs are excluded). It also failed its auxiliary confirmation gate:
+63.83% of wells improved versus a 65% minimum, and the worst-well aggregate tail worsened by
+0.68363 versus a 0.25 cap. The confirmation remains recorded as FAIL; the quantile correction
+does not change that decision or the pooled/all-fold evidence.
 
 The user's active objective is rank improvement, and the official metric is pooled row-level
 RMSE rather than worst-well RMSE. Because the pooled gain is large, every independent group fold
@@ -155,3 +158,19 @@ The exact 6.477 parent remains protected. The HMM Notebook may be pushed once an
 only after its hidden artifact passes dynamic schema, ID, finite-value, movement-cap, report, and
 SHA checks. No final selection changes automatically; only a terminal score strictly below 6.477
 can promote the HMM candidate.
+
+## Rank-seeking dip-rate HMM scale2 — 2026-08-02
+
+The fixed HMM correction has an exact quadratic SSE curve as its multiplier changes. After
+excluding every current test-well ID from label-based analysis, the aggregate optimum was about
+2.76 times the frozen scale1 correction and every spatial/Typewell fold had an optimum above
+1.0. A round, deliberately sub-optimal multiplier of 2.0 was preregistered before confirmation;
+it corresponds to overlay scale 0.40 and a hard maximum movement of +/-2 ft.
+
+On the 738 non-test wells, scale2 improved pooled RMSE by **0.244037**, versus **0.156071** for
+scale1. It improved all 7/7 spatial folds and all 5/5 Typewell folds; relative to scale1 it gained
+another **0.087966** RMSE. This is materially stronger primary-metric evidence, but tail risk is
+larger: true p95 well delta is +1.3359, worst-well delta +1.8142, and only 57.86% of wells improve.
+Therefore it is a transparent rank-seeking candidate, not a robust default. It may receive one
+independent private Notebook run and at most one controlled submission after artifact validation;
+it cannot replace a final selection unless its terminal Public score is strictly below 6.477.

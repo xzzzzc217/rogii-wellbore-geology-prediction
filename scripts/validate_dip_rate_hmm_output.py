@@ -67,7 +67,14 @@ def _close(actual: float, expected: float, label: str, tolerance: float = 1e-8) 
         raise ValueError(f"{label}: {actual} != {expected}")
 
 
-def validate(run_dir: Path, sample_path: Path) -> dict[str, Any]:
+def validate(
+    run_dir: Path,
+    sample_path: Path,
+    *,
+    maximum_abs_movement: float = 1.0,
+    confirmation_decision: str = "FAIL_tail_gates",
+    expected_confirmation: dict[str, int | float] | None = None,
+) -> dict[str, Any]:
     run_dir = run_dir.resolve()
     missing = [name for name in REQUIRED_FILES if not (run_dir / name).exists()]
     if missing:
@@ -111,10 +118,11 @@ def validate(run_dir: Path, sample_path: Path) -> dict[str, Any]:
     for key, expected in REQUIRED_BOOLEAN_FLAGS.items():
         if report.get(key) is not expected:
             raise ValueError(f"HMM contract flag mismatch: {key}")
-    if report.get("confirmation_decision") != "FAIL_tail_gates":
+    if report.get("confirmation_decision") != confirmation_decision:
         raise ValueError("HMM confirmation risk disclosure mismatch")
     confirmation = report.get("confirmation", {})
-    for key, expected in EXPECTED_CONFIRMATION.items():
+    confirmation_contract = expected_confirmation or EXPECTED_CONFIRMATION
+    for key, expected in confirmation_contract.items():
         actual = confirmation.get(key)
         if isinstance(expected, float):
             _close(float(actual), expected, f"confirmation.{key}", 1e-12)
@@ -123,7 +131,7 @@ def validate(run_dir: Path, sample_path: Path) -> dict[str, Any]:
 
     delta = final["tvt"].to_numpy(dtype=float) - before["tvt"].to_numpy(dtype=float)
     max_movement = float(np.max(np.abs(delta)))
-    if max_movement > 1.0000001:
+    if max_movement > maximum_abs_movement + 1e-7:
         raise ValueError(f"HMM movement cap exceeded: {max_movement}")
     changed_rows = int((np.abs(delta) > 1e-12).sum())
     if int(report.get("changed_rows", -1)) != changed_rows:

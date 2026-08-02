@@ -850,7 +850,10 @@ remains the primary candidate.
 - Confirmation pooled RMSE improved from **10.449281 to 10.292524**, a large
   **-0.156756** delta. Every spatial fold improved (7/7), from -0.06032 to
   -0.28267, and every Typewell fold improved (5/5), from -0.04541 to -0.24128.
-  The p95-well tail also improved by -0.12914.
+  A later audit found that the recorded `p95_well_delta=-0.12914` was actually
+  the 5th percentile mislabeled as p95. The true 95th percentile is adverse
+  (about +0.628 after excluding the three current test-well IDs). This does not
+  change the already-FAIL decision or the strong pooled/all-fold evidence.
 - Nevertheless, only 63.83% of wells improved versus the frozen 65% minimum,
   and the worst-well aggregate tail worsened by +0.68363 versus the +0.25 cap.
   Those are explicit confirmation failures even though the pooled signal is
@@ -883,3 +886,27 @@ remains the primary candidate.
   runtime. The local final SHA is
   `bc2be8533d138706217d7ef3ba6882ff5a9a085cc5298af094fdbab228a82c80`;
   it is an offline reproduction check, never a runtime selector.
+
+### 2026-08-02 - Scale-gate audit and rank-seeking HMM scale2 confirmation
+
+- Tested a preregistered target-free per-well scale gate using only row count,
+  correction RMS, and HMM uncertainty. Every current test-well ID was excluded
+  from label-based fitting/evaluation. The spatial protocol still selected the
+  un-gated scale1 correction, and the gate failed true-p95, worst-well, and
+  well-win checks. This route is closed and will not be submitted.
+- Audited the fixed correction's exact quadratic SSE curve. Across the 738
+  non-test wells, the pooled optimum was about 2.76 times the current scale1
+  correction, and every spatial/Typewell fold optimum exceeded 1.0. Frozen
+  multiplier 2.0 (overlay scale 0.40, maximum movement +/-2 ft) was then
+  preregistered rather than selecting the pooled optimum.
+- Scale2 passed its primary rank gates: pooled delta **-0.244037**, spatial
+  **7/7** folds improved, Typewell **5/5** folds improved, and it beat scale1
+  by another **0.087966** RMSE. Tail risk increased (true p95 +1.3359,
+  worst-well +1.8142, 57.86% wells improved), so the candidate is explicitly
+  high risk and cannot alter final selection without a Public score strictly
+  below 6.477.
+- Built an independent private Notebook contract
+  `heralces/rogii-dip-rate-hmm-scale2-v1`. It reuses the identical target-free
+  HMM state path, changes only overlay scale 0.20 -> 0.40 and movement cap
+  1 -> 2 ft, contains no fixed visible IDs/row counts, and has a dedicated
+  hidden-output validator.

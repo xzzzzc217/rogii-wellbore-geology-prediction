@@ -1,0 +1,64 @@
+{
+  "candidate": "target-free dip-rate HMM learned per-well scale gate",
+  "created_at_utc": "2026-08-02",
+  "objective": "Improve pooled RMSE over the fixed HMM overlay while reducing harmful-well tail risk.",
+  "input_artifact": "artifacts/dip_rate_hmm_confirmation/dip_rate_hmm_confirmation_per_well.csv",
+  "leakage_controls": {
+    "exclude_all_current_test_well_ids": true,
+    "test_well_targets_used": false,
+    "well_id_feature_used": false,
+    "absolute_coordinates_used": false,
+    "leaderboard_score_used": false,
+    "probe_or_canary_used": false
+  },
+  "runtime_features": [
+    "log1p_rows",
+    "correction_rms",
+    "log1p_hmm_uncertainty_mean",
+    "uncertainty_to_correction_ratio"
+  ],
+  "target": "Per-well SSE-optimal multiplier of the already frozen 0.20 HMM correction, clipped to [0, 1].",
+  "crossfit_protocols": [
+    "spatial_cluster_7_seed_20260727",
+    "typewell_fingerprint"
+  ],
+  "frozen_candidates": {
+    "constant_full": {
+      "kind": "constant",
+      "multiplier": 1.0
+    },
+    "constant_half": {
+      "kind": "constant",
+      "multiplier": 0.5
+    },
+    "ridge_1": {
+      "kind": "ridge",
+      "alpha": 1.0
+    },
+    "ridge_10": {
+      "kind": "ridge",
+      "alpha": 10.0
+    },
+    "random_forest_leaf20": {
+      "kind": "random_forest",
+      "n_estimators": 300,
+      "max_depth": 4,
+      "min_samples_leaf": 20,
+      "random_state": 20260802
+    },
+    "extra_trees_leaf20": {
+      "kind": "extra_trees",
+      "n_estimators": 300,
+      "max_depth": 4,
+      "min_samples_leaf": 20,
+      "random_state": 20260802
+    }
+  },
+  "selection_rule": {
+    "primary": "Lowest spatial-protocol pooled RMSE among candidates that improve every spatial fold versus the base.",
+    "confirmation": "The spatial-selected candidate must improve every Typewell fold, have pooled delta <= -0.05, p95 well delta <= 0, worst well delta <= 0.25, and well win fraction >= 0.65.",
+    "deployment": "Fit the frozen selected model on all non-test training wells and apply only from target-free runtime features. No fixed test-well branch is permitted."
+  },
+  "writes_submission": false,
+  "public_submission_authorized": false
+}
