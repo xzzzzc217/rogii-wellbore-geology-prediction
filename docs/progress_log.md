@@ -819,3 +819,25 @@ remains the primary candidate.
 - This sequential candidate is a preregistered FAIL. Its stage weight and PLS
   configuration will not be tuned, and no Notebook, blend, or competition
   submission is authorized.
+
+### 2026-08-02 - Target-free dip-rate HMM discovery passed decisively
+
+- Isolated the only structurally new idea from the unaudited public Dip-Aware
+  HMM claim: a joint hidden state over typewell TVT position and local
+  `d(TVT+Z)/dMD` rate. Reimplemented it as a target-free forward filter and
+  removed the public same-well/contact overrides, pretrained submission lookup,
+  meta learner, score claims, and submission path.
+- Before evaluation, froze a 32-well discovery set from spatial fold 0 by
+  SHA-256 well ordering, a 0.5-ft position grid, 21 rate states, fixed
+  transitions, and a 0.20 overlay of HMM/base disagreement clipped to +/-5 ft.
+  Thus the final movement cannot exceed +/-1 ft. Preregistration was pushed as
+  commit `efb3d68`.
+- Discovery pooled RMSE improved from **8.590338 to 8.343511**, a delta of
+  **-0.246827**. 28/32 wells improved (87.5%); p95-well delta was -0.34618 and
+  the worst-well aggregate tail improved by -0.41994. Mean runtime was 10.9
+  seconds per well. Every frozen quality, tail, win-rate, and runtime gate
+  passed by a wide margin.
+- The discovery set does not authorize a Notebook or submission. It authorizes
+  one unchanged confirmation run over all 741 untouched training wells, scored
+  under both spatial7 and Typewell5 protocols. Confirmation parameters and
+  gates are frozen before those labels are inspected.

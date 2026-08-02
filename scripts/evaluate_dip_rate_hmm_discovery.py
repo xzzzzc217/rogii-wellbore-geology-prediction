@@ -50,7 +50,7 @@ def _logadd(current: float, value: float) -> float:
     return current + math.log1p(math.exp(value - current))
 
 
-@njit(cache=True)
+@njit(cache=True, nogil=True)
 def _dip_rate_filter(
     emission: np.ndarray,
     delta_md: np.ndarray,

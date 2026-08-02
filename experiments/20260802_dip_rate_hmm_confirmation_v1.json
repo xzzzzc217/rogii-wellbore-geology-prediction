@@ -1,0 +1,37 @@
+{
+  "candidate": "dip_rate_hmm_confirmation_v1",
+  "status_before_evaluation": "PREREGISTERED",
+  "authorization": "Discovery experiment 20260802_dip_rate_hmm_discovery_v1 passed every frozen gate.",
+  "confirmation_population": {
+    "official_training_wells": 773,
+    "frozen_discovery_wells_excluded": 32,
+    "untouched_confirmation_wells": 741
+  },
+  "prediction_contract": {
+    "all_hmm_and_overlay_parameters_identical_to_discovery": true,
+    "parallel_workers": 8,
+    "parallelism_is_runtime_only": true,
+    "parameter_or_weight_grid": false,
+    "target_free_runtime_inputs_only": true,
+    "same_well_or_contact_override": false,
+    "meta_learner": false,
+    "writes_submission": false
+  },
+  "protocols": [
+    "spatial_cluster_7_seed_20260727",
+    "typewell_fingerprint"
+  ],
+  "confirmation_gate_per_protocol": {
+    "pooled_delta_at_most": -0.05,
+    "well_win_fraction_at_least": 0.65,
+    "p95_well_delta_at_most": 0.0,
+    "worst_well_delta_at_most": 0.25,
+    "spatial_improved_folds_at_least": 5,
+    "typewell_improved_folds_required": 5
+  },
+  "runtime_gate": {
+    "mean_runtime_per_well_seconds_at_most": 90.0
+  },
+  "stop_rule": "If either confirmation protocol or runtime gate fails, stop permanently without tuning. Only a complete PASS authorizes construction of one private target-free Notebook for dynamic artifact audit; it does not itself authorize a competition submission.",
+  "writes_submission": false
+}

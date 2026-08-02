@@ -1,6 +1,7 @@
 {
   "candidate": "dip_rate_hmm_discovery_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "PASS",
   "provenance": "Inspired by the joint position/rate HMM concept in tiktoktrendz/rogii-dip-aware-hmm-gbm, but independently reduced to a target-free forward filter. Public same-well/contact overrides, pretrained submission lookup, meta learner, leaderboard claims, and submission code are excluded.",
   "hypothesis": "A joint TVT-position and local dip-rate state can use trajectory geometry and hidden GR to correct structural branch errors not represented by whole-well residual regressors.",
   "discovery_contract": {
@@ -40,5 +41,17 @@
     "mean_runtime_per_well_seconds_at_most": 90.0
   },
   "stop_rule": "If discovery fails any gate, stop permanently without changing HMM states, grid, band, transition, overlay, or clip. Only a full discovery PASS authorizes untouched-well confirmation; no discovery result authorizes a submission directly.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "base_rmse": 8.590337677805627,
+    "candidate_rmse": 8.343510617648455,
+    "pooled_delta": -0.24682706015717137,
+    "well_win_fraction": 0.875,
+    "p95_well_delta": -0.3461780488668058,
+    "worst_well_delta": -0.4199377454258375,
+    "mean_runtime_per_well": 10.867985634378783,
+    "runtime_seconds": 347.8175634999643,
+    "all_gate_checks_passed": true
+  },
+  "decision": "PASS: all frozen discovery quality, tail, win-rate, and runtime gates passed. Untouched-well confirmation is authorized; submission remains unauthorized."
 }
