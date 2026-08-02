@@ -1,0 +1,35 @@
+{
+  "candidate": "exact_typewell_nearest_template_transfer_v1",
+  "status_before_evaluation": "PREREGISTERED",
+  "hypothesis": "Wells sharing an exact Typewell fingerprint may share enough suffix TVT shape for the nearest labeled training well to provide a useful bounded correction to the competitive base.",
+  "protocol": "leave_one_well_out_within_exact_typewell_group",
+  "frozen_parameters": {
+    "minimum_group_size": 2,
+    "reference_selection": "nearest_other_well_by_horizontal_centroid_xy",
+    "reference_curve": "hidden_suffix_TVT_minus_last_visible_TVT",
+    "curve_alignment": "linear_interpolation_on_normalized_suffix_progress",
+    "template_minus_base_clip_ft": 5.0,
+    "overlay_scale": 0.25,
+    "unmatched_fallback": "competitive_base"
+  },
+  "deployment_contract": {
+    "official_competition_training_labels_used_only_for_reference_wells": true,
+    "query_target_used_for_matching_or_prediction": false,
+    "query_well_id_encoded_as_feature": false,
+    "absolute_xy_used_only_for_nearest_reference_selection": true,
+    "exact_typewell_fingerprint_required": true,
+    "fixed_test_well_or_visible_shape_used": false,
+    "leaderboard_or_probe_used": false
+  },
+  "gate": {
+    "eligible_wells_at_least": 20,
+    "exact_typewell_groups_at_least": 3,
+    "eligible_pooled_gain_at_least": 0.1,
+    "full_population_pooled_gain_at_least": 0.005,
+    "well_win_fraction_at_least": 0.55,
+    "p95_well_delta_at_most": 0.1,
+    "worst_well_delta_at_most": 0.5
+  },
+  "stop_rule": "If any gate fails, stop this exact-Typewell template route without tuning the reference metric, overlay scale, cap, or interpolation.",
+  "writes_submission": false
+}
