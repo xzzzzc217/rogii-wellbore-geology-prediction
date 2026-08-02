@@ -1,0 +1,54 @@
+{
+  "candidate": "target-free depth-affine dip-rate HMM scale",
+  "created_at_utc": "2026-08-02",
+  "hypothesis": "The frozen HMM correction has different value near the start and end of a hidden suffix; two globally learned endpoint multipliers can improve rank over fixed scale2 without identifying a test well.",
+  "inputs": {
+    "sequence_cache": "artifacts/sequence_pilot_cache_v1",
+    "competition_sample": "data/competition/sample_submission.csv",
+    "hmm_algorithm": "unchanged frozen forward dip-rate HMM",
+    "scale1_overlay": 0.2,
+    "disagreement_clip_ft": 5.0
+  },
+  "candidate_definition": {
+    "normalized_suffix_depth": "linspace(0, 1, hidden_suffix_rows)",
+    "row_multiplier": "start_multiplier * (1-depth) + end_multiplier * depth",
+    "fit": "two-variable bounded least squares on outer-training rows only",
+    "minimum_endpoint_multiplier": 0.0,
+    "maximum_endpoint_multiplier": 2.3,
+    "maximum_row_movement_ft": 2.3,
+    "ridge_or_intercept": false,
+    "depth_breakpoint_or_grid": false
+  },
+  "validation": {
+    "exclude_hmm_discovery_wells_from_all_fit_and_validation": true,
+    "exclude_current_visible_test_wells_from_all_fit_and_validation": true,
+    "protocols": [
+      "spatial_cluster_7_seed_20260727",
+      "typewell_fingerprint"
+    ],
+    "reference": "fixed HMM scale2",
+    "spatial_gate": {
+      "minimum_additional_pooled_gain": 0.01,
+      "minimum_improved_folds": 6,
+      "maximum_fold_regression": 0.025
+    },
+    "typewell_gate": {
+      "minimum_additional_pooled_gain": 0.005,
+      "minimum_improved_folds": 4,
+      "maximum_fold_regression": 0.025
+    },
+    "candidate_must_improve_base_in_every_fold": true
+  },
+  "leakage_controls": {
+    "test_targets_used": false,
+    "well_id_feature_used": false,
+    "absolute_coordinates_used": false,
+    "leaderboard_score_used": false,
+    "probe_or_canary_used": false,
+    "outer_fold_truth_isolation": true
+  },
+  "writes_submission": false,
+  "kaggle_notebook_authorized": false,
+  "public_submission_authorized": false,
+  "decision_before_result": "PASS may authorize one later deployment build only after the five pending component scores resolve and a future daily slot is available; FAIL permanently closes depth-affine HMM scaling without tuning."
+}
