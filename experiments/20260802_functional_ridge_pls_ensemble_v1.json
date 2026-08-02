@@ -1,6 +1,7 @@
 {
   "candidate": "functional_ridge_pls_ensemble_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "PASS",
   "hypothesis": "A conservative fixed 75% plain Ridge and 25% supervised PLS curve ensemble retains enough PLS pooled gain while using the only model that improved all Typewell folds as the stability anchor.",
   "protocols": [
     "spatial_cluster_7_seed_20260727",
@@ -37,5 +38,35 @@
     "pooled_delta_must_beat_plain_ridge_by_at_least": 0.002
   },
   "stop_rule": "If either protocol fails any gate, stop permanently; do not tune the 75/25 weight, component models, scale, or clip.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "spatial_cluster_7_seed_20260727": {
+      "pooled_delta": -0.03520864252152123,
+      "delta_vs_plain_ridge": -0.007605742521521228,
+      "improved_folds": 5,
+      "fold_count": 7,
+      "p95_well_delta": -0.06408263814038406,
+      "worst_well_delta": 0.20036960711367158,
+      "gate_passed": true
+    },
+    "typewell_fingerprint": {
+      "pooled_delta": -0.023058503367586525,
+      "delta_vs_plain_ridge": -0.004291403367586526,
+      "improved_folds": 5,
+      "fold_count": 5,
+      "p95_well_delta": -0.055629101862475494,
+      "worst_well_delta": -0.012817025536207893,
+      "gate_passed": true
+    }
+  },
+  "deployment_dry_run": {
+    "rows": 14151,
+    "changed_rows": 14151,
+    "submission_sha256": "d4d7e368c940d84cdc1504fcad18809675f18499b0efd6e089011b21febb7da3",
+    "correction_rms": 0.3675334086899167,
+    "correction_minimum": -1.042821844158514,
+    "correction_maximum": 0.5450359114595679,
+    "dynamic_contract_passed": true
+  },
+  "decision": "PASS: authorize exactly one private Notebook run; competition submission remains conditional on the hidden-run artifact contract."
 }

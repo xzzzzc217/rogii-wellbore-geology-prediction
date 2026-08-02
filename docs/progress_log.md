@@ -690,3 +690,27 @@ remains the primary candidate.
   It will not be submitted or tuned. Plain Ridge improved all five Typewell
   folds, so one separate conservative fixed-weight Ridge/PLS ensemble may be
   preregistered; no weight grid or PLS parameter change is allowed.
+
+### 2026-08-02 - Fixed 75/25 Functional Ridge/PLS ensemble passed every gate
+
+- Before evaluation, froze a single conservative curve ensemble: 75% of the
+  plain Ridge prediction and 25% of the supervised PLS prediction. No weight
+  grid was searched. Deployment requires at least 0.002 pooled improvement over
+  plain Ridge in both protocols plus every existing stability gate.
+- Spatial 7-fold pooled delta was **-0.035209**, 5/7 folds improved, p95-well
+  delta was -0.06408, worst-well delta +0.20037, and the ensemble beat plain
+  Ridge by 0.007606.
+- Typewell 5-fold pooled delta was **-0.023059** and all 5/5 folds improved.
+  P95-well delta was -0.05563, worst-well delta -0.01282, and the ensemble beat
+  plain Ridge by 0.004291. Every preregistered gate passed.
+- Built the private Notebook `heralces/rogii-functional-ridge-pls-v1` from the
+  already audited Functional Ridge v2 parent. The new layer remains target-free,
+  uses no fixed test well/row count/hash, score, probe, or well identity, and
+  records both component weights and that no grid was searched.
+- A full local deployment dry run on the 773-well cache and official three-well
+  test contract passed: 14,151 exact ordered unique IDs, finite predictions,
+  all rows changed, correction RMS 0.36753 ft, range [-1.04282, +0.54504] ft,
+  and final SHA-256
+  `d4d7e368c940d84cdc1504fcad18809675f18499b0efd6e089011b21febb7da3`.
+  Exactly one private Notebook run is authorized; a competition submission is
+  allowed only after the hidden-run output independently passes the same audit.
