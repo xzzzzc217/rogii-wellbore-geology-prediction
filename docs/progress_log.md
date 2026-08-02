@@ -574,3 +574,12 @@ remains the primary candidate.
   it records that the inherited 6.477 deployment base is related to but not
   exactly the OOF gate base. The Notebook is `RUNNING`; no competition
   submission exists until its dynamic output and cross-file SHA contract pass.
+- Preregistered one low-rank response ablation before reading its output. Each
+  outer fold fit an 8-component PCA only on training-well residual curves, then
+  predicted those coefficients from the same target-free signatures. It had
+  to beat the plain Ridge pooled delta by at least 0.002 in both protocols.
+- The eight components explained roughly 96.9%--97.1% of training-curve
+  variance, but spatial pooled delta was -0.027280 and Typewell delta was
+  -0.018631. These were respectively 0.000323 and 0.000136 worse than the
+  plain Functional Ridge. Both dominance checks failed, so the low-rank route
+  is a definitive NO-GO without PCA-dimension, alpha, scale, or clip tuning.

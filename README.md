@@ -526,6 +526,13 @@ RMS 为约 0.410 ft，范围约 [-1.156, +0.670] ft。私有 Notebook
 full-stack 与用来守门的竞争性 OOF base 相关但不完全同构，所以只有 Kaggle 产物契约通过后
 才允许创建一次受控提交，当前尚未提交比赛。
 
+等待 Kaggle 运行期间又预注册了一项且仅一项低秩响应消融：每个外折只用训练井把 64 点
+残差曲线压缩成 8 个 PCA 系数，再用相同 Ridge 预测。8 维已解释约 96.9%–97.1% 的训练
+曲线方差，但空间 pooled delta 为 **-0.027280**、Typewell 为 **-0.018631**，分别比普通
+Ridge 差 0.000323 和 0.000136，双双未达到“至少再改善 0.002”的预注册支配门槛。因此
+低秩版本为 NO-GO，不调 PCA 维数、alpha、scale 或 clip，也不构建 Notebook；普通
+Functional Ridge 保持唯一部署候选。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -566,6 +573,7 @@ full-stack 与用来守门的竞争性 OOF base 相关但不完全同构，所�
 | PF branch cap 2.5 target-free | 6.654 | 较 6.477 差 0.177，NO-GO |
 | Functional kNN residual curve | 不提交 | 空间/Typewell pooled 均恶化，NO-GO |
 | Functional Ridge residual curve | Notebook 运行中 | 双协议 OOF 同向通过；等待动态产物审计 |
+| Functional Ridge 8D response-PCA | 不提交 | 双协议略差于普通 Ridge，未过支配门槛 |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。

@@ -1,6 +1,7 @@
 {
   "candidate": "functional_ridge_lowrank_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL",
   "hypothesis": "Training-fold-only response PCA removes high-frequency residual-curve noise while preserving target-free cross-well structure.",
   "protocols": [
     "spatial_cluster_7_seed_20260727",
@@ -34,5 +35,28 @@
     "pooled_delta_must_beat_plain_ridge_by_at_least": 0.002
   },
   "stop_rule": "If either protocol fails any gate, stop permanently; do not tune PCA dimension, alpha, scale, or clip.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "spatial_cluster_7_seed_20260727": {
+      "pooled_delta": -0.02727979750885723,
+      "delta_vs_plain_ridge": 0.000323102491142771,
+      "improved_folds": 5,
+      "fold_count": 7,
+      "p95_well_delta": -0.06896385912817493,
+      "worst_well_delta": 0.19178090424276917,
+      "pca_explained_variance_range": [0.9693478331053351, 0.9709502489760764],
+      "beats_plain_ridge_by_margin": false
+    },
+    "typewell_fingerprint": {
+      "pooled_delta": -0.01863112823826185,
+      "delta_vs_plain_ridge": 0.00013597176173814687,
+      "improved_folds": 5,
+      "fold_count": 5,
+      "p95_well_delta": -0.05494434633750345,
+      "worst_well_delta": 0.017172875323353765,
+      "pca_explained_variance_range": [0.9688292884132947, 0.9711864523393312],
+      "beats_plain_ridge_by_margin": false
+    }
+  },
+  "decision": "FAIL: both protocols were slightly worse than the plain Functional Ridge; stop without tuning or deployment."
 }
