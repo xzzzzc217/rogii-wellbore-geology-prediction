@@ -1,6 +1,7 @@
 {
   "candidate": "functional_kernel_ridge_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL",
   "hypothesis": "A training-fold-adaptive RBF kernel captures nonlinear similarity between target-free well signatures and residual-curve shape that the passing linear Functional Ridge cannot represent.",
   "protocols": [
     "spatial_cluster_7_seed_20260727",
@@ -37,5 +38,26 @@
     "pooled_delta_must_beat_plain_ridge_by_at_least": 0.005
   },
   "stop_rule": "If either protocol fails any gate, stop permanently; do not tune kernel alpha, bandwidth rule, signature, scale, or clip.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "spatial_cluster_7_seed_20260727": {
+      "pooled_delta": 0.00032302682913254444,
+      "delta_vs_plain_ridge": 0.027925926829132544,
+      "improved_folds": 4,
+      "fold_count": 7,
+      "p95_well_delta": 0.03008459840037503,
+      "worst_well_delta": 0.14587046714250107,
+      "gate_passed": false
+    },
+    "typewell_fingerprint": {
+      "pooled_delta": 0.005068879334340082,
+      "delta_vs_plain_ridge": 0.02383597933434008,
+      "improved_folds": 1,
+      "fold_count": 5,
+      "p95_well_delta": 0.08636683827702996,
+      "worst_well_delta": 0.10402618396925334,
+      "gate_passed": false
+    }
+  },
+  "decision": "FAIL: both protocols worsened and the nonlinear kernel was far worse than plain Functional Ridge; stop without tuning or deployment."
 }

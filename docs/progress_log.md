@@ -643,3 +643,17 @@ remains the primary candidate.
   It is currently `PENDING`. The cap4 ref `55177746` is also still `PENDING`;
   neither candidate changes the current best or selected final pair until a
   strictly better terminal score exists.
+
+### 2026-08-02 - Nonlinear Functional Kernel Ridge failed both protocols
+
+- Before evaluation, preregistered one RBF Kernel Ridge follow-up using the
+  exact Functional Ridge signatures and residual curves. Every outer fold fit
+  imputation, scaling, the inverse-median-distance bandwidth, and kernel model
+  on training wells only. Alpha 10, scale 0.20, clip 20, and a required 0.005
+  dominance margin over plain Ridge were frozen in advance.
+- Spatial 7-fold pooled delta was **+0.000323**, only 4/7 folds improved, and
+  p95-well delta was +0.03008. Typewell 5-fold pooled delta was **+0.005069**,
+  only 1/5 folds improved, and p95-well delta was +0.08637.
+- Both protocols worsened and missed the plain Ridge reference by more than
+  0.0238 RMSE. This is a definitive NO-GO: no kernel alpha, bandwidth, scale,
+  signature, or clip tuning; no Notebook or competition submission.
