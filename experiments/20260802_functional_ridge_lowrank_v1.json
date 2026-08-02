@@ -1,0 +1,38 @@
+{
+  "candidate": "functional_ridge_lowrank_v1",
+  "status_before_evaluation": "PREREGISTERED",
+  "hypothesis": "Training-fold-only response PCA removes high-frequency residual-curve noise while preserving target-free cross-well structure.",
+  "protocols": [
+    "spatial_cluster_7_seed_20260727",
+    "typewell_fingerprint"
+  ],
+  "frozen_parameters": {
+    "signature_quantiles": [0.0, 0.25, 0.5, 0.75, 1.0],
+    "curve_points": 64,
+    "response_pca_components": 8,
+    "ridge_alpha": 100.0,
+    "overlay_scale": 0.2,
+    "residual_clip": 20.0
+  },
+  "outer_fold_contract": {
+    "pca_fit_on_outer_training_wells_only": true,
+    "ridge_fit_on_outer_training_wells_only": true,
+    "held_out_truth_used_for_training_or_selection": false,
+    "target_free_features_only": true
+  },
+  "plain_ridge_reference": {
+    "spatial_cluster_7_seed_20260727": -0.0276029,
+    "typewell_fingerprint": -0.0187671
+  },
+  "deployment_gate": {
+    "pooled_delta_below_zero": true,
+    "p95_well_delta_at_most_zero": true,
+    "worst_well_delta_at_most": 0.25,
+    "nonpositive_well_fraction_at_least": 0.45,
+    "spatial_improved_folds_at_least": 5,
+    "typewell_improved_folds_required": 5,
+    "pooled_delta_must_beat_plain_ridge_by_at_least": 0.002
+  },
+  "stop_rule": "If either protocol fails any gate, stop permanently; do not tune PCA dimension, alpha, scale, or clip.",
+  "writes_submission": false
+}
