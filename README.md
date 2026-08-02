@@ -34,6 +34,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | PF branch cap 4.0 target-free | ref `55177746`，**PENDING**；可见产物同 SHA，不预设隐藏分数 |
 | Functional Ridge residual curve | v2 动态审计通过；ref `55178775` **PENDING** |
 | Fixed 75/25 Functional Ridge–PLS | 双协议全门槛 PASS；私有 Notebook v1 **RUNNING** |
+| cap4 + Fixed Ridge–PLS | 仅离线准备；两项独立 Public 均严格优于 6.477 才授权 |
 
 当前 6.477 比公开榜前 10% 边界差约 0.058。公开榜只覆盖约 26% 测试数据，最终排名
 由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了
@@ -611,6 +612,7 @@ worst-well delta +0.38970。结论是公开交易的效果依赖可见井锚定�
 | Augmented Functional Ridge | 不提交 | 空间明显改善，但 Typewell 仅 4/5 折且弱于普通 Ridge |
 | Supervised Functional PLS | 单模型不提交 | pooled 双协议显著改善，但 Typewell fold 0 恶化 |
 | Fixed 75/25 Ridge–PLS | Notebook v1 RUNNING | 双协议全门槛 PASS，均显著优于普通 Ridge |
+| cap4 + Fixed Ridge–PLS | PREPARED_NOT_AUTHORIZED | 独立双分数门槛未解析，不推送 |
 | GR/Typewell datum transfer | 不提交 | 空间与 Typewell 全部 folds 恶化，固定井收益不可迁移 |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复

@@ -718,3 +718,9 @@ remains the primary candidate.
   currently `RUNNING`; no competition submission exists yet. The monitor now
   owns the hidden artifact audit and may create only the single preregistered
   Code Submission after every dynamic contract check passes.
+- Prepared and tested, but did not push, a conditional cap4 plus fixed 75/25
+  Ridge/PLS builder. It inherits both exact components and adds cross-report
+  SHA, cap, weight, and no-grid checks. Authorization requires cap4 ref
+  `55177746` and the future standalone Ridge/PLS submission to each score
+  strictly below 6.477 and pass their dynamic contracts. It is explicitly
+  `PREPARED_NOT_AUTHORIZED` and consumes no Kaggle runtime or submission now.
