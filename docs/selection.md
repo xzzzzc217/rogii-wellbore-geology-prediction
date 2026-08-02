@@ -89,3 +89,27 @@ The latest audited public mirror,
 `farhanabidtech786/rogii-best-score-wellbore-geology-prediction`, produced the exact primary SHA
 and reused the same public full-stack branch logic. It is not a new candidate and does not justify
 another Notebook or submission.
+
+## Post-freeze rank-improvement candidate — 2026-08-02
+
+The freeze was reopened after the user explicitly asked to keep improving rank. A fresh public
+scan found `raunakdey07/rogii-physics-informed-stacked-ensemble-v2`, whose author leaderboard
+score is **6.432**. Its final output does not use the notebook's new MDN/GBDT prediction: it is
+exactly the current 6.477 primary plus 2.0 ft on the same 4,301-row runtime-selected PF branch.
+
+We reproduced that output with a private dynamic candidate rather than copying the public
+fixed-test logic. `heralces/rogii-pf-branch-cap40-targetfree-v1` version 2 uses generic
+PF branch statistics, strength 0.62, and a 4.0 ft cap. Its scoring path contains no fixed test
+well, visible row count, expected artifact hash, probe flag, or leaderboard score. Candidate
+selection is nevertheless explicitly recorded as public-score-informed.
+
+Version 1 was rejected before submission because strength 0.60 produced only a 3.908582 ft move.
+Version 2 completed in 785.8 seconds and passed the full contract: 14,151 rows, exact `id,tvt`
+schema and sample ID order, unique IDs, finite predictions, 4,301 moved rows, exact +4.0 ft delta,
+and report/file SHA agreement. Its final SHA is byte-identical to the known 6.432 artifact:
+`af43d97ab5b76f7f0bbbc5c72fb6e9a829e939c48582fc4130144340547360a2`.
+
+The unique Code Submission is ref `55177746`, currently `PENDING`. Existing manual selections
+remain `54952634 + 54967104` until the new ref has a terminal score. If it is strictly better
+than 6.477, the recommended pair becomes `55177746 + 54952634`; do not change selection before
+the score is confirmed.

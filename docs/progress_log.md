@@ -531,3 +531,23 @@ remains the primary candidate.
   official deadline. No new Notebook or competition submission was created.
   Remaining work is limited to low-frequency read-only integrity checks unless
   genuinely new evidence requires a user decision.
+- Reopened the rank-improvement sprint after explicit user direction. A fresh
+  6,055-team leaderboard snapshot places 6.477 at rank 1,159 (top 19.14%),
+  with top-10% and top-5% boundaries of 6.419 and 6.374.
+- Audited `raunakdey07/rogii-physics-informed-stacked-ensemble-v2`. Although
+  the notebook contains a long MDN/GBDT experiment, its final submission is
+  exactly the current primary plus 2.0 ft on the same 4,301-row PF branch and
+  has known Public RMSE 6.432. The file SHA is
+  `af43d97ab5b76f7f0bbbc5c72fb6e9a829e939c48582fc4130144340547360a2`.
+- Built a private dynamic target-free reproduction. Version 1 correctly failed
+  the pre-submission equivalence gate because strength 0.60 produced a
+  3.908582 ft shift. Version 2 changed only generic branch strength to 0.62,
+  reached the 4.0 ft cap, completed in 785.8 seconds, and passed all sample,
+  ID, finite-value, report, delta, and SHA checks. Its output is byte-identical
+  to the known 6.432 file. Candidate selection is recorded as Public-informed;
+  the runtime path does not read fixed test constants, probes, or scores.
+- Created exactly one Code Submission, ref `55177746`, description
+  `Target-free PF seed-branch cap4.0 controlled verification`. It is currently
+  `PENDING`; the existing `54952634 + 54967104` final selection remains intact.
+  If the new ref scores strictly below 6.477, recommend replacing only
+  `54967104`, subject to a final user-confirmed selection change.
