@@ -624,3 +624,22 @@ remains the primary candidate.
   improving, p95 delta +0.058724, and worst-well delta +0.389703. The clean
   transfer is a definitive NO-GO; no grid, smoothing, scale, or cap tuning and
   no Notebook/submission are authorized.
+
+### 2026-08-02 - Functional Ridge v2 artifact gate passed and submitted once
+
+- Private Notebook `heralces/rogii-functional-ridge-v1` version 2 completed in
+  846.0 seconds after the nested cache-contract fix.
+- Downloaded and audited the complete output. `submission.csv` has 14,151 rows,
+  exact `id,tvt` columns, official ID order, unique IDs, and finite predictions.
+  Its SHA-256 is `a30f6384b4d6f06c2d6f6330bb0b7cfe7997bb0267c129d2b0f081828d5180de`,
+  matching both `functional_ridge_deploy_report.json` and
+  `submission_audit.json`; the parent file SHA and all three per-well delta
+  summaries also match the final file.
+- Confirmed the target-free runtime flags: no absolute coordinates, fixed test
+  well, visible row count, expected visible hash, leaderboard score, probe
+  flag, or encoded well ID was used. The cache is training-row-only.
+- Created exactly one Code Submission from Notebook version 2, ref `55178775`,
+  description `Functional Ridge OOF overlay s0.20 controlled verification`.
+  It is currently `PENDING`. The cap4 ref `55177746` is also still `PENDING`;
+  neither candidate changes the current best or selected final pair until a
+  strictly better terminal score exists.
