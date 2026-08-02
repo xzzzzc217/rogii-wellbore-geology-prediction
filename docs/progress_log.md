@@ -841,3 +841,23 @@ remains the primary candidate.
   one unchanged confirmation run over all 741 untouched training wells, scored
   under both spatial7 and Typewell5 protocols. Confirmation parameters and
   gates are frozen before those labels are inspected.
+
+### 2026-08-02 - Dip-rate HMM confirmation gained strongly but failed tail gates
+
+- Ran the unchanged discovery model on every one of the 741 untouched official
+  training wells. Eight-thread parallelism changed runtime only; the model,
+  state grid, transitions, overlay, and clip were imported unchanged.
+- Confirmation pooled RMSE improved from **10.449281 to 10.292524**, a large
+  **-0.156756** delta. Every spatial fold improved (7/7), from -0.06032 to
+  -0.28267, and every Typewell fold improved (5/5), from -0.04541 to -0.24128.
+  The p95-well tail also improved by -0.12914.
+- Nevertheless, only 63.83% of wells improved versus the frozen 65% minimum,
+  and the worst-well aggregate tail worsened by +0.68363 versus the +0.25 cap.
+  Those are explicit confirmation failures even though the pooled signal is
+  much stronger than every earlier residual experiment.
+- The confirmation decision is therefore **FAIL**. Because all 773 wells have
+  now contributed either discovery or confirmation evidence, building a new
+  uncertainty/well gate after seeing these labels would be post-hoc. The HMM
+  will not be tuned, gated, blended, packaged, or submitted. This preserves the
+  untouched-confirmation contract rather than converting a promising average
+  into an unaudited leaderboard risk.

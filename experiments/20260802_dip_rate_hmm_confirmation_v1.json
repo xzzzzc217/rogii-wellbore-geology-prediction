@@ -1,6 +1,7 @@
 {
   "candidate": "dip_rate_hmm_confirmation_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL",
   "authorization": "Discovery experiment 20260802_dip_rate_hmm_discovery_v1 passed every frozen gate.",
   "confirmation_population": {
     "official_training_wells": 773,
@@ -33,5 +34,25 @@
     "mean_runtime_per_well_seconds_at_most": 90.0
   },
   "stop_rule": "If either confirmation protocol or runtime gate fails, stop permanently without tuning. Only a complete PASS authorizes construction of one private target-free Notebook for dynamic artifact audit; it does not itself authorize a competition submission.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "confirmation_wells": 741,
+    "base_rmse": 10.44928078301667,
+    "candidate_rmse": 10.292524368933254,
+    "pooled_delta": -0.15675641408341612,
+    "well_win_fraction": 0.6383265856950068,
+    "p95_well_delta": -0.12914116104679962,
+    "worst_well_delta": 0.6836268403655126,
+    "spatial_improved_folds": 7,
+    "spatial_fold_count": 7,
+    "typewell_improved_folds": 5,
+    "typewell_fold_count": 5,
+    "mean_runtime_per_well": 9.445945449257188,
+    "wall_runtime_seconds": 880.7922416999936,
+    "failed_gate_checks": [
+      "well_win_fraction_at_least_0.65",
+      "worst_well_delta_at_most_0.25"
+    ]
+  },
+  "decision": "FAIL: the untouched confirmation produced a large -0.156756 pooled gain and improved all spatial7 and Typewell5 folds, but 63.83% well wins missed the frozen 65% threshold and worst-well tail worsened by 0.683627. Stop without tuning, gating, Notebook construction, blending, or submission."
 }

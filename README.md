@@ -27,6 +27,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | Frontier II DYNQ0196 | **7.507**，较最佳差 1.030，NO-GO |
 | GPU TCN + target-free well gate | gate 仅改善 0.0062，门槛 FAIL |
 | GPU TCN uniform-well sampling | pooled 恶化 0.0496，门槛 FAIL |
+| Target-free dip-rate HMM | 741 井确认 pooled 改善 **0.1568**、空间 7/7 与 Typewell 5/5 折改善；井胜率/最差井门槛 FAIL，未提交 |
 | GR strongest-periodic notch | pooled 恶化 4.2925，门槛 FAIL |
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
