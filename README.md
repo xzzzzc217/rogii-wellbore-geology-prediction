@@ -620,6 +620,9 @@ worst-well delta +0.38970。结论是公开交易的效果依赖可见井锚定�
 | cap4 + Fixed Ridge–PLS | PREPARED_NOT_AUTHORIZED | 独立双分数门槛未解析，不推送 |
 | HMM scale2 + Fixed Ridge–PLS | PREPARED_NOT_AUTHORIZED | 总 pooled delta -0.2808/-0.2726；需 HMM2 与 Ridge–PLS 各自 Public 都优于 6.477 |
 | GR/Typewell datum transfer | 不提交 | 空间与 Typewell 全部 folds 恶化，固定井收益不可迁移 |
+| Bidirectional HMM smoother | 不提交 | 相对 forward HMM2 pooled 改善 0.0633，但 true-p95 +0.4044 且平均 46.7 秒/井，门槛 FAIL |
+| 严格跨井平移副本转移 | 不提交 | 773 井中无不同 ID 的完整动态指纹重复，0 口井可转移 |
+| Exact-Typewell 最近井模板 | 不提交 | 34 井 pooled 10.0945 → 10.4283，全体 OOF 恶化 0.01336，NO-GO |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。

@@ -1,6 +1,7 @@
 {
   "candidate": "translated_cross_well_twin_transfer_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL_STOP",
   "hypothesis": "Some hidden wells may be renamed or spatially translated reruns of official training wells. A strict target-free whole-well fingerprint can identify those twins and transfer the reference TVT after a visible-prefix datum alignment, while unmatched wells retain the competitive base unchanged.",
   "protocol": "distinct_well_leave_one_out_exact_translated_fingerprint",
   "frozen_match_contract": {
@@ -37,5 +38,15 @@
     "worst_well_delta_at_most": 0.5
   },
   "stop_rule": "If any gate fails, stop this exact-translated-twin route without relaxing tolerances, adding nearest neighbors, or building a Notebook/submission.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "all_training_wells": 773,
+    "raw_fingerprint_groups_with_multiple_wells": 0,
+    "eligible_wells": 0,
+    "eligible_fingerprint_groups": 0,
+    "eligible_hidden_rows": 0,
+    "runtime_seconds": 23.01342949998798,
+    "decision": "FAIL: no different-ID complete translated twin exists; stop without relaxing the exact dynamic contract."
+  },
+  "notebook_or_submission_authorized": false
 }

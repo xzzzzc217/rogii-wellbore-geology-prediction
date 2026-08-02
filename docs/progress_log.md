@@ -961,3 +961,40 @@ remains the primary candidate.
   `execution_authorized=false`; it may be pushed and submitted once only if
   refs `55181026` and `55179387` both first score strictly below 6.477. Today’s
   Kaggle submission allowance remains exhausted, and no runtime was consumed.
+
+### 2026-08-02 - Bidirectional HMM smoother failed its frozen tail/runtime gates
+
+- Preregistered a fixed forward-backward smoother on 24 SHA-selected wells
+  excluded from the original HMM discovery and current test IDs. The smoother
+  uses the complete hidden-suffix GR sequence, which is available at inference,
+  but no targets, absolute coordinates, well IDs, leaderboard values, or probes.
+- Relative to forward HMM scale2 it gained **0.063336** pooled RMSE and improved
+  62.5% of wells. However true-p95 well delta was **+0.404437**, above the
+  +0.10 gate, and mean runtime was **46.69 s/well**, above the 45-second gate.
+  Both forward and smoother variants also remained worse than the competitive
+  base on this untouched discovery population.
+- The preregistered decision is `FAIL_STOP`: no unchanged confirmation,
+  parameter adjustment, Notebook, or submission is authorized.
+
+### 2026-08-02 - Dynamic cross-well duplicate/template audits both failed
+
+- Rechecked the official rules page before the audit. It allows Competition
+  Data use and forbids hand labeling or human prediction of test records, but
+  contains no explicit same-ID or automated-overlap clause. This is a rules
+  interpretation, not organizer confirmation, so the project kept all matching
+  dynamic and target-free and did not create a submission.
+- Preregistered a strict translated-twin fingerprint over the complete relative
+  MD/XYZ trajectory, horizontal GR and missingness, visible TVT shape, and
+  Typewell shape. Across all 773 training wells there were **zero** different-ID
+  duplicate groups and therefore zero transferable wells. The route stopped
+  without relaxing any tolerance or building a Notebook.
+- Preregistered one structurally different exact-Typewell template audit. For
+  each query in the 13 duplicate fingerprint groups, the nearest distinct well
+  supplied a normalized suffix TVT curve; a fixed 0.25 overlay and 5-ft
+  pre-scale clip were frozen before scoring. All unmatched wells retained the
+  competitive base.
+- The 34 eligible wells worsened from pooled **10.094492 to 10.428320**;
+  only 29.41% improved, p95-well delta was +1.0852, and worst-well delta was
+  +1.1958. Across the full 3,783,989-row OOF population, RMSE worsened by
+  **+0.013356**. The exact-Typewell transfer is permanently stopped without
+  neighbor, scale, cap, or interpolation tuning.

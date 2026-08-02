@@ -1,7 +1,7 @@
 {
   "candidate": "target-free bidirectional dip-rate HMM smoother scale2",
   "created_at_utc": "2026-08-02",
-  "status": "PREREGISTERED_NOT_RUN",
+  "status": "FAIL_STOP",
   "hypothesis": "The forward HMM cannot use later hidden-suffix GR to resolve earlier state ambiguity. A fixed forward-backward smoother can use the complete hidden GR sequence, which is available at inference time, without targets or leaderboard information.",
   "discovery_population": {
     "source": "Official training wells excluding the original 32 HMM discovery wells and every current test-well ID.",
@@ -79,6 +79,23 @@
     "well_win_fraction_at_least": 0.5
   },
   "stop_rule": "If discovery fails any gate, stop permanently without changing state grid, transitions, overlay scale, clip, smoothing equation, discovery wells, or gates. Passing discovery only authorizes one unchanged confirmation; no submission is authorized.",
+  "result": {
+    "wells": 24,
+    "rows": 123324,
+    "base_rmse": 16.475259051942626,
+    "forward_scale2_rmse": 16.84753591904986,
+    "smoother_scale2_rmse": 16.78420033378364,
+    "pooled_gain_over_forward_scale2": 0.06333558526621985,
+    "well_win_fraction_vs_forward_scale2": 0.625,
+    "true_p95_well_delta_vs_forward_scale2": 0.4044367210225265,
+    "worst_well_delta_vs_forward_scale2": 0.47608879891906586,
+    "mean_runtime_per_well_seconds": 46.68800849999631,
+    "failed_gates": [
+      "true_p95_well_delta_at_most_0.10",
+      "mean_runtime_per_well_seconds_at_most_45.0"
+    ],
+    "decision": "FAIL"
+  },
   "writes_submission": false,
   "public_submission_authorized": false
 }

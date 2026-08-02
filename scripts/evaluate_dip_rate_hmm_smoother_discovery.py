@@ -61,7 +61,7 @@ EXPECTED_SELECTED_WELLS = (
 )
 
 
-@njit(cache=True)
+@njit(cache=False)
 def _logadd(current: float, value: float) -> float:
     if current < -1.0e20:
         return value
@@ -70,7 +70,7 @@ def _logadd(current: float, value: float) -> float:
     return current + math.log1p(math.exp(value - current))
 
 
-@njit(cache=True, nogil=True)
+@njit(cache=False, nogil=True)
 def _dip_rate_filter_and_smoother(
     emission: np.ndarray,
     delta_md: np.ndarray,

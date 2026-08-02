@@ -1,6 +1,7 @@
 {
   "candidate": "exact_typewell_nearest_template_transfer_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL_STOP",
   "hypothesis": "Wells sharing an exact Typewell fingerprint may share enough suffix TVT shape for the nearest labeled training well to provide a useful bounded correction to the competitive base.",
   "protocol": "leave_one_well_out_within_exact_typewell_group",
   "frozen_parameters": {
@@ -31,5 +32,22 @@
     "worst_well_delta_at_most": 0.5
   },
   "stop_rule": "If any gate fails, stop this exact-Typewell template route without tuning the reference metric, overlay scale, cap, or interpolation.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "eligible_wells": 34,
+    "eligible_groups": 13,
+    "eligible_rows": 153094,
+    "eligible_base_pooled_rmse": 10.094491732729317,
+    "eligible_candidate_pooled_rmse": 10.42831994165158,
+    "eligible_pooled_gain": -0.33382820892226306,
+    "full_population_base_rmse": 10.370043441663087,
+    "full_population_candidate_rmse": 10.38339949184607,
+    "full_population_gain": -0.013356050182983026,
+    "well_win_fraction": 0.29411764705882354,
+    "p95_well_delta": 1.085211621523823,
+    "worst_well_delta": 1.1958369012721306,
+    "runtime_seconds": 0.6308998999884352,
+    "decision": "FAIL: the exact-Typewell nearest template substantially worsens both eligible and full-population OOF; stop without tuning."
+  },
+  "notebook_or_submission_authorized": false
 }
