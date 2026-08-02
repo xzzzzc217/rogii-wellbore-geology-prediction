@@ -523,3 +523,11 @@ remains the primary candidate.
   (6.477 primary) plus ref `54967104` (6.604 branch-risk hedge). No checkbox
   was changed during this read-only preflight; live selection remains due by
   August 5 20:00 UTC.
+- After explicit user confirmation later the same day, manually selected those
+  two submissions. The Kaggle page displayed **2/2**, and both target rows were
+  checked. An independent authenticated API read returned exactly refs
+  `54952634` and `54967104`, both `COMPLETE`; no third ref was present.
+- Final selection is therefore complete more than three days before the
+  official deadline. No new Notebook or competition submission was created.
+  Remaining work is limited to low-frequency read-only integrity checks unless
+  genuinely new evidence requires a user decision.

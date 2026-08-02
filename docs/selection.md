@@ -52,11 +52,16 @@ advantages are:
 
 ## Final-submission freeze audit — 2026-07-31
 
-The authenticated Kaggle API reports **zero currently selected final submissions**. On
+On 2026-07-31, the authenticated Kaggle API reported **zero selected final submissions**. On
 2026-08-02, the signed-in Submissions page independently showed **0/2** and stated that up to two
 submissions may be selected. If fewer than two are selected, Kaggle will automatically select
-from the best-scoring submissions. All nine competition submissions are in a terminal state,
-and the three frozen fallback Notebooks are `COMPLETE`. No duplicate submission is needed.
+from the best-scoring submissions. All nine competition submissions were in a terminal state,
+and the three frozen fallback Notebooks were `COMPLETE`. No duplicate submission was needed.
+
+Later on 2026-08-02, after explicit user confirmation, refs `54952634` and `54967104` were selected
+manually. The page displayed **2/2**, both target checkboxes were checked, and an independent API
+read returned exactly those two refs with `COMPLETE` status. No Notebook or competition
+submission was created during selection.
 
 | Priority | Submission ref | Public RMSE | Kaggle Notebook / version id | Output SHA-256 | Decision |
 |---:|---:|---:|---|---|---|
@@ -71,15 +76,14 @@ is 4,301 rows from one runtime-selected PF branch; every primary-minus-no-hedge 
 independent model, but it covers one concentrated final-branch decision at a much smaller Public
 penalty than safe-v2.
 
-Current recommendation:
+Final state:
 
-1. manually select `54952634` and `54967104`, the confirmed two-entry allowance;
-2. do not rely on Kaggle's automatic selection when the intended pair is already frozen;
+1. `54952634` and `54967104` are manually selected under the confirmed two-entry allowance;
+2. Kaggle's automatic selection is not relied upon;
 3. keep `54927581` runnable as a disaster fallback, but do not displace the second candidate
    without new evidence;
 4. treat the 2026-08-02 read-only selection preflight as complete;
-5. complete the live selection by **2026-08-05 20:00 UTC**, approximately four hours before the
-   official 2026-08-05 23:59 UTC deadline.
+5. perform only low-frequency read-only checks through the official 2026-08-05 23:59 UTC deadline.
 
 The latest audited public mirror,
 `farhanabidtech786/rogii-best-score-wellbore-geology-prediction`, produced the exact primary SHA
