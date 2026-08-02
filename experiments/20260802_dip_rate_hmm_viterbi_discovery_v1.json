@@ -1,6 +1,6 @@
 {
   "candidate": "target_free_global_viterbi_dip_rate_hmm_scale2",
-  "status": "PREREGISTERED_NOT_RUN",
+  "status": "FAIL_STOP",
   "hypothesis": "A max-product Viterbi path over the complete hidden suffix can resolve globally consistent GR alignment without the posterior-mean smearing and backward-pass runtime of the failed bidirectional smoother.",
   "discovery_population": {
     "source": "Official training wells excluding the original 32 HMM discovery wells, all 24 smoother-discovery wells, and every current test-well ID.",
@@ -79,6 +79,23 @@
     "well_win_fraction_at_least": 0.5
   },
   "stop_rule": "If discovery fails any gate, stop permanently without changing the state grid, max-product objective, transitions, overlay scale, clip, discovery wells, or gates. Passing discovery authorizes one unchanged confirmation only; it does not authorize a submission.",
+  "result": {
+    "wells": 24,
+    "rows": 117446,
+    "base_rmse": 9.101520771422928,
+    "forward_scale2_rmse": 8.881286201540506,
+    "viterbi_scale2_rmse": 8.523495031128979,
+    "pooled_gain_over_forward_scale2": 0.3577911704115273,
+    "well_win_fraction_vs_forward_scale2": 0.625,
+    "true_p95_well_delta_vs_forward_scale2": 1.42131522204338,
+    "worst_well_delta_vs_forward_scale2": 2.7003694071807267,
+    "mean_runtime_per_well_seconds": 13.874649524996736,
+    "failed_gates": [
+      "true_p95_well_delta_at_most_0.10",
+      "worst_well_delta_at_most_0.50"
+    ],
+    "decision": "FAIL"
+  },
   "writes_submission": false,
   "public_submission_authorized": false
 }

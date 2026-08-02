@@ -1,0 +1,86 @@
+{
+  "candidate": "target_free_uncertainty_fused_viterbi_hmm_scale2",
+  "status": "PREREGISTERED_NOT_RUN",
+  "hypothesis": "The direct Viterbi path has strong pooled signal but catastrophic well tails. A parameter-free rowwise fusion can retain globally consistent Viterbi states only when their disagreement with the forward posterior mean is commensurate with the forward posterior uncertainty.",
+  "discovery_population": {
+    "source": "Official training wells excluding the original 32 HMM discovery wells, 24 smoother wells, 24 direct-Viterbi wells, and every current test-well ID.",
+    "selection": "First 32 wells after SHA256 sort of the literal prefix viterbi_confidence_v1: plus well ID.",
+    "selected_wells": [
+      "d41beaf2",
+      "283269ac",
+      "d90aa14c",
+      "8b95d6d1",
+      "995ff498",
+      "f40cd091",
+      "53f23031",
+      "2c0c4a4e",
+      "39b51819",
+      "4cd1ac61",
+      "a783cc24",
+      "a3f71395",
+      "47222616",
+      "521a7819",
+      "84815d5a",
+      "53134831",
+      "25050f63",
+      "5def1ce5",
+      "a645da9a",
+      "fb03ae90",
+      "877ed19c",
+      "200d233d",
+      "7b38844c",
+      "511e1db0",
+      "69e41fa6",
+      "e97032ad",
+      "3a7dd95d",
+      "a0e92ed6",
+      "d6c320d9",
+      "656a067b",
+      "57f05c51",
+      "eafb863e"
+    ]
+  },
+  "frozen_fusion": {
+    "forward_path": "posterior mean from the frozen dip-rate HMM",
+    "alternative_path": "single global max-product Viterbi path",
+    "row_weight": "uncertainty_squared / (uncertainty_squared + path_disagreement_squared + 1e-12)",
+    "fused_path": "forward + row_weight * (viterbi - forward)",
+    "learned_parameters_or_thresholds": false,
+    "overlay_scale": 0.4,
+    "hmm_minus_base_clip_ft": 5.0,
+    "maximum_final_movement_ft": 2.0
+  },
+  "runtime_contract": {
+    "target_free_inputs_only": true,
+    "complete_hidden_suffix_gr_available_at_inference": true,
+    "query_or_training_truth_used_for_fusion": false,
+    "well_id_encoded_as_feature": false,
+    "absolute_coordinates_used": false,
+    "fixed_test_well_or_visible_shape_used": false,
+    "leaderboard_score_or_probe_used": false,
+    "writes_submission": false
+  },
+  "discovery_gate_relative_to_forward_hmm_scale2": {
+    "pooled_rmse_gain_at_least": 0.02,
+    "well_win_fraction_at_least": 0.55,
+    "true_p95_well_delta_at_most": 0.1,
+    "worst_well_delta_at_most": 0.5,
+    "mean_runtime_per_well_seconds_at_most": 45.0
+  },
+  "confirmation_if_discovery_passes": {
+    "population": "All remaining non-test wells excluding all four HMM discovery sets.",
+    "protocols": [
+      "spatial_cluster_7_seed_20260727",
+      "typewell_fingerprint"
+    ],
+    "required_gain_over_forward_hmm_scale2": 0.01,
+    "spatial_folds_improving_at_least": 5,
+    "typewell_folds_improving_required": 5,
+    "true_p95_well_delta_at_most": 0.1,
+    "worst_well_delta_at_most": 0.75,
+    "well_win_fraction_at_least": 0.5
+  },
+  "stop_rule": "If discovery fails any gate, stop permanently without changing the analytic fusion equation, HMM/Viterbi parameters, scale, clip, wells, or gates. Passing authorizes one unchanged confirmation only, not a submission.",
+  "writes_submission": false,
+  "public_submission_authorized": false
+}
