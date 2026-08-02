@@ -551,3 +551,26 @@ remains the primary candidate.
   `PENDING`; the existing `54952634 + 54967104` final selection remains intact.
   If the new ref scores strictly below 6.477, recommend replacing only
   `54967104`, subject to a final user-confirmed selection change.
+- Corrected the cap-4 evidence boundary: its visible-run CSV is byte-identical
+  to a public 6.432 artifact, but Code Competition scoring reruns the Notebook
+  on hidden data. Identical visible SHA therefore does not guarantee identical
+  Public scoring behavior; ref `55177746` remains the only authoritative test.
+- Implemented a structurally independent well-functional residual family on
+  the 773-well, 3,783,989-row target-free sequence cache. Each well uses five
+  relative-depth samples of 51 invariant features (255-dimensional signature)
+  to predict a 64-point residual curve over the competitive grouped-OOF base.
+- The preregistered 16-neighbor curve transfer failed both protocols: spatial
+  7-fold pooled delta was +0.008253 and Typewell-fingerprint 5-fold delta was
+  +0.028481. It is frozen as NO-GO without neighbor or distance tuning.
+- The one allowed structurally different follow-up, multi-output Ridge with
+  alpha 100, scale 0.20, and residual clip 20, passed both frozen protocols.
+  Spatial 7-fold delta was **-0.027603** with 5/7 folds improving, p95 delta
+  -0.07058, and worst-well delta +0.19252. Typewell 5-fold delta was
+  **-0.018767** with 5/5 folds improving, p95 delta -0.05606, and worst-well
+  delta +0.01616.
+- Added the reproducible evaluator, tests, and private deployment builder.
+  Pushed `heralces/rogii-functional-ridge-v1` version 1 exactly once. The new
+  target-free layer runs after the parent PF branch and before the final audit;
+  it records that the inherited 6.477 deployment base is related to but not
+  exactly the OOF gate base. The Notebook is `RUNNING`; no competition
+  submission exists until its dynamic output and cross-file SHA contract pass.

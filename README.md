@@ -31,7 +31,8 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
 | PF branch cap 2.5 target-free | **6.654**，较最佳差 0.177，NO-GO |
-| PF branch cap 4.0 target-free | ref `55177746`，**PENDING**；产物与已知 Public 6.432 文件 SHA 完全一致 |
+| PF branch cap 4.0 target-free | ref `55177746`，**PENDING**；可见产物同 SHA，不预设隐藏分数 |
+| Functional Ridge residual curve | 私有 Notebook v1 **RUNNING**；双协议 OOF 通过，尚未比赛提交 |
 
 当前 6.477 比公开榜前 10% 边界差约 0.058。公开榜只覆盖约 26% 测试数据，最终排名
 由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了
@@ -486,14 +487,44 @@ CPU 全量审计在 **51.2 秒**内覆盖 3,783,989 行、773 井：
 审计过程保留了一个有价值的失败门槛：v1 使用 strength 0.60 时只移动
 3.908582 ft，SHA 不匹配，因此没有创建竞赛提交。修正后的私有 Notebook v2 运行
 785.8 秒，动态命中一口井、移动 4,301 行、精确 +4.0 ft；14,151 行、`id,tvt`
-列、官方 ID 顺序、ID 唯一性、有限值、报告 SHA 和逐井增量全部通过检查，最终 SHA
-与上述真实 6.432 文件逐字节一致。
+列、官方 ID 顺序、ID 唯一性、有限值、报告 SHA 和逐井增量全部通过检查。普通可见运行
+的最终 SHA 与上述 6.432 文件逐字节一致，但 Code Competition 会在隐藏数据上重新执行
+Notebook；可见 CSV/SHA 相同并不能证明隐藏评分路径和 Public 分数也相同。cap 2.5 的反例
+已说明这一点，因此 6.432 只作为候选来源信号，ref `55177746` 的实际分数必须等待 Kaggle
+终态。
 
 唯一一次 Code Submission 为 ref `55177746`，描述
 `Target-free PF seed-branch cap4.0 controlled verification`，当前等待 Kaggle 评分。
 若其终态严格优于 6.477，建议最终组合改为 `55177746 + 54952634`，以 6.477 主候选
 覆盖 Private 分支风险，并移除 Public 6.604 的 no-hedge；在分数终态和用户确认前，
 当前已选的 `54952634 + 54967104` 保持不变。
+
+### 5.19 Target-free well-functional residual Ridge
+
+为避免继续只围绕同一 PF 分支做榜单微调，项目实现了一条结构独立的残差曲线迁移路线。
+每口井先用 51 个测试时可用、已移除绝对位置的序列特征，在 0%、25%、50%、75%、100%
+五个相对深度位置取样，形成 255 维井级签名；训练目标是该井相对竞争性 PF/Ridge OOF
+基线的 64 点残差曲线。部署时将预测曲线插值回隐藏后缀，仅以冻结权重 0.20 叠加，并把
+单点残差裁剪到 ±20 ft。模型不把井号、绝对坐标、测试标签、固定可见井或排行榜分数作为
+特征。
+
+第一项预注册实验使用 16 邻居的曲线迁移，空间 7 折 pooled delta 为 **+0.008253**，
+Typewell-fingerprint 5 折为 **+0.028481**，双协议均恶化，因此冻结为 NO-GO，不再调邻居数
+或距离。随后只允许一次结构不同的多输出 Ridge：`alpha=100`、`scale=0.20`、64 点曲线和
+±20 ft 裁剪均在读取结果前固定。它首次在两套严格协议上同向通过：
+
+- 空间 7 折：10.370043 → 10.342440，pooled delta **-0.027603**，5/7 folds 改善，
+  p95-well delta -0.07058，worst-well delta +0.19252；
+- Typewell 5 折：10.370043 → 10.351276，pooled delta **-0.018767**，5/5 folds 改善，
+  p95-well delta -0.05606，worst-well delta +0.01616。
+
+本地可见部署在三口测试井上生成有限、全覆盖且幅度温和的修正，全体 14,151 行 correction
+RMS 为约 0.410 ft，范围约 [-1.156, +0.670] ft。私有 Notebook
+`heralces/rogii-functional-ridge-v1` version 1 已唯一推送并正在运行；它把该层插在当前
+6.477 full-stack 的 PF 分支之后、最终审计之前，并额外校验动态样本长度、`id,tvt`、ID
+同序/唯一、有限值、逐井覆盖、报告 SHA 和源代码 SHA。需要诚实保留的风险是：部署父级
+full-stack 与用来守门的竞争性 OOF base 相关但不完全同构，所以只有 Kaggle 产物契约通过后
+才允许创建一次受控提交，当前尚未提交比赛。
 
 ## 6. 防泄漏验证
 
@@ -533,6 +564,8 @@ CPU 全量审计在 **51.2 秒**内覆盖 3,783,989 行、773 井：
 | Harshini 空间曲面 + PF | 不提交 | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 不重复提交 | 0 口井命中；文件等同已得 6.604 的 no-hedge |
 | PF branch cap 2.5 target-free | 6.654 | 较 6.477 差 0.177，NO-GO |
+| Functional kNN residual curve | 不提交 | 空间/Typewell pooled 均恶化，NO-GO |
+| Functional Ridge residual curve | Notebook 运行中 | 双协议 OOF 同向通过；等待动态产物审计 |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。

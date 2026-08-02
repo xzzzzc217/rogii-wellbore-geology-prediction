@@ -104,10 +104,13 @@ well, visible row count, expected artifact hash, probe flag, or leaderboard scor
 selection is nevertheless explicitly recorded as public-score-informed.
 
 Version 1 was rejected before submission because strength 0.60 produced only a 3.908582 ft move.
-Version 2 completed in 785.8 seconds and passed the full contract: 14,151 rows, exact `id,tvt`
-schema and sample ID order, unique IDs, finite predictions, 4,301 moved rows, exact +4.0 ft delta,
-and report/file SHA agreement. Its final SHA is byte-identical to the known 6.432 artifact:
+Version 2 completed in 785.8 seconds and passed the full visible-run contract: 14,151 rows, exact
+`id,tvt` schema and sample ID order, unique IDs, finite predictions, 4,301 moved rows, exact
++4.0 ft delta, and report/file SHA agreement. Its visible-run SHA is byte-identical to the public
+artifact associated with 6.432:
 `af43d97ab5b76f7f0bbbc5c72fb6e9a829e939c48582fc4130144340547360a2`.
+This is not a guaranteed score: Kaggle reruns Code Submissions on hidden data, so ref `55177746`
+is the only authoritative evaluation.
 
 The unique Code Submission is ref `55177746`, currently `PENDING`. Existing manual selections
 remain `54952634 + 54967104` until the new ref has a terminal score. If it is strictly better
