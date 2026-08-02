@@ -1,7 +1,7 @@
 {
   "candidate": "target-free HMM scale2 plus fixed Functional Ridge-PLS additive overlay",
   "created_at_utc": "2026-08-02",
-  "status": "PASS_PREPARE_CONDITIONAL_NOTEBOOK",
+  "status": "CLOSED_PUBLIC_GATE_FAIL",
   "components": {
     "hmm": {
       "effective_overlay_scale": 0.4,
@@ -50,5 +50,13 @@
   },
   "writes_submission": false,
   "public_submission_authorized": false,
-  "conditional_execution_gate": "Both HMM scale2 ref 55181026 and Functional Ridge PLS ref 55179387 must have terminal Public RMSE strictly below 6.477."
+  "conditional_execution_gate": "Both HMM scale2 ref 55181026 and Functional Ridge PLS ref 55179387 must have terminal Public RMSE strictly below 6.477.",
+  "component_public_observations": {
+    "functional_ridge_pls_ref": 55179387,
+    "functional_ridge_pls_public_rmse": 6.482,
+    "functional_ridge_pls_strictly_below_6_477": false,
+    "hmm_scale2_ref": 55181026,
+    "hmm_scale2_status_at_close": "PENDING"
+  },
+  "closure_decision": "The Functional Ridge-PLS component failed the frozen strict Public gate, so the combination is permanently closed without pushing a Notebook or creating a submission."
 }

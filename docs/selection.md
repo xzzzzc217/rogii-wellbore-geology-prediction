@@ -130,13 +130,10 @@ hidden artifact contract. The final SHA is
 `ffeb394ecc60ef4a95215b665baad9397119652e93505484806dc3c4bfdf482c`, based on the exact current
 primary parent SHA `b192d3f...ded4a`. It uses no fixed test well, visible row count, expected hash,
 leaderboard score, probe flag, or encoded well identity. The unique Code Submission is ref
-`55179387`, currently `PENDING`.
-
-Do not change the manually selected pair before ref `55179387` has a terminal score. If it is
-strictly below 6.477, it should displace the 6.604 no-hedge selection at minimum. If cap4 and
-Ridge/PLS both improve, first evaluate the already prepared conditional combination; otherwise
-select the two strongest terminal candidates with the 6.477 primary retained as the robustness
-anchor unless stronger evidence justifies replacing it.
+`55179387`; it completed at **6.482**. This is 0.027 better than the independently submitted plain
+Functional Ridge at **6.509**, but still 0.005 worse than the protected 6.477 primary. Neither
+Functional candidate can replace a selected submission, so the manual `54952634 + 54967104` pair
+remains unchanged.
 
 ## High-risk dip-rate HMM controlled validation — 2026-08-02
 
@@ -217,7 +214,8 @@ strongest independent additive OOF evidence currently available.
 The candidate remains high risk: true p95 well deltas versus HMM scale2 are +0.5744 and +0.5857,
 and only about 51% of wells improve. It is therefore prepared locally as
 `heralces/rogii-hmm-scale2-functional-ridge-pls-v1`, with a dedicated intermediate/final SHA
-validator, but `execution_authorized=false`. It may be pushed, run, and submitted once only if
-both component refs `55181026` and `55179387` first receive terminal Public RMSE strictly below
-6.477. If either component fails, errors, or has no score, the combination closes without using
-GPU or a submission slot. It never changes the manually selected final pair automatically.
+validator, but `execution_authorized=false`. Ref `55179387` completed at 6.482, failing the frozen
+requirement that both components score strictly below 6.477. The combination is therefore
+`CLOSED_PUBLIC_GATE_FAIL`: its Notebook will not be pushed and it will not consume GPU time or a
+submission slot. The still-pending HMM scale2 result can only unlock the separately preregistered
+scale2.3 continuation; it cannot reopen this combination.

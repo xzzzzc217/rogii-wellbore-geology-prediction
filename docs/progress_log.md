@@ -1089,3 +1089,19 @@ remains the primary candidate.
   `CLOSED_PUBLIC_GATE_FAIL`. No combined Notebook will be pushed and no extra
   submission will be created, regardless of the still-pending Functional
   component results.
+
+### 2026-08-02 - Functional public scores missed the protected best
+
+- Plain Functional Ridge ref `55178775` completed at Public RMSE **6.509**,
+  0.032 worse than the protected 6.477 primary.
+- Fixed 75/25 Functional Ridge/PLS ref `55179387` completed at **6.482**. The
+  frozen ensemble improved plain Ridge by 0.027 but remained 0.005 worse than
+  6.477, so neither Functional candidate can replace a final selection.
+- The conditional HMM scale2 plus Ridge/PLS additive route required both
+  components to score strictly below 6.477. Ridge/PLS failed that frozen gate,
+  so the route is now `CLOSED_PUBLIC_GATE_FAIL`; its Notebook will not be
+  pushed and no submission will be created.
+- HMM scale1 ref `55180816` and scale2 ref `55181026` remain pending. If scale2
+  later scores strictly below 6.477, the only authorized continuation is the
+  already preregistered scale2.3 candidate. Final selections remain
+  `54952634 + 54967104` and will not change automatically.

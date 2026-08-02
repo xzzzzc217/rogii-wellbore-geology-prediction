@@ -30,14 +30,14 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | Target-free dip-rate HMM | scale1：隐藏产物审计 PASS；ref `55180816` **PENDING**；pooled 改善 0.1568，井级尾部门槛 FAIL |
 | Dip-rate HMM scale2 排名冲刺 | 隐藏产物审计 PASS；ref `55181026` **PENDING**；738 非测试井 pooled 改善 **0.2440**，但尾部风险较高 |
 | Dip-rate HMM scale2.3 条件候选 | 738 非测试井 pooled 改善 **0.2568**、12/12 折改善；仅本地准备，只有 scale2 严格优于 6.477 才允许运行 |
-| HMM scale2 + Fixed Ridge–PLS | 相对 HMM2 再改善 **0.0368 / 0.0286**（空间/Typewell），6/7 与 5/5 折改善；仅本地准备，两个组件均严格优于 6.477 才授权 |
+| HMM scale2 + Fixed Ridge–PLS | Ridge–PLS Public 为 **6.482**，未严格优于 6.477；条件组合永久关闭 |
 | GR strongest-periodic notch | pooled 恶化 4.2925，门槛 FAIL |
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
 | PF branch cap 2.5 target-free | **6.654**，较最佳差 0.177，NO-GO |
 | PF branch cap 4.0 target-free | **6.661**，较最佳差 0.184，NO-GO |
-| Functional Ridge residual curve | v2 动态审计通过；ref `55178775` **PENDING** |
-| Fixed 75/25 Functional Ridge–PLS | ref `55179387` **PENDING**；隐藏产物审计通过 |
+| Functional Ridge residual curve | ref `55178775`：**6.509**，较最佳差 0.032，NO-GO |
+| Fixed 75/25 Functional Ridge–PLS | ref `55179387`：**6.482**，较最佳差 0.005，NO-GO |
 | cap4 + Fixed Ridge–PLS | cap4 Public 门槛失败，条件组合永久关闭 |
 
 当前 6.477 比公开榜前 10% 边界差约 0.058。公开榜只覆盖约 26% 测试数据，最终排名
@@ -538,8 +538,8 @@ full-stack 与用来守门的竞争性 OOF base 相关但不完全同构，所�
 不改变任何模型参数或预测逻辑；修复版已作为同一私有 Notebook 的 v2 唯一推送并完成。
 v2 用时 846.0 秒；下载产物的 14,151 行与官方 ID 完全同序、ID 唯一、预测有限，父文件、
 最终文件、双报告 SHA 和三口井逐井增量全部一致，最终 SHA-256 为
-`a30f6384...180de`。已从 v2 创建唯一一次 Code Submission：ref `55178775`，当前
-`PENDING`；在其严格优于 6.477 前不改变当前最佳或最终入选组合。
+`a30f6384...180de`。已从 v2 创建唯一一次 Code Submission：ref `55178775`，最终 Public
+RMSE 为 **6.509**，较 6.477 差 0.032，不能改变当前最佳或最终入选组合。
 
 等待 Kaggle 运行期间又预注册了一项且仅一项低秩响应消融：每个外折只用训练井把 64 点
 残差曲线压缩成 8 个 PCA 系数，再用相同 Ridge 预测。8 维已解释约 96.9%–97.1% 的训练
@@ -640,15 +640,15 @@ Typewell 5 折相对 scale2 额外改善 **0.006569**、4/5 折改善，单协�
 | MHA180 target-free midpoint | 不重复提交 | 0 口井命中；文件等同已得 6.604 的 no-hedge |
 | PF branch cap 2.5 target-free | 6.654 | 较 6.477 差 0.177，NO-GO |
 | Functional kNN residual curve | 不提交 | 空间/Typewell pooled 均恶化，NO-GO |
-| Functional Ridge residual curve | ref `55178775`，PENDING | 双协议 OOF 同向通过；动态产物与 SHA 审计通过 |
+| Functional Ridge residual curve | 6.509 | 较 6.477 差 0.032，NO-GO |
 | Functional Ridge 8D response-PCA | 不提交 | 双协议略差于普通 Ridge，未过支配门槛 |
 | Functional RBF Kernel Ridge | 不提交 | 空间/Typewell pooled 均恶化，非线性相似度 NO-GO |
 | Augmented Functional Ridge | 不提交 | 空间明显改善，但 Typewell 仅 4/5 折且弱于普通 Ridge |
 | Supervised Functional PLS | 单模型不提交 | pooled 双协议显著改善，但 Typewell fold 0 恶化 |
-| Fixed 75/25 Ridge–PLS | ref `55179387`，PENDING | 双协议全门槛与隐藏产物审计通过 |
+| Fixed 75/25 Ridge–PLS | 6.482 | 比 plain Ridge 改善 0.027，但较最佳差 0.005，NO-GO |
 | Distance-gated Ridge–PLS | 不提交 | pooled 更优但 Typewell 仅 4/5 折，门槛 FAIL |
 | cap4 + Fixed Ridge–PLS | CLOSED_PUBLIC_GATE_FAIL | cap4 为 6.661，不优于 6.477；不推送 |
-| HMM scale2 + Fixed Ridge–PLS | PREPARED_NOT_AUTHORIZED | 总 pooled delta -0.2808/-0.2726；需 HMM2 与 Ridge–PLS 各自 Public 都优于 6.477 |
+| HMM scale2 + Fixed Ridge–PLS | CLOSED_PUBLIC_GATE_FAIL | Ridge–PLS 为 6.482，组件 Public 门槛失败；不推送 |
 | GR/Typewell datum transfer | 不提交 | 空间与 Typewell 全部 folds 恶化，固定井收益不可迁移 |
 | Bidirectional HMM smoother | 不提交 | 相对 forward HMM2 pooled 改善 0.0633，但 true-p95 +0.4044 且平均 46.7 秒/井，门槛 FAIL |
 | 严格跨井平移副本转移 | 不提交 | 773 井中无不同 ID 的完整动态指纹重复，0 口井可转移 |

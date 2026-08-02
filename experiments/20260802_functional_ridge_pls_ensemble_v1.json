@@ -68,5 +68,13 @@
     "correction_maximum": 0.5450359114595679,
     "dynamic_contract_passed": true
   },
-  "decision": "PASS: authorize exactly one private Notebook run; competition submission remains conditional on the hidden-run artifact contract."
+  "public_result": {
+    "submission_ref": 55179387,
+    "public_rmse": 6.482,
+    "protected_best_rmse": 6.477,
+    "delta_vs_protected_best": 0.005,
+    "delta_vs_plain_functional_ridge": -0.027,
+    "strictly_better_than_protected_best": false
+  },
+  "decision": "PUBLIC_NO_GO: hidden artifact and OOF gates passed, but Public RMSE 6.482 is 0.005 worse than the protected 6.477 primary."
 }
