@@ -724,3 +724,16 @@ remains the primary candidate.
   `55177746` and the future standalone Ridge/PLS submission to each score
   strictly below 6.477 and pass their dynamic contracts. It is explicitly
   `PREPARED_NOT_AUTHORIZED` and consumes no Kaggle runtime or submission now.
+
+### 2026-08-02 - Live leaderboard and Raunak incremental public audit
+
+- Refreshed the full 6,057-team leaderboard: current rank is 1,161 at 6.477;
+  top-10% remains 6.419 at rank 606 and top-5% remains 6.374 at rank 303.
+- Audited the newly rerun public Notebook
+  `raunakdey07/rogii-physics-informed-stacked-ensemble-v2`, whose author team
+  is at 6.432. Its final `submission.csv` SHA-256 is exactly the existing cap4
+  visible artifact `af43d97a...60a2`; the branch report again moves only
+  `00e12e8b`, 4,301 rows, by +4.0 ft.
+- The added visualization appendix contains fixed visible row/well presentation
+  constants but does not modify the final file. This is not a structurally new
+  candidate and will not be wrapped, rerun, or submitted again.
