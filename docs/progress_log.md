@@ -602,3 +602,9 @@ remains the primary candidate.
   logic are unchanged. Tests cover the exact nested lookup. Version 2 was then
   pushed once to the same private Notebook and is `RUNNING`; no competition
   submission has been created.
+- An equivalent local dry run used the failed v1 parent's generated
+  `submission.csv`, the official test files, and the same private cache. The
+  corrected nested contract passed; all 14,151 IDs were covered exactly once,
+  all rows changed with finite corrections, RMS was 0.409577 ft, and the range
+  was [-1.155607, +0.669601] ft. This removes the known static deployment risk
+  while leaving the Kaggle v2 artifact audit as the authoritative next gate.
