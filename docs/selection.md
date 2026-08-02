@@ -116,3 +116,23 @@ The unique Code Submission is ref `55177746`, currently `PENDING`. Existing manu
 remain `54952634 + 54967104` until the new ref has a terminal score. If it is strictly better
 than 6.477, the recommended pair becomes `55177746 + 54952634`; do not change selection before
 the score is confirmed.
+
+## Target-free Functional Ridge/PLS candidate — 2026-08-02
+
+A fixed 75% plain Functional Ridge plus 25% supervised Functional PLS curve ensemble passed every
+preregistered spatial and Typewell gate. Spatial pooled delta was -0.035209 with 5/7 folds
+improving; Typewell pooled delta was -0.023059 with all 5/5 folds improving. Both protocols beat
+the independently submitted plain Ridge reference by more than the frozen margin.
+
+Private Notebook `heralces/rogii-functional-ridge-pls-v1` version 1 completed and passed the full
+hidden artifact contract. The final SHA is
+`ffeb394ecc60ef4a95215b665baad9397119652e93505484806dc3c4bfdf482c`, based on the exact current
+primary parent SHA `b192d3f...ded4a`. It uses no fixed test well, visible row count, expected hash,
+leaderboard score, probe flag, or encoded well identity. The unique Code Submission is ref
+`55179387`, currently `PENDING`.
+
+Do not change the manually selected pair before ref `55179387` has a terminal score. If it is
+strictly below 6.477, it should displace the 6.604 no-hedge selection at minimum. If cap4 and
+Ridge/PLS both improve, first evaluate the already prepared conditional combination; otherwise
+select the two strongest terminal candidates with the 6.477 primary retained as the robustness
+anchor unless stronger evidence justifies replacing it.

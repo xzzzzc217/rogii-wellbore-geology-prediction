@@ -751,3 +751,24 @@ remains the primary candidate.
 - Typewell fold 0 nevertheless worsened by +0.004770, leaving only 4/5 folds
   improved. The candidate is a preregistered FAIL and will not be tuned or
   deployed. The fixed 75/25 ensemble remains the only authorized model.
+
+### 2026-08-02 - Ridge/PLS hidden artifact passed and was submitted once
+
+- Private Notebook `heralces/rogii-functional-ridge-pls-v1` version 1 completed
+  in 771.9 seconds. Downloaded the full output and validated 14,151 rows, exact
+  `id,tvt` schema and official ID order, unique IDs, finite predictions, all-row
+  coverage, both source SHA values, the fixed 0.75/0.25 weights, no weight grid,
+  target-free/cache flags, per-well deltas, and report/audit/final SHA agreement.
+- The authoritative hidden output SHA-256 is
+  `ffeb394ecc60ef4a95215b665baad9397119652e93505484806dc3c4bfdf482c`;
+  its parent SHA is the exact 6.477 primary
+  `b192d3f348ae00680dc4df942b95cef5fd708c636a741f77dfb6b6e89b9ded4a`.
+- The earlier local dry-run SHA differed because its input was already a
+  once-serialized parent CSV and the overlay performed a second pandas CSV
+  round trip. Hidden versus local correction statistics differed by at most
+  0.00000251 ft, while source, model, weights, IDs, and dynamic contracts were
+  identical. This is serialization-level evidence, not prediction drift.
+- Created exactly one Code Submission, ref `55179387`, description
+  `Functional Ridge PLS fixed75-25 OOF controlled verification`. It is
+  `PENDING`; two daily submission slots remain. Current best and the manually
+  selected final pair remain unchanged until a strictly better score exists.
