@@ -1,0 +1,46 @@
+{
+  "candidate": "functional_pls_v1",
+  "status_before_evaluation": "PREREGISTERED",
+  "hypothesis": "Supervised PLS components can preserve the augmented signature's spatial gain while discarding Typewell-unstable directions that unsupervised response PCA and ordinary Ridge retain.",
+  "protocols": [
+    "spatial_cluster_7_seed_20260727",
+    "typewell_fingerprint"
+  ],
+  "frozen_parameters": {
+    "signature_quantiles": [0.0, 0.25, 0.5, 0.75, 1.0],
+    "summary_statistics_per_feature": [
+      "mean",
+      "standard_deviation",
+      "least_squares_slope_vs_relative_row_position"
+    ],
+    "curve_points": 64,
+    "pls_components": 8,
+    "pls_scale": true,
+    "pls_max_iter": 500,
+    "pls_tolerance": 0.000001,
+    "overlay_scale": 0.2,
+    "residual_clip": 20.0
+  },
+  "outer_fold_contract": {
+    "signature_statistics_use_target_free_rows_only": true,
+    "imputer_fit_on_outer_training_wells_only": true,
+    "pls_components_fit_on_outer_training_wells_only": true,
+    "held_out_truth_used_for_training_or_selection": false,
+    "well_id_encoded": false
+  },
+  "plain_ridge_reference": {
+    "spatial_cluster_7_seed_20260727": -0.0276029,
+    "typewell_fingerprint": -0.0187671
+  },
+  "deployment_gate": {
+    "pooled_delta_below_zero": true,
+    "p95_well_delta_at_most_zero": true,
+    "worst_well_delta_at_most": 0.25,
+    "nonpositive_well_fraction_at_least": 0.45,
+    "spatial_improved_folds_at_least": 5,
+    "typewell_improved_folds_required": 5,
+    "pooled_delta_must_beat_plain_ridge_by_at_least": 0.003
+  },
+  "stop_rule": "If either protocol fails any gate, stop permanently; do not tune PLS components, signature, scale, or clip.",
+  "writes_submission": false
+}
