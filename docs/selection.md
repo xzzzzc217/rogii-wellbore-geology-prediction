@@ -185,3 +185,16 @@ Its hidden output passed `scripts/validate_dip_rate_hmm_scale2_output.py`: 14,15
 exact ID order, unique and finite predictions, all rows changed, 2 ft maximum movement, and
 matching parent/final/report/audit hashes. Its sole controlled submission is ref `55181026` and
 is pending. The daily submission allowance is now exhausted; this candidate must not be repeated.
+
+## Conditional scale2.3 continuation — 2026-08-02
+
+Before either HMM Public score was available, multiplier 2.3 was preregistered from the weakest
+non-test fold's approximate zero-gain boundary of 2.354. On the same 738 non-test confirmation
+wells it improved pooled RMSE by **0.256847**, another **0.012810** over scale2, while retaining
+7/7 spatial and 5/5 Typewell fold improvements. The weakest Typewell fold improves by only
+0.003804, so 2.3 is treated as the endpoint; no larger multiplier is authorized.
+
+Tail risk rises again (true p95 +1.5538, worst well +2.0891, 56.23% well win rate). A local-only
+Notebook and validator are prepared, with `execution_authorized=false`. It may be pushed once only
+if ref `55181026` first receives a terminal Public score strictly below 6.477. A non-improving or
+missing scale2 score closes scale2.3 without using GPU or a submission slot.

@@ -927,3 +927,13 @@ remains the primary candidate.
   `4846486289f4a105dde3ba12e662640c6066ba2097aa1cf74475bdebf776bd75`.
   Created its only Code Submission, ref `55181026`; it is pending. The daily
   quota is now 0, so no further candidate can be submitted today.
+- Before either HMM Public score was visible, preregistered multiplier 2.3 from
+  the weakest non-test fold's zero-gain boundary (~2.354). It passed the frozen
+  primary gates: pooled delta **-0.256847**, spatial 7/7 and Typewell 5/5 folds
+  improved, and another 0.012810 gain over scale2. Tail risk rose further
+  (true p95 +1.5538, worst +2.0891, well win 56.23%), and the weakest Typewell
+  fold improved by only 0.003804; therefore no multiplier above 2.3 is allowed.
+- Built scale2.3 as a local-only Notebook/validator with
+  `execution_authorized=false`. It may be pushed only if scale2 ref `55181026`
+  first scores strictly below 6.477. This preserves a pre-Public continuation
+  without spending GPU or a future submission on a failed direction.

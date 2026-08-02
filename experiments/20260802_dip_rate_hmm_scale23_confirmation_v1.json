@@ -1,0 +1,32 @@
+{
+  "candidate": "target-free dip-rate HMM rank-seeking scale2.3 overlay",
+  "created_at_utc": "2026-08-02",
+  "frozen_before_public_scores": [55180816, 55181026],
+  "input_artifact": "artifacts/dip_rate_hmm_confirmation/dip_rate_hmm_confirmation_per_well.csv",
+  "frozen_change": {
+    "base_overlay_scale": 0.2,
+    "correction_multiplier": 2.3,
+    "effective_overlay_scale": 0.46,
+    "maximum_final_movement_ft": 2.3
+  },
+  "selection_rationale": "The weakest non-test aggregate fold has a zero-gain boundary near multiplier 2.354. Freeze 2.3 to retain margin below that boundary while moving closer to the pooled optimum near 2.76.",
+  "leakage_controls": {
+    "exclude_all_current_test_well_ids": true,
+    "test_well_targets_used": false,
+    "well_id_feature_used": false,
+    "absolute_coordinates_used": false,
+    "leaderboard_score_used": false,
+    "probe_or_canary_used": false
+  },
+  "confirmation_gates": {
+    "spatial_all_folds_improve_vs_base": true,
+    "typewell_all_folds_improve_vs_base": true,
+    "spatial_pooled_delta_at_most": -0.24,
+    "typewell_pooled_delta_at_most": -0.24,
+    "spatial_better_than_scale2_by_at_least": 0.01,
+    "typewell_better_than_scale2_by_at_least": 0.01
+  },
+  "execution_rule": "Even if PASS, keep local only. Push one private Notebook only after scale2 has a terminal Public score strictly below 6.477; otherwise close without running or submitting.",
+  "writes_submission": false,
+  "public_submission_authorized": false
+}
