@@ -608,6 +608,7 @@ worst-well delta +0.38970。结论是公开交易的效果依赖可见井锚定�
 | Functional Ridge 8D response-PCA | 不提交 | 双协议略差于普通 Ridge，未过支配门槛 |
 | Functional RBF Kernel Ridge | 不提交 | 空间/Typewell pooled 均恶化，非线性相似度 NO-GO |
 | Augmented Functional Ridge | 不提交 | 空间明显改善，但 Typewell 仅 4/5 折且弱于普通 Ridge |
+| Supervised Functional PLS | 单模型不提交 | pooled 双协议显著改善，但 Typewell fold 0 恶化 |
 | GR/Typewell datum transfer | 不提交 | 空间与 Typewell 全部 folds 恶化，固定井收益不可迁移 |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复

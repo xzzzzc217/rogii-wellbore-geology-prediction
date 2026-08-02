@@ -1,6 +1,7 @@
 {
   "candidate": "functional_pls_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL",
   "hypothesis": "Supervised PLS components can preserve the augmented signature's spatial gain while discarding Typewell-unstable directions that unsupervised response PCA and ordinary Ridge retain.",
   "protocols": [
     "spatial_cluster_7_seed_20260727",
@@ -42,5 +43,28 @@
     "pooled_delta_must_beat_plain_ridge_by_at_least": 0.003
   },
   "stop_rule": "If either protocol fails any gate, stop permanently; do not tune PLS components, signature, scale, or clip.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "spatial_cluster_7_seed_20260727": {
+      "pooled_delta": -0.05025014914042991,
+      "delta_vs_plain_ridge": -0.022647249140429912,
+      "improved_folds": 6,
+      "fold_count": 7,
+      "p95_well_delta": -0.04365427638392916,
+      "worst_well_delta": 0.22428447731302725,
+      "gate_passed": true
+    },
+    "typewell_fingerprint": {
+      "pooled_delta": -0.028257236370283323,
+      "delta_vs_plain_ridge": -0.009490136370283325,
+      "improved_folds": 4,
+      "fold_count": 5,
+      "p95_well_delta": -0.06047371374062038,
+      "worst_well_delta": -0.09962965756979969,
+      "gate_passed": false,
+      "failed_fold": 0,
+      "failed_fold_delta": 0.028926652204196657
+    }
+  },
+  "decision": "FAIL as a standalone deployment: pooled and tail metrics beat plain Ridge in both protocols, but Typewell fold 0 worsened and the all-fold gate is mandatory."
 }

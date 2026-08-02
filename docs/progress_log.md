@@ -673,3 +673,20 @@ remains the primary candidate.
   spatial signal, but this exact representation is not stable across Typewell
   families. No statistic deletion, alpha/scale adjustment, Notebook, or
   submission is allowed.
+
+### 2026-08-02 - Supervised Functional PLS improved pooled OOF but missed one fold
+
+- Preregistered eight-component PLSRegression on the exact augmented signature,
+  with components, scaling, and response fit isolated to each outer-training
+  fold. Scale 0.20, clip 20, and a 0.003 dominance margin over plain Ridge were
+  fixed before evaluation.
+- Spatial 7-fold passed strongly: pooled delta **-0.050250**, 6/7 folds,
+  p95-well delta -0.04365, worst-well delta +0.22428, and 0.022647 better than
+  plain Ridge.
+- Typewell pooled delta was **-0.028257**, p95-well delta -0.06047, worst-well
+  delta -0.09963, and 0.009490 better than plain Ridge. However, fold 0 worsened
+  by +0.028927, leaving only 4/5 folds improved.
+- Standalone PLS is therefore a FAIL under the mandatory all-Typewell-fold gate.
+  It will not be submitted or tuned. Plain Ridge improved all five Typewell
+  folds, so one separate conservative fixed-weight Ridge/PLS ensemble may be
+  preregistered; no weight grid or PLS parameter change is allowed.
