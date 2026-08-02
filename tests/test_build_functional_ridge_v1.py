@@ -60,6 +60,12 @@ def test_builder_installs_audited_overlay_after_branch() -> None:
     assert "functional_ridge_deploy_report.json" in overlay
     assert "submission_before_functional_ridge.csv" in overlay
     assert "set(_fr_corrections) != set(_fr_ids)" in overlay
+    assert "_fr_metadata.get('contract', {})" in overlay
+    assert "_fr_cache_contract.get('absolute_position_features_removed')" in overlay
+    assert "_fr_cache_contract.get('training_rows_only')" in overlay
+    assert "_fr_cache_contract.get('target_feature_leakage')" in overlay
+    assert "_fr_cache_contract.get('well_id_encoded_as_feature')" in overlay
+    assert "_fr_metadata.get('absolute_position_features_removed')" not in overlay
 
     all_code = "\n".join(
         _source(cell) for cell in notebook["cells"] if cell.get("cell_type") == "code"

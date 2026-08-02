@@ -589,3 +589,14 @@ remains the primary candidate.
   records Public-informed candidate selection but reads no score, fixed test
   well, visible row count, or expected hash. Until both gates resolve true it
   remains `PREPARED_NOT_AUTHORIZED` and consumes no Kaggle runtime or submission.
+- Functional Ridge Notebook version 1 failed after 766.0 seconds at the first
+  overlay contract check. Kaggle logs showed that the full parent stack,
+  private cache mount, source bootstrap, PF branch report, and parent
+  `submission.csv` all completed; no Functional Ridge model was fitted and no
+  competition submission was created.
+- Root cause was a metadata-path bug: the cache certifies
+  `absolute_position_features_removed` inside `metadata["contract"]`, while v1
+  checked the top level. The fix reads the nested contract and additionally
+  requires `training_rows_only=true`, `target_feature_leakage=false`, and
+  `well_id_encoded_as_feature=false`. Parameters, OOF evidence, and prediction
+  logic are unchanged. Tests cover the exact nested lookup before v2 is pushed.

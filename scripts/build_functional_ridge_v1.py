@@ -185,8 +185,15 @@ if int(_fr_offsets[-1]) != len(_fr_features):
     raise RuntimeError('cache feature and offset rows disagree')
 if len(_fr_base) != len(_fr_truth) or len(_fr_base) != len(_fr_features):
     raise RuntimeError('cache arrays disagree')
-if bool(_fr_metadata.get('absolute_position_features_removed')) is not True:
+_fr_cache_contract = _fr_metadata.get('contract', {})
+if _fr_cache_contract.get('absolute_position_features_removed') is not True:
     raise RuntimeError('cache does not certify removal of absolute-position features')
+if _fr_cache_contract.get('training_rows_only') is not True:
+    raise RuntimeError('cache is not certified as training-rows-only')
+if _fr_cache_contract.get('target_feature_leakage') is not False:
+    raise RuntimeError('cache target-feature leakage contract is not false')
+if _fr_cache_contract.get('well_id_encoded_as_feature') is not False:
+    raise RuntimeError('cache unexpectedly encodes well identity as a feature')
 
 _fr_cache_feature_names = [str(name) for name in _fr_metadata['features']]
 _fr_missing_names = [

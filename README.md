@@ -32,7 +32,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
 | PF branch cap 2.5 target-free | **6.654**，较最佳差 0.177，NO-GO |
 | PF branch cap 4.0 target-free | ref `55177746`，**PENDING**；可见产物同 SHA，不预设隐藏分数 |
-| Functional Ridge residual curve | 私有 Notebook v1 **RUNNING**；双协议 OOF 通过，尚未比赛提交 |
+| Functional Ridge residual curve | v1 契约路径错误、未提交；已修复并准备 v2 |
 
 当前 6.477 比公开榜前 10% 边界差约 0.058。公开榜只覆盖约 26% 测试数据，最终排名
 由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了
@@ -520,11 +520,15 @@ Typewell-fingerprint 5 折为 **+0.028481**，双协议均恶化，因此冻结�
 
 本地可见部署在三口测试井上生成有限、全覆盖且幅度温和的修正，全体 14,151 行 correction
 RMS 为约 0.410 ft，范围约 [-1.156, +0.670] ft。私有 Notebook
-`heralces/rogii-functional-ridge-v1` version 1 已唯一推送并正在运行；它把该层插在当前
+`heralces/rogii-functional-ridge-v1` version 1 已运行；它把该层插在当前
 6.477 full-stack 的 PF 分支之后、最终审计之前，并额外校验动态样本长度、`id,tvt`、ID
 同序/唯一、有限值、逐井覆盖、报告 SHA 和源代码 SHA。需要诚实保留的风险是：部署父级
 full-stack 与用来守门的竞争性 OOF base 相关但不完全同构，所以只有 Kaggle 产物契约通过后
-才允许创建一次受控提交，当前尚未提交比赛。
+才允许创建一次受控提交，当前尚未提交比赛。v1 在 766 秒后于 overlay 起点主动失败：缓存
+证明字段实际位于 `metadata["contract"]`，而 v1 误读了顶层字段。父级 full-stack、输入
+挂载、源代码 SHA 和 `submission.csv` 均已正常生成；错误发生在新模型拟合前，不产生候选
+分数。修复只更正契约路径，并同时验证 training-only、无 target leakage 和无井号编码，
+不改变任何模型参数或预测逻辑；修复版将作为同一私有 Notebook 的 v2 重新运行。
 
 等待 Kaggle 运行期间又预注册了一项且仅一项低秩响应消融：每个外折只用训练井把 64 点
 残差曲线压缩成 8 个 PCA 系数，再用相同 Ridge 预测。8 维已解释约 96.9%–97.1% 的训练
