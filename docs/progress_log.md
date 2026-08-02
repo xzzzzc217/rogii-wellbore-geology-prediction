@@ -998,3 +998,34 @@ remains the primary candidate.
   +1.1958. Across the full 3,783,989-row OOF population, RMSE worsened by
   **+0.013356**. The exact-Typewell transfer is permanently stopped without
   neighbor, scale, cap, or interpolation tuning.
+
+### 2026-08-02 - Global Viterbi HMM had large pooled gain but failed tail gates
+
+- Preregistered a single global max-product state path on 24 new SHA-selected
+  wells, excluding all original and smoother discovery wells plus current test
+  IDs. It kept the frozen HMM grid, transitions, scale2 overlay, and 5-ft
+  disagreement clip, and used no labels, scores, probes, or fitted thresholds.
+- The first execution was invalid because the evaluator inherited the original
+  scale1 constant 0.20 instead of the preregistered scale2 value 0.40. Only that
+  contract bug was corrected, a regression assertion was added, and the same
+  wells/algorithm/gates were rerun; no invalid-run metric informed a parameter.
+- At correct scale2, Viterbi improved pooled RMSE over forward HMM2 by a large
+  **0.357791** and improved 62.5% of wells at 13.87 s/well. Its tail was
+  unacceptable: true-p95 well delta **+1.421315** and worst-well delta
+  **+2.700369**. Direct Viterbi is therefore `FAIL_STOP`, with no confirmation,
+  Notebook, or submission.
+
+### 2026-08-02 - Parameter-free Viterbi confidence fusion did not transfer
+
+- Derived one threshold-free follow-up and preregistered it on 32 further
+  untouched wells. Per-row Viterbi weight was fixed analytically as
+  `u^2 / (u^2 + (v-f)^2 + 1e-12)`, where `u` is forward posterior uncertainty
+  and `v-f` is Viterbi/forward path disagreement. No labels or learned
+  parameters enter the fusion.
+- On 150,159 hidden suffix rows, forward HMM2 RMSE was 11.910267 and the fused
+  candidate was 11.913663: pooled gain **-0.003397** (an actual worsening).
+  Only 50% of wells improved and true-p95 delta was +0.110259; the worst delta
+  stayed bounded at +0.227661 and runtime averaged 13.12 s/well.
+- Three frozen gates failed. The entire Viterbi/fusion family is closed without
+  changing the formula, adding a threshold, running confirmation, or building
+  a Kaggle candidate.

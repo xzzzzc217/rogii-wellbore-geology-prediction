@@ -1,6 +1,6 @@
 {
   "candidate": "target_free_uncertainty_fused_viterbi_hmm_scale2",
-  "status": "PREREGISTERED_NOT_RUN",
+  "status": "FAIL_STOP",
   "hypothesis": "The direct Viterbi path has strong pooled signal but catastrophic well tails. A parameter-free rowwise fusion can retain globally consistent Viterbi states only when their disagreement with the forward posterior mean is commensurate with the forward posterior uncertainty.",
   "discovery_population": {
     "source": "Official training wells excluding the original 32 HMM discovery wells, 24 smoother wells, 24 direct-Viterbi wells, and every current test-well ID.",
@@ -81,6 +81,25 @@
     "well_win_fraction_at_least": 0.5
   },
   "stop_rule": "If discovery fails any gate, stop permanently without changing the analytic fusion equation, HMM/Viterbi parameters, scale, clip, wells, or gates. Passing authorizes one unchanged confirmation only, not a submission.",
+  "result": {
+    "wells": 32,
+    "rows": 150159,
+    "base_rmse": 12.299283360946916,
+    "forward_scale2_rmse": 11.910266502793778,
+    "fused_scale2_rmse": 11.91366327066122,
+    "pooled_gain_over_forward_scale2": -0.0033967678674411417,
+    "well_win_fraction_vs_forward_scale2": 0.5,
+    "true_p95_well_delta_vs_forward_scale2": 0.11025914145411683,
+    "worst_well_delta_vs_forward_scale2": 0.22766056447229932,
+    "mean_fusion_weight": 0.2815657340077946,
+    "mean_runtime_per_well_seconds": 13.12405851874064,
+    "failed_gates": [
+      "pooled_gain_over_forward_scale2_at_least_0.02",
+      "well_win_fraction_at_least_0.55",
+      "true_p95_well_delta_at_most_0.10"
+    ],
+    "decision": "FAIL"
+  },
   "writes_submission": false,
   "public_submission_authorized": false
 }
