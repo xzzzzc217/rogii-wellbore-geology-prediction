@@ -1,6 +1,7 @@
 {
   "candidate": "functional_ridge_pls_distance_gate_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL",
   "hypothesis": "A target-free training-support gate can retain more of PLS's pooled gain for in-domain wells while falling back to the stable 25% PLS weight for signatures outside training support.",
   "protocols": [
     "spatial_cluster_7_seed_20260727",
@@ -38,5 +39,28 @@
     "pooled_delta_must_beat_fixed_25_by_at_least": 0.003
   },
   "stop_rule": "If either protocol fails any gate, stop permanently; do not tune weights, distance metric, quantile, signature, scale, or clip.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "spatial_cluster_7_seed_20260727": {
+      "pooled_delta": -0.03970797306238971,
+      "delta_vs_fixed_25": -0.004499330540868485,
+      "improved_folds": 5,
+      "fold_count": 7,
+      "p95_well_delta": -0.0574298008581664,
+      "worst_well_delta": 0.20827917299887133,
+      "gate_passed": true
+    },
+    "typewell_fingerprint": {
+      "pooled_delta": -0.02632651296227273,
+      "delta_vs_fixed_25": -0.0032680095946862053,
+      "improved_folds": 4,
+      "fold_count": 5,
+      "failed_fold": 0,
+      "failed_fold_delta": 0.004770079838507968,
+      "p95_well_delta": -0.045453717914352154,
+      "worst_well_delta": -0.04177248597101624,
+      "gate_passed": false
+    }
+  },
+  "decision": "FAIL: pooled metrics beat the fixed 25% ensemble in both protocols, but the target-free distance gate did not protect Typewell fold 0; stop without tuning or deployment."
 }

@@ -737,3 +737,17 @@ remains the primary candidate.
 - The added visualization appendix contains fixed visible row/well presentation
   constants but does not modify the final file. This is not a structurally new
   candidate and will not be wrapped, rerun, or submitted again.
+
+### 2026-08-02 - Target-free distance-gated Ridge/PLS missed one Typewell fold
+
+- Preregistered one training-support gate: PLS weight 0.50 inside the outer
+  training distribution and 0.25 outside it. OOD was defined by the 95th
+  percentile of training-well leave-one-out nearest-neighbor distance after
+  training-only imputation and scaling. No weight, distance, or quantile grid
+  was searched; validation truth was not available to the gate.
+- Spatial pooled delta was **-0.039708**, 5/7 folds, and 0.004499 better than
+  the fixed 25% PLS ensemble. Typewell pooled delta was **-0.026327**, also
+  0.003268 better, with favorable p95 and worst-well deltas.
+- Typewell fold 0 nevertheless worsened by +0.004770, leaving only 4/5 folds
+  improved. The candidate is a preregistered FAIL and will not be tuned or
+  deployed. The fixed 75/25 ensemble remains the only authorized model.

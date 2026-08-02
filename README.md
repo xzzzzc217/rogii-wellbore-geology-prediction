@@ -612,6 +612,7 @@ worst-well delta +0.38970。结论是公开交易的效果依赖可见井锚定�
 | Augmented Functional Ridge | 不提交 | 空间明显改善，但 Typewell 仅 4/5 折且弱于普通 Ridge |
 | Supervised Functional PLS | 单模型不提交 | pooled 双协议显著改善，但 Typewell fold 0 恶化 |
 | Fixed 75/25 Ridge–PLS | Notebook v1 RUNNING | 双协议全门槛 PASS，均显著优于普通 Ridge |
+| Distance-gated Ridge–PLS | 不提交 | pooled 更优但 Typewell 仅 4/5 折，门槛 FAIL |
 | cap4 + Fixed Ridge–PLS | PREPARED_NOT_AUTHORIZED | 独立双分数门槛未解析，不推送 |
 | GR/Typewell datum transfer | 不提交 | 空间与 Typewell 全部 folds 恶化，固定井收益不可迁移 |
 
