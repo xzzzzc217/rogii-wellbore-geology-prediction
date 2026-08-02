@@ -1073,3 +1073,19 @@ remains the primary candidate.
   depth dependence and collapses to the already preregistered global scale2.3.
   The overall decision is `FAIL_STOP`; no depth breakpoint, basis, or upper
   bound will be tuned, and no Notebook or submission is authorized.
+
+### 2026-08-02 - Target-free cap4 scored 6.661 and closed both cap4 stacks
+
+- The sole dynamic cap4 submission, ref `55177746`, completed with Public RMSE
+  **6.661**. It is 0.184 worse than the 6.477 primary and 0.007 worse than the
+  earlier cap2.5 result at 6.654. The byte-identical visible cap4 artifact's
+  association with a public 6.432 source did not transfer to Kaggle's hidden
+  Code Submission rerun.
+- The candidate cannot replace either manually selected final submission. The
+  current pair remains `54952634 + 54967104`.
+- Both prepared cap4 combinations had an explicit prerequisite that cap4 score
+  strictly below 6.477. That prerequisite is now false, so cap4 plus plain
+  Functional Ridge and cap4 plus fixed Ridge/PLS are permanently marked
+  `CLOSED_PUBLIC_GATE_FAIL`. No combined Notebook will be pushed and no extra
+  submission will be created, regardless of the still-pending Functional
+  component results.

@@ -112,10 +112,11 @@ artifact associated with 6.432:
 This is not a guaranteed score: Kaggle reruns Code Submissions on hidden data, so ref `55177746`
 is the only authoritative evaluation.
 
-The unique Code Submission is ref `55177746`, currently `PENDING`. Existing manual selections
-remain `54952634 + 54967104` until the new ref has a terminal score. If it is strictly better
-than 6.477, the recommended pair becomes `55177746 + 54952634`; do not change selection before
-the score is confirmed.
+The unique Code Submission ref `55177746` completed with Public RMSE **6.661**, which is 0.184
+worse than the 6.477 primary and 0.007 worse than the cap2.5 result. It does not change the
+manual `54952634 + 54967104` selections. Because the cap4 component failed its strict Public
+gate, both prepared cap4 plus Functional Ridge and cap4 plus Ridge/PLS combinations are closed
+without pushing a Notebook or creating another submission.
 
 ## Target-free Functional Ridge/PLS candidate — 2026-08-02
 

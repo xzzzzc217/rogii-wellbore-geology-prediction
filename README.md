@@ -35,10 +35,10 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
 | PF branch cap 2.5 target-free | **6.654**，较最佳差 0.177，NO-GO |
-| PF branch cap 4.0 target-free | ref `55177746`，**PENDING**；可见产物同 SHA，不预设隐藏分数 |
+| PF branch cap 4.0 target-free | **6.661**，较最佳差 0.184，NO-GO |
 | Functional Ridge residual curve | v2 动态审计通过；ref `55178775` **PENDING** |
 | Fixed 75/25 Functional Ridge–PLS | ref `55179387` **PENDING**；隐藏产物审计通过 |
-| cap4 + Fixed Ridge–PLS | 仅离线准备；两项独立 Public 均严格优于 6.477 才授权 |
+| cap4 + Fixed Ridge–PLS | cap4 Public 门槛失败，条件组合永久关闭 |
 
 当前 6.477 比公开榜前 10% 边界差约 0.058。公开榜只覆盖约 26% 测试数据，最终排名
 由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了
@@ -500,10 +500,11 @@ Notebook；可见 CSV/SHA 相同并不能证明隐藏评分路径和 Public 分�
 终态。
 
 唯一一次 Code Submission 为 ref `55177746`，描述
-`Target-free PF seed-branch cap4.0 controlled verification`，当前等待 Kaggle 评分。
-若其终态严格优于 6.477，建议最终组合改为 `55177746 + 54952634`，以 6.477 主候选
-覆盖 Private 分支风险，并移除 Public 6.604 的 no-hedge；在分数终态和用户确认前，
-当前已选的 `54952634 + 54967104` 保持不变。
+`Target-free PF seed-branch cap4.0 controlled verification`，终态 Public RMSE 为
+**6.661**，比当前 6.477 主候选差 **0.184**，也比 cap2.5 的 6.654 略差。该结果否定了
+“更大通用分支位移可迁移到隐藏井”的假设；cap4 不替换任何最终候选，所有 cap4 +
+Functional Ridge/Ridge–PLS 条件构建均因组件 Public 门槛失败而永久关闭。当前已选的
+`54952634 + 54967104` 保持不变。
 
 ### 5.19 Target-free well-functional residual Ridge
 
@@ -552,7 +553,8 @@ Functional Ridge 保持唯一部署候选。
 Functional Ridge 参数，并增加跨报告 SHA 与分支上限审计。该 Notebook 当前明确标记为
 `PREPARED_NOT_AUTHORIZED`：只有 cap4 ref `55177746` 和普通 Functional Ridge 的独立
 Kaggle 分数都严格优于 6.477 时才允许推送；任一单项失败就不运行组合，避免用交互猜测
-浪费提交额度。
+浪费提交额度。cap4 后续以 6.661 完成，已触发失败条件；该组合现为
+`CLOSED_PUBLIC_GATE_FAIL`，不推送 Notebook、不创建提交。
 
 ### 5.20 增量公开审计与去固定井 GR datum 复核
 
@@ -645,7 +647,7 @@ Typewell 5 折相对 scale2 额外改善 **0.006569**、4/5 折改善，单协�
 | Supervised Functional PLS | 单模型不提交 | pooled 双协议显著改善，但 Typewell fold 0 恶化 |
 | Fixed 75/25 Ridge–PLS | ref `55179387`，PENDING | 双协议全门槛与隐藏产物审计通过 |
 | Distance-gated Ridge–PLS | 不提交 | pooled 更优但 Typewell 仅 4/5 折，门槛 FAIL |
-| cap4 + Fixed Ridge–PLS | PREPARED_NOT_AUTHORIZED | 独立双分数门槛未解析，不推送 |
+| cap4 + Fixed Ridge–PLS | CLOSED_PUBLIC_GATE_FAIL | cap4 为 6.661，不优于 6.477；不推送 |
 | HMM scale2 + Fixed Ridge–PLS | PREPARED_NOT_AUTHORIZED | 总 pooled delta -0.2808/-0.2726；需 HMM2 与 Ridge–PLS 各自 Public 都优于 6.477 |
 | GR/Typewell datum transfer | 不提交 | 空间与 Typewell 全部 folds 恶化，固定井收益不可迁移 |
 | Bidirectional HMM smoother | 不提交 | 相对 forward HMM2 pooled 改善 0.0633，但 true-p95 +0.4044 且平均 46.7 秒/井，门槛 FAIL |

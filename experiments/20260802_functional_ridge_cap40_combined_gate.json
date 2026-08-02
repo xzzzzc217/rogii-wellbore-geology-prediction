@@ -1,6 +1,6 @@
 {
   "candidate": "functional_ridge_cap40_combined_v1",
-  "status": "PREPARED_NOT_AUTHORIZED",
+  "status": "CLOSED_PUBLIC_GATE_FAIL",
   "hypothesis": "The runtime-selected PF branch shift and the target-free cross-well Functional Ridge correction address different error modes and may be additive.",
   "frozen_components": {
     "parent": "heralces/rogii-pf-public-reproduction",
@@ -22,5 +22,9 @@
   "runtime_reads_leaderboard_score": false,
   "runtime_uses_fixed_test_well": false,
   "runtime_uses_expected_visible_hash": false,
-  "current_action": "Build and test only. Do not push a Kaggle Notebook or create a competition submission until every authorization gate is true."
+  "observed_component_result": {
+    "cap40_public_score": 6.661,
+    "strictly_below_6_477": false
+  },
+  "current_action": "Closed permanently because cap40 ref 55177746 failed its Public gate. Do not push a Kaggle Notebook or create a competition submission."
 }
