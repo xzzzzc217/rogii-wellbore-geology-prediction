@@ -1,0 +1,41 @@
+{
+  "candidate": "translated_cross_well_twin_transfer_v1",
+  "status_before_evaluation": "PREREGISTERED",
+  "hypothesis": "Some hidden wells may be renamed or spatially translated reruns of official training wells. A strict target-free whole-well fingerprint can identify those twins and transfer the reference TVT after a visible-prefix datum alignment, while unmatched wells retain the competitive base unchanged.",
+  "protocol": "distinct_well_leave_one_out_exact_translated_fingerprint",
+  "frozen_match_contract": {
+    "different_well_id_required": true,
+    "whole_well_row_count_equal": true,
+    "relative_md_xyz_quantization": 0.0001,
+    "horizontal_gr_quantization": 0.0001,
+    "horizontal_gr_nan_pattern_equal": true,
+    "tvt_input_nan_pattern_equal": true,
+    "relative_visible_tvt_quantization": 0.0001,
+    "relative_typewell_tvt_quantization": 0.0001,
+    "typewell_gr_quantization": 0.0001,
+    "typewell_nan_pattern_equal": true,
+    "maximum_visible_prefix_alignment_residual_ft": 0.02,
+    "reference_selection": "lexicographically_first_other_well_in_fingerprint_group"
+  },
+  "deployment_contract": {
+    "official_competition_data_only": true,
+    "target_free_query_match": true,
+    "query_well_id_used_as_feature": false,
+    "absolute_coordinates_used_for_match": false,
+    "fixed_test_well_used": false,
+    "fixed_visible_row_count_or_hash_used": false,
+    "leaderboard_score_or_probe_used": false,
+    "unmatched_fallback": "exact competitive parent prediction"
+  },
+  "gate": {
+    "eligible_wells_at_least": 5,
+    "independent_fingerprint_groups_at_least": 3,
+    "eligible_hidden_rows_at_least": 10000,
+    "pooled_rmse_gain_vs_competitive_base_at_least": 0.2,
+    "well_win_fraction_at_least": 0.8,
+    "p95_well_delta_at_most": 0.1,
+    "worst_well_delta_at_most": 0.5
+  },
+  "stop_rule": "If any gate fails, stop this exact-translated-twin route without relaxing tolerances, adding nearest neighbors, or building a Notebook/submission.",
+  "writes_submission": false
+}
