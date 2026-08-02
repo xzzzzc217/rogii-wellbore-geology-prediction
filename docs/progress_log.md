@@ -657,3 +657,19 @@ remains the primary candidate.
 - Both protocols worsened and missed the plain Ridge reference by more than
   0.0238 RMSE. This is a definitive NO-GO: no kernel alpha, bandwidth, scale,
   signature, or clip tuning; no Notebook or competition submission.
+
+### 2026-08-02 - Globally augmented Functional Ridge was not Typewell-stable
+
+- Preregistered one linear follow-up that appended per-feature whole-well mean,
+  standard deviation, and least-squares relative-position slope to the five
+  fixed depth samples. Ridge alpha 100, scale 0.20, clip 20, and a required
+  0.003 dominance margin over plain Ridge were frozen before evaluation.
+- Spatial 7-fold improved strongly: pooled delta **-0.037769**, 5/7 folds,
+  p95-well delta -0.15216, and 0.010166 better than plain Ridge.
+- Typewell 5-fold pooled delta was only **-0.014021** with 4/5 folds improving.
+  It was 0.004746 worse than plain Ridge and missed the all-fold requirement,
+  despite favorable p95 and worst-well deltas.
+- The candidate is a preregistered FAIL. Whole-well statistics contain useful
+  spatial signal, but this exact representation is not stable across Typewell
+  families. No statistic deletion, alpha/scale adjustment, Notebook, or
+  submission is allowed.

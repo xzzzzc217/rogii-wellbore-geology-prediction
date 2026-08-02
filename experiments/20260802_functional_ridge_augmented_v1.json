@@ -1,6 +1,7 @@
 {
   "candidate": "functional_ridge_augmented_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL",
   "hypothesis": "Whole-well target-free mean, dispersion, and relative-position trend statistics add stable global shape information missing from five fixed depth samples while retaining the passing linear residual-curve model.",
   "protocols": [
     "spatial_cluster_7_seed_20260727",
@@ -40,5 +41,26 @@
     "pooled_delta_must_beat_plain_ridge_by_at_least": 0.003
   },
   "stop_rule": "If either protocol fails any gate, stop permanently; do not tune summary statistics, alpha, scale, or clip.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "spatial_cluster_7_seed_20260727": {
+      "pooled_delta": -0.037768547594426494,
+      "delta_vs_plain_ridge": -0.010165647594426494,
+      "improved_folds": 5,
+      "fold_count": 7,
+      "p95_well_delta": -0.15216266232975428,
+      "worst_well_delta": 0.07070061136005279,
+      "gate_passed": true
+    },
+    "typewell_fingerprint": {
+      "pooled_delta": -0.014020972725115044,
+      "delta_vs_plain_ridge": 0.004746127274884954,
+      "improved_folds": 4,
+      "fold_count": 5,
+      "p95_well_delta": -0.05896151855780829,
+      "worst_well_delta": -0.1327740419345318,
+      "gate_passed": false
+    }
+  },
+  "decision": "FAIL: the augmented signature improved spatial OOF but failed Typewell fold stability and was worse than plain Ridge there; stop without feature or parameter tuning."
 }
