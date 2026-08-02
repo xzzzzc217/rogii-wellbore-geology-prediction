@@ -1,6 +1,7 @@
 {
   "candidate": "functional_extra_trees_v1",
   "status_before_evaluation": "PREREGISTERED",
+  "status_after_evaluation": "FAIL",
   "hypothesis": "A strongly regularized nonlinear multi-output forest can recover interactions among target-free whole-well signatures that linear Ridge and PLS miss, while predicting a smooth ensemble-averaged residual curve.",
   "protocols": [
     "spatial_cluster_7_seed_20260727",
@@ -41,5 +42,29 @@
     "typewell_fingerprint": -0.0230585034
   },
   "stop_rule": "If either protocol fails any gate, stop permanently; do not tune tree count, max_features, leaf size, signature, overlay scale, or blend this failed forest into another candidate.",
-  "writes_submission": false
+  "writes_submission": false,
+  "result": {
+    "runtime_seconds": 27.84382963180542,
+    "spatial_cluster_7_seed_20260727": {
+      "pooled_delta": -0.02788431274653469,
+      "delta_vs_ridge_pls": 0.0073243297534653085,
+      "improved_folds": 6,
+      "fold_count": 7,
+      "nonpositive_well_fraction": 0.5058214747736093,
+      "p95_well_delta": -0.0993922480992886,
+      "worst_well_delta": -0.06345751887869255,
+      "gate_passed": false
+    },
+    "typewell_fingerprint": {
+      "pooled_delta": -0.026643379939919498,
+      "delta_vs_ridge_pls": -0.0035848765399194987,
+      "improved_folds": 5,
+      "fold_count": 5,
+      "nonpositive_well_fraction": 0.49805950840879687,
+      "p95_well_delta": 0.013421774030785372,
+      "worst_well_delta": -0.1215455829860872,
+      "gate_passed": false
+    }
+  },
+  "decision": "FAIL: the forest improved every Typewell fold and beat Ridge/PLS pooled Typewell by 0.003585, but missed the preregistered p95 gate and was 0.007324 worse than Ridge/PLS under spatial OOF. Stop without tuning, blending, Notebook construction, or submission."
 }

@@ -772,3 +772,34 @@ remains the primary candidate.
   `Functional Ridge PLS fixed75-25 OOF controlled verification`. It is
   `PENDING`; two daily submission slots remain. Current best and the manually
   selected final pair remain unchanged until a strictly better score exists.
+
+### 2026-08-02 - Nonlinear Functional ExtraTrees was informative but failed
+
+- Before evaluation, froze one multi-output ExtraTrees model with 384 trees,
+  `max_features=0.50`, `min_samples_leaf=8`, no bootstrap, no hyperparameter
+  search, the augmented target-free well signature, and the existing 0.20
+  residual-curve overlay. The preregistration was pushed as commit `394cc2b`.
+- Spatial 7-fold pooled delta was **-0.027884**, with 6/7 folds improved and
+  favorable p95/worst-well tails, but it was 0.007324 worse than the fixed
+  Ridge/PLS reference and therefore failed the dominance gate.
+- Typewell 5-fold pooled delta was **-0.026643** and all 5/5 folds improved,
+  beating Ridge/PLS by 0.003585. Its p95-well delta nevertheless worsened by
+  +0.013422, failing the mandatory tail gate.
+- The candidate is a preregistered FAIL. Its tree parameters will not be tuned,
+  it will not be blended after observing these results, and no Notebook or
+  competition submission is authorized.
+
+### 2026-08-02 - Late public Notebook audit found no clean new candidate
+
+- Audited three newly run public Notebooks. `hellbore-v-6` and
+  `rogii-geologia-v92-geographic-restoration` produced no submission artifact
+  or executable source result, so neither provides testable candidate evidence.
+- `akiirolabs-tvt-prediction-model` produced a distinct final SHA, but its final
+  stage found exact coordinate/prefix matches for all three visible test wells
+  and replaced all 14,151 predictions using their corresponding training-well
+  TVT trajectories. The audit itself records zero prefix RMSE, three exact
+  overlap wells, and 14,151 overridden rows.
+- That output is same-well target leakage, not hidden-generalization evidence.
+  The earlier SP45/Fleongg branches are already represented by audited public
+  model-package routes. Nothing from this scan is eligible for a private
+  Notebook or submission.
