@@ -714,3 +714,7 @@ remains the primary candidate.
   `d4d7e368c940d84cdc1504fcad18809675f18499b0efd6e089011b21febb7da3`.
   Exactly one private Notebook run is authorized; a competition submission is
   allowed only after the hidden-run output independently passes the same audit.
+- Pushed `heralces/rogii-functional-ridge-pls-v1` version 1 exactly once. It is
+  currently `RUNNING`; no competition submission exists yet. The monitor now
+  owns the hidden artifact audit and may create only the single preregistered
+  Code Submission after every dynamic contract check passes.
