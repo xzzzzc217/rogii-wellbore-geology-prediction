@@ -1,0 +1,41 @@
+{
+  "candidate": "functional_ridge_pls_ensemble_v1",
+  "status_before_evaluation": "PREREGISTERED",
+  "hypothesis": "A conservative fixed 75% plain Ridge and 25% supervised PLS curve ensemble retains enough PLS pooled gain while using the only model that improved all Typewell folds as the stability anchor.",
+  "protocols": [
+    "spatial_cluster_7_seed_20260727",
+    "typewell_fingerprint"
+  ],
+  "frozen_parameters": {
+    "plain_ridge_weight": 0.75,
+    "supervised_pls_weight": 0.25,
+    "weight_grid_searched": false,
+    "plain_ridge_alpha": 100.0,
+    "pls_components": 8,
+    "overlay_scale": 0.2,
+    "residual_clip": 20.0
+  },
+  "component_contract": {
+    "ridge_uses_five_fixed_sample_signature": true,
+    "pls_uses_same_samples_plus_frozen_mean_std_slope_statistics": true,
+    "both_components_fit_on_outer_training_wells_only": true,
+    "held_out_truth_used_for_training_or_selection": false,
+    "target_free_features_only": true,
+    "well_id_encoded": false
+  },
+  "plain_ridge_reference": {
+    "spatial_cluster_7_seed_20260727": -0.0276029,
+    "typewell_fingerprint": -0.0187671
+  },
+  "deployment_gate": {
+    "pooled_delta_below_zero": true,
+    "p95_well_delta_at_most_zero": true,
+    "worst_well_delta_at_most": 0.25,
+    "nonpositive_well_fraction_at_least": 0.45,
+    "spatial_improved_folds_at_least": 5,
+    "typewell_improved_folds_required": 5,
+    "pooled_delta_must_beat_plain_ridge_by_at_least": 0.002
+  },
+  "stop_rule": "If either protocol fails any gate, stop permanently; do not tune the 75/25 weight, component models, scale, or clip.",
+  "writes_submission": false
+}
