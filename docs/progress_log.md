@@ -1029,3 +1029,25 @@ remains the primary candidate.
 - Three frozen gates failed. The entire Viterbi/fusion family is closed without
   changing the formula, adding a threshold, running confirmation, or building
   a Kaggle candidate.
+
+### 2026-08-02 - Final public-frontier deduplication found no deployable model
+
+- Refreshed the full 6,060-team leaderboard. Public RMSE 6.477 is rank 1,164
+  (top 19.21%); the rank-606 top-10% boundary is 6.418 and the rank-303
+  top-5% boundary is 6.373.
+- Re-read the score-ascending public Notebook frontier with UTF-8 output and
+  audited the previously unnamed Roman, Nikita, Raunak Ultra, Boristown,
+  i-aztec, and Blacklions branches. The first five are exact full-stack/cap4
+  clones, visualization-only extensions, or fixed-Q0522 continuations. Nikita
+  again changes exactly 4,301 rows of visible well `00e12e8b` by +0.522 ft;
+  Roman applies the same fixed move on top of cap4.
+- Blacklions' two-coefficient well-level GBDT is the only structurally new
+  scoring layer. Its published execution report says its own random-by-well
+  five-fold OOF worsened from 10.372253 to 10.415607 (gain -0.043355), with
+  P90 and median well RMSE degrading by +0.301558 and +0.045423. Its internal
+  gate failed and the output reverted to the fixed Q0522 anchor.
+- Because this model already fails the author's less stringent OOF, a new
+  spatial/Typewell rerun would not be a rational use of deadline compute. No
+  private Notebook was built, no GPU was used, and no competition submission
+  was created. The five existing refs remain pending and today's quota remains
+  exhausted.

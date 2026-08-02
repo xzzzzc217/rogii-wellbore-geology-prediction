@@ -16,9 +16,9 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | 已加入竞赛并接受规则 | 完成 |
 | 训练井 / 可见测试井 | 773 / 3 |
 | 当前最佳 Public RMSE | **6.477** |
-| 当前公开榜排名 | **1,161 / 6,057，前 19.17%** |
-| 公开榜前 10% 边界 | 6.419 |
-| 公开榜前 5% 边界 | 6.374 |
+| 当前公开榜排名 | **1,164 / 6,060，前 19.21%** |
+| 公开榜前 10% 边界 | 6.418 |
+| 公开榜前 5% 边界 | 6.373 |
 | 当前奖牌判断 | 暂处公开榜铜牌区外，最终奖牌未确定 |
 | Kaggle 最终入选状态 | **2 / 2；`54952634` + `54967104` 已选并经 API 复核** |
 | A28 PF-1.3 w0.62 高粒子版 | 隐藏重跑超时，无分数 |
@@ -571,6 +571,21 @@ raw signal，但 scale 在不同 folds 间频繁变号。空间 7 折 pooled del
 worst-well delta +0.38970。结论是公开交易的效果依赖可见井锚定，不能跨井迁移；该路线
 为 NO-GO，不调 grid、平滑宽度、scale guard 或 correction cap，也不构建 Notebook。
 
+### 5.21 截止日前公开前沿去重
+
+2026-08-02 再次以 UTF-8 完整读取公开 Notebook 前沿。Roman、Nikita、Raunak Ultra、
+Boristown 与 i-aztec 的候选均是现有 full-stack/cap4 的克隆或展示层；Nikita 的运行产物
+明确只对固定井 `00e12e8b` 的 4,301 行追加 `+0.522 ft`，最终预测哈希仍是已审计的
+Q0522 固定公开候选。Roman 的所谓 CatBoost baseline 最终同样在 cap4 文件上对这口井
+追加 `+0.522 ft`，没有形成新的隐藏井模型。
+
+Blacklions 的 two-coefficient well-level GBDT 是本轮唯一结构上新增的模型，但其真实运行
+报告已经自行否决：随机按井 5 折的 OOF 从 10.372253 恶化到 10.415607，gain 为
+**-0.043355**；well-level P90 进一步恶化 **+0.301558**，median 恶化 **+0.045423**。
+作者门控因此为 `oof_gate_failed`，最终文件回退到固定 Q0522 锚点。由于它连较宽松的
+随机按井 OOF 都失败，不再消耗算力做更严格的空间/Typewell 复验，也不构建 Notebook
+或提交。
+
 ## 6. 防泄漏验证
 
 随机行切分会让同一口井的相邻行同时进入训练和验证，得到虚假的高分。项目采用：
@@ -625,6 +640,7 @@ worst-well delta +0.38970。结论是公开交易的效果依赖可见井锚定�
 | Exact-Typewell 最近井模板 | 不提交 | 34 井 pooled 10.0945 → 10.4283，全体 OOF 恶化 0.01336，NO-GO |
 | Global Viterbi HMM | 不提交 | pooled 相对 HMM2 改善 0.3578，但 p95 +1.4213、worst +2.7004，尾部 FAIL |
 | Uncertainty-fused Viterbi HMM | 不提交 | 独立 32 井 pooled 反而恶化 0.00340，50% 井改善，NO-GO |
+| Well-level two-coefficient GBDT | 不提交 | 作者随机按井 OOF 恶化 0.0434，P90 恶化 0.3016；回退固定 Q0522 |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
 有效；但其榜单成绩与 Safe v2 基本相同，所以只保留为可靠控制组。
