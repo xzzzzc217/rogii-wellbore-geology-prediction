@@ -1,0 +1,54 @@
+{
+  "candidate": "target-free HMM scale2 plus fixed Functional Ridge-PLS additive overlay",
+  "created_at_utc": "2026-08-02",
+  "status": "PASS_PREPARE_CONDITIONAL_NOTEBOOK",
+  "components": {
+    "hmm": {
+      "effective_overlay_scale": 0.4,
+      "maximum_movement_ft": 2.0,
+      "parameters_frozen": true
+    },
+    "functional": {
+      "ridge_weight": 0.75,
+      "pls_weight": 0.25,
+      "overlay_scale": 0.2,
+      "residual_clip_ft": 20.0,
+      "additive_weight": 1.0,
+      "parameters_frozen": true
+    }
+  },
+  "evaluation_population": "All official training wells outside the frozen 32-well HMM discovery set and outside every current test-well ID.",
+  "protocols": [
+    "spatial_cluster_7_seed_20260727",
+    "typewell_fingerprint"
+  ],
+  "leakage_controls": {
+    "current_test_wells_excluded_from_training_and_validation": true,
+    "hmm_discovery_wells_excluded_from_validation": true,
+    "outer_fold_truth_isolation_for_functional_model": true,
+    "well_id_feature_used": false,
+    "absolute_coordinates_used": false,
+    "leaderboard_score_used": false,
+    "probe_or_canary_used": false,
+    "weight_grid_searched": false
+  },
+  "gates": {
+    "spatial_additional_pooled_gain_at_least": 0.01,
+    "typewell_additional_pooled_gain_at_least": 0.005,
+    "spatial_folds_improving_over_hmm_scale2_at_least": 5,
+    "typewell_folds_improving_over_hmm_scale2_at_least": 5
+  },
+  "observed_result": {
+    "evaluation_wells": 738,
+    "spatial_additional_gain_over_hmm_scale2": 0.036776586472816675,
+    "spatial_improved_folds_over_hmm_scale2": "6/7",
+    "spatial_true_p95_well_delta_over_hmm_scale2": 0.5743766601900632,
+    "typewell_additional_gain_over_hmm_scale2": 0.02856978122130016,
+    "typewell_improved_folds_over_hmm_scale2": "5/5",
+    "typewell_true_p95_well_delta_over_hmm_scale2": 0.5857201872153267,
+    "decision": "PASS"
+  },
+  "writes_submission": false,
+  "public_submission_authorized": false,
+  "conditional_execution_gate": "Both HMM scale2 ref 55181026 and Functional Ridge PLS ref 55179387 must have terminal Public RMSE strictly below 6.477."
+}

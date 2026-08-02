@@ -937,3 +937,27 @@ remains the primary candidate.
   `execution_authorized=false`. It may be pushed only if scale2 ref `55181026`
   first scores strictly below 6.477. This preserves a pre-Public continuation
   without spending GPU or a future submission on a failed direction.
+
+### 2026-08-02 - HMM scale2 plus fixed Ridge/PLS additive OOF passed
+
+- Before any of the five pending Public scores was available, preregistered one
+  additive combination of the two unchanged target-free components: HMM scale2
+  first, then the fixed 75/25 Functional Ridge/PLS overlay. There was no scale,
+  weight, clip, state, or order grid.
+- Excluded all 32 HMM discovery wells and every current test-well ID from the
+  738-well evaluation. The Functional model stayed isolated to each outer
+  training fold under both spatial7 and Typewell5 protocols.
+- Spatial pooled RMSE improved from HMM2's 10.215544 to **10.178767**, an
+  additional **0.036777** gain; 6/7 folds improved. Typewell improved from
+  10.215544 to **10.186974**, an additional **0.028570** gain; all 5/5 folds
+  improved. Total deltas versus the competitive base were **-0.280814** and
+  **-0.272607**.
+- Tail risk remains material: true p95 well deltas versus HMM2 were +0.5744 and
+  +0.5857, worst-well deltas +1.5234 and +1.4834, and only about 51% of wells
+  improved. The candidate is rank-seeking rather than a robustness default.
+- Built a local-only private Notebook contract and validator. The Notebook
+  preserves and hashes the HMM intermediate, validates the Functional overlay
+  against that exact intermediate, then binds final/report/audit SHA values.
+  `execution_authorized=false`; it may be pushed and submitted once only if
+  refs `55181026` and `55179387` both first score strictly below 6.477. Today’s
+  Kaggle submission allowance remains exhausted, and no runtime was consumed.

@@ -198,3 +198,25 @@ Tail risk rises again (true p95 +1.5538, worst well +2.0891, 56.23% well win rat
 Notebook and validator are prepared, with `execution_authorized=false`. It may be pushed once only
 if ref `55181026` first receives a terminal Public score strictly below 6.477. A non-improving or
 missing scale2 score closes scale2.3 without using GPU or a submission slot.
+
+## Conditional HMM scale2 + Functional Ridge/PLS additive candidate — 2026-08-02
+
+Before any component Public score was visible, the two frozen target-free corrections were added
+in their deployment order: HMM scale2 first, then the fixed 75/25 Functional Ridge/PLS overlay.
+Evaluation excludes the 32 HMM discovery wells and every current test-well ID. Functional models
+remain outer-fold isolated, and no weight, scale, clip, HMM parameter, or component order was
+searched after validation labels were observed.
+
+Across 738 wells, spatial pooled RMSE improves from 10.215544 for HMM scale2 to **10.178767**,
+an additional gain of **0.036777**; 6/7 spatial folds improve. Typewell pooled RMSE improves from
+10.215544 to **10.186974**, an additional gain of **0.028570**; all 5/5 Typewell folds improve.
+The total deltas versus the competitive base are **-0.280814** and **-0.272607**. This is the
+strongest independent additive OOF evidence currently available.
+
+The candidate remains high risk: true p95 well deltas versus HMM scale2 are +0.5744 and +0.5857,
+and only about 51% of wells improve. It is therefore prepared locally as
+`heralces/rogii-hmm-scale2-functional-ridge-pls-v1`, with a dedicated intermediate/final SHA
+validator, but `execution_authorized=false`. It may be pushed, run, and submitted once only if
+both component refs `55181026` and `55179387` first receive terminal Public RMSE strictly below
+6.477. If either component fails, errors, or has no score, the combination closes without using
+GPU or a submission slot. It never changes the manually selected final pair automatically.

@@ -30,6 +30,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | Target-free dip-rate HMM | scale1：隐藏产物审计 PASS；ref `55180816` **PENDING**；pooled 改善 0.1568，井级尾部门槛 FAIL |
 | Dip-rate HMM scale2 排名冲刺 | 隐藏产物审计 PASS；ref `55181026` **PENDING**；738 非测试井 pooled 改善 **0.2440**，但尾部风险较高 |
 | Dip-rate HMM scale2.3 条件候选 | 738 非测试井 pooled 改善 **0.2568**、12/12 折改善；仅本地准备，只有 scale2 严格优于 6.477 才允许运行 |
+| HMM scale2 + Fixed Ridge–PLS | 相对 HMM2 再改善 **0.0368 / 0.0286**（空间/Typewell），6/7 与 5/5 折改善；仅本地准备，两个组件均严格优于 6.477 才授权 |
 | GR strongest-periodic notch | pooled 恶化 4.2925，门槛 FAIL |
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |
 | MHA180 target-free midpoint | 0 口井命中，等同已得 6.604 的 no-hedge，未重复提交 |
@@ -617,6 +618,7 @@ worst-well delta +0.38970。结论是公开交易的效果依赖可见井锚定�
 | Fixed 75/25 Ridge–PLS | ref `55179387`，PENDING | 双协议全门槛与隐藏产物审计通过 |
 | Distance-gated Ridge–PLS | 不提交 | pooled 更优但 Typewell 仅 4/5 折，门槛 FAIL |
 | cap4 + Fixed Ridge–PLS | PREPARED_NOT_AUTHORIZED | 独立双分数门槛未解析，不推送 |
+| HMM scale2 + Fixed Ridge–PLS | PREPARED_NOT_AUTHORIZED | 总 pooled delta -0.2808/-0.2726；需 HMM2 与 Ridge–PLS 各自 Public 都优于 6.477 |
 | GR/Typewell datum transfer | 不提交 | 空间与 Typewell 全部 folds 恶化，固定井收益不可迁移 |
 
 Clean128 的两次 Kaggle 普通运行在四个阶段和最终 CSV 上逐字节一致，证明确定性修复
