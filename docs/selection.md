@@ -221,3 +221,26 @@ requirement that both components score strictly below 6.477. The combination is 
 `CLOSED_PUBLIC_GATE_FAIL`: its Notebook will not be pushed and it will not consume GPU time or a
 submission slot. HMM scale2 later completed at 6.664, which independently failed its own Public
 gate and also closed the scale2.3 continuation. Neither route can be reopened.
+
+## Dynamic V4 T3920 second-slot hedge — 2026-08-03
+
+The refreshed 6,083-team leaderboard confirmed that the public Notebook
+`daniilkrasnovvv/rogii-solution-on-6-390-in-lb` corresponds to a real team score of **6.390** at
+rank 433 (top 7.12%), rather than only a title claim. Its published final output extends a generic
+PF branch capped at 3.5 ft by another 0.42 ft, but the public transaction hard-codes visible well
+`00e12e8b`, 4,301 rows, 14,151 total rows, and comments out failed source-integrity checks.
+
+The private candidate preserves the attributed upstream public scoring pipeline while replacing
+only that final transaction. Runtime `pf_seed_branch_hedge_report.csv` now selects every applied
+branch that actually saturates the 3.5-ft cap; the 0.42-ft continuation follows the branch sign.
+Official `sample_submission.csv` determines row count and ID order. No test-well ID, visible row
+count, expected visible hash, or disabled mismatch guard remains in scoring code. On the downloaded
+public artifact, the dynamic rule selects the same one branch and reproduces final prediction
+values within 1.9e-12.
+
+This is explicitly leaderboard-informed and is therefore a high-risk second-slot hedge, not a
+robust replacement for ref `54952634`. Private Notebook
+`heralces/rogii-v4-t3920-dynamic-pf-continuation-v1` version 1 is running. It may create at most one
+competition submission after its hidden artifact passes the dynamic validator. Final selections
+must not change automatically; only a reproduced score strictly below 6.477 can justify asking the
+user whether to replace the currently selected 6.604 ref `54967104`.

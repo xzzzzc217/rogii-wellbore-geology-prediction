@@ -1120,3 +1120,29 @@ remains the primary candidate.
   or follow-up tuning is authorized.
 - The current best remains 6.477 and the manually selected final pair remains
   `54952634 + 54967104`. No selection was changed automatically.
+
+### 2026-08-03 - New public frontier audit authorized one dynamic second-slot hedge
+
+- Downloaded and inspected five post-audit public Notebooks and their scoring
+  outputs. Raunak Robust v3 and Physics-Informed v2 are byte-identical fixed
+  Q0522 outputs (SHA `832848...071d`). Blacklions Final Hierarchy writes the
+  exact current 6.477 primary (SHA `b192d3...ed4a`); its new TTA GBDT is inactive
+  because its own OOF tail gate failed. Yaroslav Contact/U Restore fits replay
+  coefficients directly from multiple Public scores and is rejected as
+  leaderboard score-space reverse engineering.
+- Daniil's public team score is genuinely **6.390**, rank 433/6,083 (top 7.12%),
+  versus current top-10% boundary 6.412 and top-5% boundary 6.365. Its original
+  last layer changes fixed well `00e12e8b` and suppresses failed source checks,
+  so the public Notebook was not copied as-is.
+- Rewrote only the final transaction to use runtime PF report rows: every
+  applied branch saturating the generic 3.5-ft cap receives a signed 0.42-ft
+  continuation. Official sample rows/IDs remain dynamic; fixed well, fixed row
+  count, expected visible hash, and disabled mismatch guards were removed.
+  Offline replay selected one 4,301-row branch and matched the public final
+  values within 1.9e-12.
+- Pushed exactly one private version of
+  `heralces/rogii-v4-t3920-dynamic-pf-continuation-v1`; version 1 is running.
+  No competition submission exists yet. Hidden output must pass
+  `scripts/validate_v4_t3920_dynamic_output.py` before one controlled submission
+  is allowed. The protected 6.477 primary and current final selections remain
+  unchanged.

@@ -1,0 +1,37 @@
+{
+  "candidate": "dynamic PF cap3.5 plus signed 0.42 saturated-branch continuation",
+  "created_at_utc": "2026-08-03",
+  "status": "PRIVATE_NOTEBOOK_V1_RUNNING",
+  "private_kernel": "heralces/rogii-v4-t3920-dynamic-pf-continuation-v1",
+  "private_kernel_version": 1,
+  "attributed_public_source": "daniilkrasnovvv/rogii-solution-on-6-390-in-lb",
+  "external_public_evidence": {
+    "team": "Untitled-0",
+    "public_rmse": 6.390,
+    "leaderboard_rank": 433,
+    "leaderboard_teams": 6083,
+    "top_fraction": 0.0712
+  },
+  "risk_class": "leaderboard-informed second-slot hedge",
+  "frozen_change": {
+    "pf_branch_strength": 1.8,
+    "pf_branch_cap_ft": 3.5,
+    "additional_signed_shift_ft": 0.42,
+    "apply_only_to_runtime_branches_saturating_cap": true
+  },
+  "dynamic_rewrite": {
+    "fixed_test_well_used": false,
+    "fixed_test_row_count_used": false,
+    "expected_visible_hash_used_in_notebook": false,
+    "runtime_pf_report_drives_target_wells": true,
+    "official_sample_drives_rows_and_id_order": true,
+    "source_mismatch_guards_disabled": false
+  },
+  "leaderboard_bias_applied": true,
+  "writes_submission": true,
+  "private_notebook_pushes_allowed": 1,
+  "private_notebook_pushes_used": 1,
+  "competition_submissions_allowed_after_hidden_validation": 1,
+  "automatic_final_selection_change": false,
+  "adoption_rule": "Only after an independently reproduced terminal score strictly below 6.477 may the user consider replacing selected ref 54967104; ref 54952634 remains protected."
+}
