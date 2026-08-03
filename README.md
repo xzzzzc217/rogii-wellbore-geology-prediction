@@ -39,7 +39,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | Functional Ridge residual curve | ref `55178775`：**6.509**，较最佳差 0.032，NO-GO |
 | Fixed 75/25 Functional Ridge–PLS | ref `55179387`：**6.482**，较最佳差 0.005，NO-GO |
 | cap4 + Fixed Ridge–PLS | cap4 Public 门槛失败，条件组合永久关闭 |
-| Dynamic V4 T3920 PF continuation | 外部真实 Public **6.390**；固定井尾层已动态化，私有 Notebook v1 **RUNNING** |
+| Dynamic V4 T3920 PF continuation | 隐藏产物审计 PASS；ref `55215554` **PENDING**；外部真实 Public 证据 6.390 |
 
 当前 6.477 比公开榜前 10% 边界差约 0.058。公开榜只覆盖约 26% 测试数据，最终排名
 由约 74% 的 Private 数据决定，所以项目不会把公开榜位置当作最终结论，也不会为了

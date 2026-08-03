@@ -240,7 +240,10 @@ values within 1.9e-12.
 
 This is explicitly leaderboard-informed and is therefore a high-risk second-slot hedge, not a
 robust replacement for ref `54952634`. Private Notebook
-`heralces/rogii-v4-t3920-dynamic-pf-continuation-v1` version 1 is running. It may create at most one
-competition submission after its hidden artifact passes the dynamic validator. Final selections
-must not change automatically; only a reproduced score strictly below 6.477 can justify asking the
-user whether to replace the currently selected 6.604 ref `54967104`.
+`heralces/rogii-v4-t3920-dynamic-pf-continuation-v1` version 1 (version id `339924257`) completed.
+Its hidden output passed the dynamic validator with 14,151 exact-order rows, one runtime-selected
+branch, 4,301 changed rows, zero non-target movement, and final SHA
+`29e7c11ae721383007177d01c262592048fe7bd5f914896a9c85e43ff07d7610`. The unique controlled Code
+Submission is ref `55215554`, currently pending. Final selections must not change automatically;
+only a reproduced score strictly below 6.477 can justify asking the user whether to replace the
+currently selected 6.604 ref `54967104`.

@@ -1146,3 +1146,11 @@ remains the primary candidate.
   `scripts/validate_v4_t3920_dynamic_output.py` before one controlled submission
   is allowed. The protected 6.477 primary and current final selections remain
   unchanged.
+- Version 1 (version id `339924257`) completed and its downloaded artifact
+  passed the validator: 14,151 exact-order rows, one runtime PF extension,
+  4,301 changed rows, zero non-target movement, and exact final SHA
+  `29e7c11...7610`. All report/audit flags and SHAs agree.
+- After confirming the exact description did not already exist, created the
+  one allowed Code Submission, ref `55215554`, description
+  `Dynamic V4 T3920 PF-report continuation controlled verification`. It is
+  pending and must not be duplicated. No final selection changed.

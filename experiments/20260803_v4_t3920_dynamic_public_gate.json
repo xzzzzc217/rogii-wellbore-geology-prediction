@@ -1,9 +1,10 @@
 {
   "candidate": "dynamic PF cap3.5 plus signed 0.42 saturated-branch continuation",
   "created_at_utc": "2026-08-03",
-  "status": "PRIVATE_NOTEBOOK_V1_RUNNING",
+  "status": "CODE_SUBMISSION_PENDING",
   "private_kernel": "heralces/rogii-v4-t3920-dynamic-pf-continuation-v1",
   "private_kernel_version": 1,
+  "private_kernel_version_id": 339924257,
   "attributed_public_source": "daniilkrasnovvv/rogii-solution-on-6-390-in-lb",
   "external_public_evidence": {
     "team": "Untitled-0",
@@ -32,6 +33,17 @@
   "private_notebook_pushes_allowed": 1,
   "private_notebook_pushes_used": 1,
   "competition_submissions_allowed_after_hidden_validation": 1,
+  "competition_submissions_used": 1,
+  "submission_ref": 55215554,
+  "submission_description": "Dynamic V4 T3920 PF-report continuation controlled verification",
+  "hidden_artifact_validation": {
+    "status": "PASS",
+    "rows": 14151,
+    "applied_wells": 1,
+    "changed_rows": 4301,
+    "non_target_max_abs_move_ft": 0.0,
+    "submission_sha256": "29e7c11ae721383007177d01c262592048fe7bd5f914896a9c85e43ff07d7610"
+  },
   "automatic_final_selection_change": false,
   "adoption_rule": "Only after an independently reproduced terminal score strictly below 6.477 may the user consider replacing selected ref 54967104; ref 54952634 remains protected."
 }
