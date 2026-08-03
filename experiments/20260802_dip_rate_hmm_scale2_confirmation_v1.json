@@ -1,6 +1,7 @@
 {
   "candidate": "target-free dip-rate HMM rank-seeking scale2 overlay",
   "created_at_utc": "2026-08-02",
+  "status": "PUBLIC_NO_GO",
   "input_artifact": "artifacts/dip_rate_hmm_confirmation/dip_rate_hmm_confirmation_per_well.csv",
   "frozen_change": {
     "base_overlay_scale": 0.2,
@@ -27,5 +28,15 @@
   },
   "tail_metrics": "Record true p95 and worst-well delta but do not gate this explicitly rank-seeking candidate; disclose the risk in every artifact and submission description.",
   "writes_submission": false,
-  "public_submission_authorized": false
+  "public_submission_authorized": false,
+  "public_result": {
+    "submission_ref": 55181026,
+    "public_rmse": 6.664,
+    "scale1_public_rmse": 6.573,
+    "protected_best_rmse": 6.477,
+    "delta_vs_protected_best": 0.187,
+    "delta_vs_scale1": 0.091,
+    "strictly_better_than_protected_best": false
+  },
+  "decision": "PUBLIC_NO_GO: scale2 scored 6.664, worse than both the protected primary and scale1; close without retry or tuning."
 }

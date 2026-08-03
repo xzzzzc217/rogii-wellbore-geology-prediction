@@ -9,7 +9,7 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 
 ## 1. 当前状态
 
-截至 2026-08-02：
+截至 2026-08-03：
 
 | 项目 | 状态 |
 |---|---:|
@@ -27,9 +27,9 @@ Kaggle 无网络 Notebook 环境中稳定运行的地质轨迹预测系统，并
 | Frontier II DYNQ0196 | **7.507**，较最佳差 1.030，NO-GO |
 | GPU TCN + target-free well gate | gate 仅改善 0.0062，门槛 FAIL |
 | GPU TCN uniform-well sampling | pooled 恶化 0.0496，门槛 FAIL |
-| Target-free dip-rate HMM | scale1：隐藏产物审计 PASS；ref `55180816` **PENDING**；pooled 改善 0.1568，井级尾部门槛 FAIL |
-| Dip-rate HMM scale2 排名冲刺 | 隐藏产物审计 PASS；ref `55181026` **PENDING**；738 非测试井 pooled 改善 **0.2440**，但尾部风险较高 |
-| Dip-rate HMM scale2.3 条件候选 | 738 非测试井 pooled 改善 **0.2568**、12/12 折改善；仅本地准备，只有 scale2 严格优于 6.477 才允许运行 |
+| Target-free dip-rate HMM | scale1 ref `55180816`：**6.573**，较最佳差 0.096，NO-GO |
+| Dip-rate HMM scale2 排名冲刺 | ref `55181026`：**6.664**，较最佳差 0.187、较 scale1 差 0.091，NO-GO |
+| Dip-rate HMM scale2.3 条件候选 | scale2 Public 门槛失败；永久关闭，不推送、不提交 |
 | HMM scale2 + Fixed Ridge–PLS | Ridge–PLS Public 为 **6.482**，未严格优于 6.477；条件组合永久关闭 |
 | GR strongest-periodic notch | pooled 恶化 4.2925，门槛 FAIL |
 | Harshini 空间曲面 + PF | 严格空间核心 17.944，差于 flat 14.969，NO-GO |

@@ -1,6 +1,6 @@
 {
   "candidate": "dip_rate_hmm_public_controlled_v1",
-  "status": "AUTHORIZED_FOR_ONE_PRIVATE_NOTEBOOK_RUN",
+  "status": "PUBLIC_NO_GO",
   "decision_type": "explicit rank-seeking exception after transparent confirmation failure",
   "objective": "Improve Kaggle rank under the competition's pooled row-level RMSE rather than optimize an auxiliary per-well tail objective.",
   "supporting_evidence": {
@@ -47,5 +47,13 @@
     "duplicate_candidate_allowed": false,
     "automatic_final_selection_change": false,
     "adoption_rule": "Only a terminal publicScore strictly below 6.477 may replace an existing selected candidate."
-  }
+  },
+  "public_result": {
+    "submission_ref": 55180816,
+    "public_rmse": 6.573,
+    "protected_best_rmse": 6.477,
+    "delta_vs_protected_best": 0.096,
+    "strictly_better_than_protected_best": false
+  },
+  "decision": "PUBLIC_NO_GO: score 6.573 is worse than the protected 6.477 primary; do not repeat or select."
 }

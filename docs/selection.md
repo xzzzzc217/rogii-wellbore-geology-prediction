@@ -160,7 +160,8 @@ can promote the HMM candidate.
 Version 1 completed in about 783 seconds. Its hidden artifact passed the full validator with
 14,151 rows, exact ID order, three unique wells, finite predictions, all 14,151 rows changed,
 maximum movement 1 ft, and matching before/final/report/audit hashes. The unique controlled
-submission is ref `55180816`; it is pending and must not be duplicated.
+submission is ref `55180816`; it completed at **6.573**, 0.096 worse than the protected 6.477
+primary. It is a Public NO-GO and cannot replace either selected submission.
 
 ## Rank-seeking dip-rate HMM scale2 — 2026-08-02
 
@@ -181,8 +182,9 @@ it cannot replace a final selection unless its terminal Public score is strictly
 Private Notebook `heralces/rogii-dip-rate-hmm-scale2-v1` version 1 completed in about 766 seconds.
 Its hidden output passed `scripts/validate_dip_rate_hmm_scale2_output.py`: 14,151 dynamic rows,
 exact ID order, unique and finite predictions, all rows changed, 2 ft maximum movement, and
-matching parent/final/report/audit hashes. Its sole controlled submission is ref `55181026` and
-is pending. The daily submission allowance is now exhausted; this candidate must not be repeated.
+matching parent/final/report/audit hashes. Its sole controlled submission ref `55181026` completed
+at **6.664**, 0.187 worse than the protected primary and 0.091 worse than scale1. The stronger OOF
+signal did not transfer to Public data; this candidate must not be repeated or selected.
 
 ## Conditional scale2.3 continuation — 2026-08-02
 
@@ -192,10 +194,10 @@ wells it improved pooled RMSE by **0.256847**, another **0.012810** over scale2,
 7/7 spatial and 5/5 Typewell fold improvements. The weakest Typewell fold improves by only
 0.003804, so 2.3 is treated as the endpoint; no larger multiplier is authorized.
 
-Tail risk rises again (true p95 +1.5538, worst well +2.0891, 56.23% well win rate). A local-only
-Notebook and validator are prepared, with `execution_authorized=false`. It may be pushed once only
-if ref `55181026` first receives a terminal Public score strictly below 6.477. A non-improving or
-missing scale2 score closes scale2.3 without using GPU or a submission slot.
+Tail risk rises again (true p95 +1.5538, worst well +2.0891, 56.23% well win rate). Ref `55181026`
+completed at 6.664 and failed the frozen requirement to score strictly below 6.477. Scale2.3 is
+therefore `CLOSED_PUBLIC_GATE_FAIL`: the prepared local Notebook will not be pushed, run, or
+submitted, and no larger multiplier or follow-up tuning is authorized.
 
 ## Conditional HMM scale2 + Functional Ridge/PLS additive candidate — 2026-08-02
 
@@ -217,5 +219,5 @@ and only about 51% of wells improve. It is therefore prepared locally as
 validator, but `execution_authorized=false`. Ref `55179387` completed at 6.482, failing the frozen
 requirement that both components score strictly below 6.477. The combination is therefore
 `CLOSED_PUBLIC_GATE_FAIL`: its Notebook will not be pushed and it will not consume GPU time or a
-submission slot. The still-pending HMM scale2 result can only unlock the separately preregistered
-scale2.3 continuation; it cannot reopen this combination.
+submission slot. HMM scale2 later completed at 6.664, which independently failed its own Public
+gate and also closed the scale2.3 continuation. Neither route can be reopened.

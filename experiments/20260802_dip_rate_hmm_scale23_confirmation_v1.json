@@ -1,6 +1,7 @@
 {
   "candidate": "target-free dip-rate HMM rank-seeking scale2.3 overlay",
   "created_at_utc": "2026-08-02",
+  "status": "CLOSED_PUBLIC_GATE_FAIL",
   "frozen_before_public_scores": [55180816, 55181026],
   "input_artifact": "artifacts/dip_rate_hmm_confirmation/dip_rate_hmm_confirmation_per_well.csv",
   "frozen_change": {
@@ -28,5 +29,12 @@
   },
   "execution_rule": "Even if PASS, keep local only. Push one private Notebook only after scale2 has a terminal Public score strictly below 6.477; otherwise close without running or submitting.",
   "writes_submission": false,
-  "public_submission_authorized": false
+  "public_submission_authorized": false,
+  "scale2_public_gate": {
+    "submission_ref": 55181026,
+    "public_rmse": 6.664,
+    "required_strictly_below": 6.477,
+    "passed": false
+  },
+  "closure_decision": "Scale2 failed the frozen Public gate, so scale2.3 will not be pushed, run, submitted, or tuned further."
 }

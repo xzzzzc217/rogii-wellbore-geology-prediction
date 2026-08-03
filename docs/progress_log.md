@@ -1105,3 +1105,18 @@ remains the primary candidate.
   later scores strictly below 6.477, the only authorized continuation is the
   already preregistered scale2.3 candidate. Final selections remain
   `54952634 + 54967104` and will not change automatically.
+
+### 2026-08-03 - Both HMM submissions failed the Public gate
+
+- Dip-rate HMM scale1 ref `55180816` completed at Public RMSE **6.573**, 0.096
+  worse than the protected 6.477 primary. It cannot replace a final selection.
+- Rank-seeking HMM scale2 ref `55181026` completed at **6.664**, 0.187 worse
+  than 6.477 and 0.091 worse than scale1. Increasing the correction despite its
+  stronger spatial/Typewell OOF signal moved Public performance in the wrong
+  direction.
+- The preregistered scale2.3 route required scale2 to score strictly below
+  6.477. That frozen gate is false, so scale2.3 is permanently
+  `CLOSED_PUBLIC_GATE_FAIL`: no Notebook push, run, submission, larger scale,
+  or follow-up tuning is authorized.
+- The current best remains 6.477 and the manually selected final pair remains
+  `54952634 + 54967104`. No selection was changed automatically.

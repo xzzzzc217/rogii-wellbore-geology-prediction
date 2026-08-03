@@ -56,7 +56,10 @@
     "functional_ridge_pls_public_rmse": 6.482,
     "functional_ridge_pls_strictly_below_6_477": false,
     "hmm_scale2_ref": 55181026,
-    "hmm_scale2_status_at_close": "PENDING"
+    "hmm_scale2_status_at_close": "PENDING",
+    "hmm_scale2_final_status": "COMPLETE",
+    "hmm_scale2_public_rmse": 6.664,
+    "hmm_scale2_strictly_below_6_477": false
   },
   "closure_decision": "The Functional Ridge-PLS component failed the frozen strict Public gate, so the combination is permanently closed without pushing a Notebook or creating a submission."
 }
