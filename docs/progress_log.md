@@ -1185,6 +1185,21 @@ remains the primary candidate.
   unique IDs, finite values, one runtime branch, 4,301 moved rows, signed total
   2.672 ft, zero non-target change, and final SHA `3135e369...3aa9`.
 - Created exactly one Code Submission, ref `55225517`, description
-  `Quadratic PF total2.672 minimax controlled verification`. It is `PENDING`.
+  `Quadratic PF total2.672 minimax controlled verification`. It entered
+  `PENDING`.
   The manual final pair remains `54952634 + 54967104`; no automatic change was
   made.
+
+### 2026-08-04 - Quadratic PF candidate scored 6.482 and closed
+
+- Ref `55225517` completed with Public RMSE **6.482**, 0.005 worse than the
+  protected 6.477 primary. It failed the strict replacement gate and does not
+  replace either manually selected submission.
+- The score is also outside the preregistered 6.46768–6.46890 interval. Although
+  the downloaded control and candidate artifacts are collinear to machine
+  precision, that saved-artifact geometry did not transfer exactly to the
+  scored Code Submission. The precise hidden execution difference is not
+  observable, so the analytic curve is rejected as a further tuning signal.
+- The route is `PUBLIC_NO_GO`: no version 2, shift refit, retry, duplicate
+  submission, or automatic selection change. The retained pair remains
+  `54952634 + 54967104`.

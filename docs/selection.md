@@ -265,4 +265,8 @@ protected and no selection changes automatically. Private Kernel
 Its hidden output passed the dynamic contract with final SHA
 `3135e369e0cb2463da8f4462f52db20cd203762f126f4c02c29f69c763b73aa9`. The unique competition
 submission is ref `55225517`, description `Quadratic PF total2.672 minimax controlled
-verification`, currently `PENDING`.
+verification`. It completed at **6.482**, 0.005 worse than the protected 6.477 primary and outside
+the preregistered 6.46768–6.46890 interval. The transfer from saved collinear artifacts to the
+scored Code Submission was therefore not exact enough to support deployment. This route is
+`PUBLIC_NO_GO`: no version 2, refit, retry, duplicate submission, or automatic selection change.
+The retained manual pair remains `54952634 + 54967104`.
