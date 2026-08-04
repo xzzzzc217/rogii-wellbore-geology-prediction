@@ -685,6 +685,21 @@ Public 分数”不足以精确预测本次 Code Submission 的评分结果；�
 已下载版本之间的微小非同一性或其他隐藏执行差异，不能继续把解析曲线当作部署依据。
 该方向立即 `PUBLIC_NO_GO`：禁止 version 2、重新拟合位移、重复提交或自动改选。
 
+### 8 月 4 日最终公开前沿复查
+
+截止前最后一轮扫描覆盖 6,118 支队伍和最新公开 Notebook。新发布的
+`yaroslavkholmirzayev/reproduce-strongest-reference-aeroridge-v34` 虽然在 Q2522 后
+加入了运行时 SP45/learned consensus 修正（8,109 个 active rows，修正 RMS 0.124 ft），
+但评分交易仍硬编码可见井 `00e12e8b`、14,151 行和 4,301 个目标行；更关键的是，来源
+SHA、数值统计和分支不匹配的异常被改成打印 `Wertiba` 后继续执行。其作者团队当前
+6.419 的最后提交早于该 Notebook 本次运行，不能把团队分数归因于这份新产物。因此它
+不满足动态隐藏运行契约，不构建私有副本、不占用提交额度。
+
+其余当日新增公开 Notebook 的作者团队成绩显著落后；Evgendvorkin、Raunak、Navaz、
+Roman、Nikita 等近前沿公开产物则已分别确认为 cap4、固定 Q0522 或当前主候选的克隆。
+没有发现同时具备新结构、严格空间/Typewell OOF 或可审计动态交易证据的候选。最终
+选择继续保持 `54952634 + 54967104`，只做截止前低频只读核验。
+
 更多分析见：
 
 - [公开候选研究](docs/public_research.md)

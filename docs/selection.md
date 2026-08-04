@@ -270,3 +270,20 @@ the preregistered 6.46768–6.46890 interval. The transfer from saved collinear 
 scored Code Submission was therefore not exact enough to support deployment. This route is
 `PUBLIC_NO_GO`: no version 2, refit, retry, duplicate submission, or automatic selection change.
 The retained manual pair remains `54952634 + 54967104`.
+
+## Final public-frontier recheck — 2026-08-04
+
+The last pre-deadline scan covered 6,118 teams and the latest public Notebook
+runs. The only newly modified near-frontier artifact worth deeper inspection,
+`yaroslavkholmirzayev/reproduce-strongest-reference-aeroridge-v34`, adds a
+runtime SP45/learned consensus residual to Q2522. The residual is nonzero, but
+its transaction still fixes visible well `00e12e8b`, total/target row counts,
+and the Q2522 geometry while allowing source-integrity and branch mismatches to
+continue after printing `Wertiba`. Its author's 6.419 team score also predates
+the new run and is not evidence for this exact output.
+
+It therefore fails the dynamic hidden-run contract and is not eligible for a
+private rebuild or submission. Other recent public authors were either well
+behind 6.477 or already-audited cap4/fixed-Q0522/current-primary clones. No new
+candidate met both the structural-novelty and evidence gates. Keep the manual
+pair `54952634 + 54967104` and make no automatic selection change.

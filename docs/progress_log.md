@@ -1203,3 +1203,23 @@ remains the primary candidate.
 - The route is `PUBLIC_NO_GO`: no version 2, shift refit, retry, duplicate
   submission, or automatic selection change. The retained pair remains
   `54952634 + 54967104`.
+
+### 2026-08-04 - Final public-frontier scan found no admissible new candidate
+
+- Refreshed the full 6,118-team leaderboard and the latest public Notebook
+  list. Newly updated authors with genuinely near-frontier team scores were
+  already covered by the cap4, fixed-Q0522, or current-primary audits; the
+  remaining new authors were materially behind the 6.477 deployment gate.
+- Downloaded the source and output of
+  `yaroslavkholmirzayev/reproduce-strongest-reference-aeroridge-v34`. Its new
+  consensus correction is active on 8,109 rows (RMS 0.123933 ft), but the
+  preceding transaction still hard-codes visible well `00e12e8b`, 14,151
+  rows, and 4,301 target rows. Failed source SHA, numeric, and branch checks
+  have also been replaced by a `Wertiba` print-and-continue path.
+- The author's team score is 6.419, but its last leaderboard submission
+  predates this Notebook run, so that score cannot be attributed to the new
+  artifact. The candidate fails the dynamic hidden-run contract and is
+  rejected without a private Notebook or competition submission.
+- No structurally new candidate with strict spatial/Typewell OOF or a fully
+  dynamic auditable transaction was found. Final selections remain
+  `54952634 + 54967104`; monitoring returns to low-frequency read-only checks.
