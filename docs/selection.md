@@ -244,6 +244,7 @@ robust replacement for ref `54952634`. Private Notebook
 Its hidden output passed the dynamic validator with 14,151 exact-order rows, one runtime-selected
 branch, 4,301 changed rows, zero non-target movement, and final SHA
 `29e7c11ae721383007177d01c262592048fe7bd5f914896a9c85e43ff07d7610`. The unique controlled Code
-Submission is ref `55215554`, currently pending. Final selections must not change automatically;
-only a reproduced score strictly below 6.477 can justify asking the user whether to replace the
-currently selected 6.604 ref `54967104`.
+Submission ref `55215554` completed at **6.498**. It improved on the selected 6.604 no-hedge by
+0.106 but remained 0.021 worse than the protected 6.477 primary and missed the frozen adoption
+rule. Because it is explicitly leaderboard-informed and did not establish a new best, it is
+`PUBLIC_NO_GO`: do not replace either final selection, tune the 0.42-ft continuation, or retry.

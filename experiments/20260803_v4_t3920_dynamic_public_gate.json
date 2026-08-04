@@ -1,7 +1,7 @@
 {
   "candidate": "dynamic PF cap3.5 plus signed 0.42 saturated-branch continuation",
   "created_at_utc": "2026-08-03",
-  "status": "CODE_SUBMISSION_PENDING",
+  "status": "PUBLIC_NO_GO",
   "private_kernel": "heralces/rogii-v4-t3920-dynamic-pf-continuation-v1",
   "private_kernel_version": 1,
   "private_kernel_version_id": 339924257,
@@ -36,6 +36,14 @@
   "competition_submissions_used": 1,
   "submission_ref": 55215554,
   "submission_description": "Dynamic V4 T3920 PF-report continuation controlled verification",
+  "public_result": {
+    "public_rmse": 6.498,
+    "protected_best_rmse": 6.477,
+    "delta_vs_protected_best": 0.021,
+    "selected_no_hedge_rmse": 6.604,
+    "delta_vs_selected_no_hedge": -0.106,
+    "strictly_better_than_protected_best": false
+  },
   "hidden_artifact_validation": {
     "status": "PASS",
     "rows": 14151,
@@ -45,5 +53,6 @@
     "submission_sha256": "29e7c11ae721383007177d01c262592048fe7bd5f914896a9c85e43ff07d7610"
   },
   "automatic_final_selection_change": false,
+  "closure_decision": "PUBLIC_NO_GO: the dynamic reproduction improved on no-hedge but missed the frozen requirement to beat 6.477; close without tuning, retry, or selection change.",
   "adoption_rule": "Only after an independently reproduced terminal score strictly below 6.477 may the user consider replacing selected ref 54967104; ref 54952634 remains protected."
 }

@@ -1154,3 +1154,14 @@ remains the primary candidate.
   one allowed Code Submission, ref `55215554`, description
   `Dynamic V4 T3920 PF-report continuation controlled verification`. It is
   pending and must not be duplicated. No final selection changed.
+
+### 2026-08-04 - Dynamic V4 scored 6.498 and closed without selection change
+
+- Ref `55215554` completed with Public RMSE **6.498**. It is 0.106 better than
+  the selected 6.604 no-hedge but 0.021 worse than the protected 6.477 primary.
+- The preregistered adoption rule required a score strictly below 6.477 before
+  this leaderboard-informed candidate could be considered for the second final
+  slot. That condition is false, so the result is `PUBLIC_NO_GO`.
+- No 0.42-ft continuation tuning, retry, duplicate Notebook, duplicate
+  submission, or automatic final-selection change is authorized. The final
+  pair remains `54952634 + 54967104`.
