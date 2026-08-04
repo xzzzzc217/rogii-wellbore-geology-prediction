@@ -1165,3 +1165,26 @@ remains the primary candidate.
 - No 0.42-ft continuation tuning, retry, duplicate Notebook, duplicate
   submission, or automatic final-selection change is authorized. The final
   pair remains `54952634 + 54967104`.
+
+### 2026-08-04 - Frozen quadratic PF minimax candidate submitted once
+
+- Verified that refs `54967104`, `54952634`, and `55215554` are exactly
+  collinear on one 4,301-row runtime PF branch, with total shifts 0, 2.00, and
+  3.92 ft and zero non-target differences. Their Public scores 6.604, 6.477,
+  and 6.498 determine the squared-RMSE response curve along this direction.
+- The central optimum is 2.6739999 ft. Across all three-score rounding corners,
+  the frozen minimax total is **2.672 ft** and the predicted Public interval is
+  **6.46768–6.46890**. No weight or shift will be changed after this freeze.
+- Audited the only newly relevant public source (`navazshfathi/best-score-roggi`,
+  team score 6.411). Its current artifact is the already rejected fixed-Q0522
+  SHA `832848...071d`, with fixed visible well and row-count assumptions; it
+  was not adopted.
+- Pushed exactly one private Kernel,
+  `heralces/rogii-pf-quadratic-minimax-total-2-672-v1`, version 1 / version id
+  `340024171`. The hidden output passed the dynamic validator: 14,151 ordered
+  unique IDs, finite values, one runtime branch, 4,301 moved rows, signed total
+  2.672 ft, zero non-target change, and final SHA `3135e369...3aa9`.
+- Created exactly one Code Submission, ref `55225517`, description
+  `Quadratic PF total2.672 minimax controlled verification`. It is `PENDING`.
+  The manual final pair remains `54952634 + 54967104`; no automatic change was
+  made.

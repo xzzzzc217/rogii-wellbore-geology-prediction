@@ -248,3 +248,21 @@ Submission ref `55215554` completed at **6.498**. It improved on the selected 6.
 0.106 but remained 0.021 worse than the protected 6.477 primary and missed the frozen adoption
 rule. Because it is explicitly leaderboard-informed and did not establish a new best, it is
 `PUBLIC_NO_GO`: do not replace either final selection, tune the 0.42-ft continuation, or retry.
+
+## PF quadratic minimax second-slot candidate — 2026-08-04
+
+Three scored files share the exact same 4,301-row PF branch direction: no-hedge has total shift
+0 ft and Public 6.604, the protected primary has total shift 2.00 ft and Public 6.477, and dynamic
+V4 has total shift 3.92 ft and Public 6.498. All non-target rows are identical. Squared RMSE is
+therefore a quadratic function of this single total shift even though the Public mask is hidden.
+The central optimum is 2.6740 ft. Evaluating all score-rounding endpoints freezes the minimax total
+at **2.672 ft**, with a predicted Public interval of 6.46768–6.46890.
+
+This construction is explicitly leaderboard-informed. It can only justify replacing the selected
+6.604 second candidate after a real terminal score strictly below 6.477; ref `54952634` remains
+protected and no selection changes automatically. Private Kernel
+`heralces/rogii-pf-quadratic-minimax-total-2-672-v1` version 1 / version id `340024171` completed.
+Its hidden output passed the dynamic contract with final SHA
+`3135e369e0cb2463da8f4462f52db20cd203762f126f4c02c29f69c763b73aa9`. The unique competition
+submission is ref `55225517`, description `Quadratic PF total2.672 minimax controlled
+verification`, currently `PENDING`.

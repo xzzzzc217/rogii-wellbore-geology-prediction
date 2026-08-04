@@ -1,0 +1,62 @@
+{
+  "candidate": "PF quadratic minimax total 2.672 ft",
+  "created_at_utc": "2026-08-04",
+  "status": "SUBMITTED_PENDING",
+  "competition": "rogii-wellbore-geology-prediction",
+  "leaderboard_bias_applied": true,
+  "runtime_reads_leaderboard_score": false,
+  "manual_final_selection_must_not_change_automatically": true,
+  "source_controls": [
+    {
+      "submission_ref": 54967104,
+      "total_shift_ft": 0.0,
+      "public_rmse": 6.604,
+      "sha256": "fdf4a8175b6ec6a70c9b78fd6916ac3c317e43f7e9c08bbca87cd02314801ca9"
+    },
+    {
+      "submission_ref": 54952634,
+      "total_shift_ft": 2.0,
+      "public_rmse": 6.477,
+      "sha256": "b192d3f348ae00680dc4df942b95cef5fd708c636a741f77dfb6b6e89b9ded4a"
+    },
+    {
+      "submission_ref": 55215554,
+      "total_shift_ft": 3.92,
+      "public_rmse": 6.498,
+      "sha256": "29e7c11ae721383007177d01c262592048fe7bd5f914896a9c85e43ff07d7610"
+    }
+  ],
+  "file_geometry_contract": {
+    "same_runtime_branch_mask": true,
+    "changed_rows": 4301,
+    "non_target_max_abs_delta_ft": 0.0,
+    "control_shifts_are_constant_on_target": true
+  },
+  "quadratic_fit": {
+    "squared_rmse_intercept": 43.61281600000002,
+    "squared_rmse_linear_coefficient": -1.3268463380102218,
+    "squared_rmse_quadratic_coefficient": 0.24810141900510493,
+    "central_optimum_total_shift_ft": 2.6739998975639083,
+    "central_optimum_public_rmse": 6.468293632329845
+  },
+  "rounding_robust_minimax": {
+    "score_rounding_half_width": 0.0005,
+    "frozen_total_shift_ft": 2.672,
+    "additional_shift_vs_primary_ft": 0.672,
+    "additional_shift_vs_source_3p5_ft": -0.828,
+    "predicted_public_rmse_min": 6.467684247609526,
+    "predicted_public_rmse_max": 6.468902925504447
+  },
+  "kernel": "heralces/rogii-pf-quadratic-minimax-total-2-672-v1",
+  "kernel_version_limit": 1,
+  "kernel_version_id": 340024171,
+  "submission_description": "Quadratic PF total2.672 minimax controlled verification",
+  "submission_limit": 1,
+  "submission_ref": 55225517,
+  "submission_status": "PENDING",
+  "offline_reference_submission_sha256": "48dd82160b2375d409c95bb53d5e558266b4cbc3574a5a6ba6ec04682bff07f6",
+  "hidden_version_1_submission_sha256": "3135e369e0cb2463da8f4462f52db20cd203762f126f4c02c29f69c763b73aa9",
+  "hidden_version_1_max_abs_delta_vs_frozen_reference_ft": 1.8189894035458565e-12,
+  "hidden_version_1_validation": "PASS: identical dynamic branch and frozen 2.672-ft total; the byte difference from the offline reference is only CSV floating-point serialization at machine precision.",
+  "adoption_rule": "Only a terminal Public RMSE strictly below 6.477 may justify recommending replacement of selected ref 54967104; never change the manual final selection automatically."
+}
