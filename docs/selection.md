@@ -287,3 +287,25 @@ private rebuild or submission. Other recent public authors were either well
 behind 6.477 or already-audited cap4/fixed-Q0522/current-primary clones. No new
 candidate met both the structural-novelty and evidence gates. Keep the manual
 pair `54952634 + 54967104` and make no automatic selection change.
+
+## Post-deadline result — 2026-08-06
+
+The authenticated API confirms that the manual pair remained frozen after the
+official deadline. Both submissions and both source Notebooks are `COMPLETE`.
+
+| Final selection | Public RMSE | Private RMSE | Post-deadline status |
+|---|---:|---:|---|
+| `54952634` primary | 6.477 | **9.534** | selected, frozen, complete |
+| `54967104` no-hedge | 6.604 | **9.498** | selected, frozen, complete |
+
+No-hedge is the better selected Private result by 0.036. The leaderboard API
+still exposes only the Public snapshot (rank 1,411/6,191), so the final Private
+rank and medal status remain unverified and must not be inferred.
+
+For selection postmortem only, several unselected controls generalized better
+on Private: Frontier II 9.165, safe-v2 9.217, Clean128 9.290, and A28
+runtime-fast 9.293. The selected pair was highly collinear and concentrated
+its diversity in one PF branch decision. In future 26%/74% split competitions,
+retain one structurally independent, hidden-safe control in the final pair
+even when its Public score is substantially worse. The deadline has passed;
+these hindsight scores do not authorize any selection change.

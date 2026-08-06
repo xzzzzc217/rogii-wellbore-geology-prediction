@@ -1223,3 +1223,26 @@ remains the primary candidate.
 - No structurally new candidate with strict spatial/Typewell OOF or a fully
   dynamic auditable transaction was found. Final selections remain
   `54952634 + 54967104`; monitoring returns to low-frequency read-only checks.
+
+### 2026-08-06 - Competition closed; selected Private scores published
+
+- After the official `2026-08-05 23:59 UTC` deadline, the authenticated API
+  still reports exactly refs `54952634` and `54967104` as `COMPLETE` and
+  frozen. Their source Notebooks are also `COMPLETE`; the final selection did
+  not drift before cutoff.
+- Private scores are now visible: no-hedge ref `54967104` scored **9.498** and
+  primary ref `54952634` scored **9.534**. No-hedge is better by 0.036 on the
+  Private split, so the best visible score among the two selected entries is
+  9.498.
+- The leaderboard download endpoint still returns the final Public snapshot:
+  rank 1,411/6,191 at 6.477, with top-10% and top-5% boundaries 6.396 and
+  6.343. A separately verifiable final Private rank or medal result is not yet
+  exposed, so neither is claimed.
+- The account's lowest unselected Private score was Frontier II at **9.165**;
+  safe-v2 scored 9.217, Clean128 9.290, and A28 runtime-fast 9.293. This is a
+  substantial Public/Private reversal and a postmortem signal, not grounds to
+  alter the already closed final selection.
+- Final lesson: the two selected candidates differed only on one 4,301-row PF
+  branch and were not sufficiently diverse for a 26%/74% leaderboard split.
+  Future final pairs should reserve one slot for a hidden-safe structural
+  control even when its Public score is materially worse.
