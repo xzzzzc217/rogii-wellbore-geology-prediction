@@ -23,3 +23,21 @@ access_token
 
 # Notebook state
 .ipynb_checkpoints/
+
+# Publication exclusions: local secrets, weights, and packaged artifacts
+.env
+.env.*
+!.env.example
+!.env-example
+kaggle.json
+.kaggle/
+access_token
+*.pem
+*.key
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.dll
+*.zip
+*.tar.gz
